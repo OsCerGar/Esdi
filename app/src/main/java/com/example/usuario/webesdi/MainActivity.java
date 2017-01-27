@@ -9,6 +9,7 @@ package com.example.usuario.webesdi;
         import android.widget.Button;
         import android.widget.TextView;
         import android.widget.Toast;
+        import android.content.Intent;
 
         import com.google.android.gms.auth.api.Auth;
         import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener {
     //probando
     //probando 2
+
     private SignInButton btnSignIn;
     private Button btnSignOut;
     private Button btnRevoke;
@@ -138,6 +140,9 @@ public class MainActivity extends AppCompatActivity
             txtNombre.setText(acct.getDisplayName());
             txtEmail.setText(acct.getEmail());
             updateUI(true);
+            Intent intent = new Intent(this, MenuPrincipal.class);
+            startActivity(intent);
+
         } else {
             //Usuario no logueado --> Lo mostramos como "Desconectado"
             updateUI(false);
