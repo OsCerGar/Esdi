@@ -11,63 +11,44 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.usuario.webesdi.MenuPrincipal">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
             <TextView
                 android:text="Visitante"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="202dp"
+                android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/textView"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+                android:textAppearance="@android:style/TextAppearance.Widget" />
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="349dp"
+                android:layout_height="233dp"
                 android:id="@+id/imageView3"
                 android:adjustViewBounds="true"
                 android:cropToPadding="false"
                 app:srcCompat="@drawable/mapaprueba" />
 
-            <ScrollView
+            <Button
+                android:text="Pagina web "
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true">
+                android:layout_height="wrap_content"
+                android:id="@+id/brnpaginaweb" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-
-                    <Button
-                        android:text="contactar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/button3" />
-
-                    <Button
-                        android:text="Pagina web "
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/button2" />
-                </LinearLayout>
-            </ScrollView>
-
+            <Button
+                android:text="contactar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button3" />
         </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
