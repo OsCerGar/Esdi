@@ -24,7 +24,7 @@ package com.example.usuario.webesdi;
 public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener {
     //probando
-    
+    //probando 2
     private SignInButton btnSignIn;
     private Button btnSignOut;
     private Button btnRevoke;
