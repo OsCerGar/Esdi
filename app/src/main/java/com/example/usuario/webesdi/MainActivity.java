@@ -21,6 +21,7 @@ package com.example.usuario.webesdi;
         import com.google.android.gms.common.api.OptionalPendingResult;
         import com.google.android.gms.common.api.ResultCallback;
         import com.google.android.gms.common.api.Status;
+//aqui hay que añadir un if, que mire el id de la cuenta y active  un activity o otro dependiendo.
 
 public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener {
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity
     private SignInButton btnSignIn;
     private Button btnSignOut;
     private Button btnRevoke;
+    private Button btnEntrar;
     private TextView txtNombre;
     private TextView txtEmail;
 
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnEntrar = (Button)findViewById(R.id.btnEntrar);
         btnSignIn = (SignInButton)findViewById(R.id.sign_in_button);
         btnSignOut = (Button)findViewById(R.id.sign_out_button);
         btnRevoke = (Button)findViewById(R.id.revoke_button);
@@ -76,8 +79,7 @@ public class MainActivity extends AppCompatActivity
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(apiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
 
-                //aqui hay que añadir un if, que mire el id de la cuenta y active  un activity o otro dependiendo.
-                iniciarActivity();
+
             }
         });
 
@@ -108,10 +110,16 @@ public class MainActivity extends AppCompatActivity
         });
 
         updateUI(false);
+        btnEntrar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                iniciarActivity();
+            }
+        });
     }
     //mira el Id de la cuenta logeada, y comprueba si es de una lista.
-    static void iniciarActivity(){
-
+     void iniciarActivity(){
+        Intent intent = new Intent(this, MenuPrincipal.class);
+        startActivity(intent);
     }
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
@@ -140,8 +148,7 @@ public class MainActivity extends AppCompatActivity
             txtNombre.setText(acct.getDisplayName());
             txtEmail.setText(acct.getEmail());
             updateUI(true);
-            Intent intent = new Intent(this, MenuPrincipal.class);
-            startActivity(intent);
+
 
         } else {
             //Usuario no logueado --> Lo mostramos como "Desconectado"
