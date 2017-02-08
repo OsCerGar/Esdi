@@ -1,26 +1,25 @@
 package com.example.usuario.webesdi;
 
-        import android.app.ProgressDialog;
-        import android.content.Intent;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.util.Log;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.TextView;
-        import android.widget.Toast;
-        import android.content.Intent;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.google.android.gms.auth.api.Auth;
-        import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-        import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-        import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-        import com.google.android.gms.common.ConnectionResult;
-        import com.google.android.gms.common.SignInButton;
-        import com.google.android.gms.common.api.GoogleApiClient;
-        import com.google.android.gms.common.api.OptionalPendingResult;
-        import com.google.android.gms.common.api.ResultCallback;
-        import com.google.android.gms.common.api.Status;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 //aqui hay que añadir un if, que mire el id de la cuenta y active  un activity o otro dependiendo.
 
 public class MainActivity extends AppCompatActivity
@@ -118,7 +117,9 @@ public class MainActivity extends AppCompatActivity
     }
     //mira el Id de la cuenta logeada, y comprueba si es de una lista.
      void iniciarActivity(){
-        Intent intent = new Intent(this, MenuPrincipal.class);
+        Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
+         String mensaje = txtEmail.getText().toString();
+         intent.putExtra("email",mensaje );
         startActivity(intent);
     }
     @Override

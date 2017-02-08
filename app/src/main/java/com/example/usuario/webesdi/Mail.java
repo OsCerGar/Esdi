@@ -153,6 +153,84 @@ public class Mail extends javax.mail.Authenticator {
         this._body = _body;
     }
 
-    // more of the getters and setters …..
+    public String[] get_to() {
+        return _to;
+    }
+
+    public void set_to(String[] _to) {
+        this._to = _to;
+    }
+
+    public String get_from() {
+        return _from;
+    }
+
+    public void set_from(String _from) {
+        this._from = _from;
+    }
+
+    public Multipart get_multipart() {
+        return _multipart;
+    }
+
+    public void set_multipart(Multipart _multipart) {
+        this._multipart = _multipart;
+    }
+
+    public boolean is_debuggable() {
+        return _debuggable;
+    }
+
+    public void set_debuggable(boolean _debuggable) {
+        this._debuggable = _debuggable;
+    }
+
+    public boolean is_auth() {
+        return _auth;
+    }
+
+    public void set_auth(boolean _auth) {
+        this._auth = _auth;
+    }
+
+    public String get_body() {
+        return _body;
+    }
+
+    public void set_body(String _body) {
+        this._body = _body;
+    }
+
+    public String get_subject() {
+        return _subject;
+    }
+
+    public void set_subject(String _subject) {
+        this._subject = _subject;
+    }
+
+    public String get_host() {
+        return _host;
+    }
+
+    public void set_host(String _host) {
+        this._host = _host;
+    }
+
+    public String get_sport() {
+        return _sport;
+    }
+
+    public void set_sport(String _sport) {
+        this._sport = _sport;
+    }
+
+    public String get_port() {
+        return _port;
+    }
+
+    public void set_port(String _port) {
+        this._port = _port;
+    }
 }
 

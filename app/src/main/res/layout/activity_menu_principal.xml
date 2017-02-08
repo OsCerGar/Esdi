@@ -48,6 +48,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/button3" />
+
+            <Button
+                android:text="Sugerencias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnFormulario" />
         </LinearLayout>
     </ScrollView>
 

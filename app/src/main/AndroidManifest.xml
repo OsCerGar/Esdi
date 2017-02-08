@@ -17,8 +17,10 @@
         </activity>
         <activity android:name=".MenuPrincipal" />
         <activity android:name=".PaginaWeb" />
-        <activity android:name=".Mail"></activity>
-        <uses-permission android:name="android.permission.INTERNET"/>
+
+
+        <activity android:name=".Formulario"></activity>
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

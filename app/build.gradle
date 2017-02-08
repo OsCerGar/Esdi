@@ -27,7 +27,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.google.android.gms:play-services-auth:9.4.0'
     testCompile 'junit:junit:4.12'
-    compile files('libs/java-mail-1.4.4.jar')
     compile files('libs/activation.jar')
     compile files('libs/additionnal.jar')
     compile files('libs/mail.jar')
