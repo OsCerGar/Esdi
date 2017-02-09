@@ -25,7 +25,13 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.google.android.gms:play-services-auth:9.4.0'
+    compile 'com.google.android.gms:play-services-auth:10.0.1'
+
+    //dependencia de aplicacion para la base de datos
+    compile 'com.google.firebase:firebase-database:10.0.1'
+
+    //Librería de FirebaseUI (para Base de Datos)
+    compile 'com.firebaseui:firebase-ui-database:1.1.1'
     testCompile 'junit:junit:4.12'
     compile files('libs/activation.jar')
     compile files('libs/additionnal.jar')

@@ -20,13 +20,20 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 //aqui hay que añadir un if, que mire el id de la cuenta y active  un activity o otro dependiendo.
 
 public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener {
-    //probando
-    //probando 2
-    //probando 3
+
 
     private SignInButton btnSignIn;
     private Button btnSignOut;
@@ -40,6 +47,9 @@ public class MainActivity extends AppCompatActivity
 
     private ProgressDialog progressDialog;
 
+    private DatabaseReference dbPrediccion;
+    private static final String TAGLOG = "firebase-db";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +61,23 @@ public class MainActivity extends AppCompatActivity
         btnRevoke = (Button)findViewById(R.id.revoke_button);
         txtNombre = (TextView)findViewById(R.id.txtNombre);
         txtEmail = (TextView)findViewById(R.id.txtEmail);
+
+
+        dbPrediccion = FirebaseDatabase.getInstance().getReference().child("prediccion-hoy");
+
+
+        //crea una referencia a la base de datos, nodo predicciones
+        DatabaseReference dbRef =
+                FirebaseDatabase.getInstance().getReference()
+                        .child("predicciones");
+
+//crea un objeto de la clase predicciones
+        Prediccion pred = new Prediccion("Despejado", 29, 35, "01/12/2016");
+//hace un set a la referencia de la base de datos pasandole el objeto prediccion, esto crea el nodo
+        //si no existe o machaca el existente
+        //      dbRef.child("20161201").setValue(pred);
+        //inserta el valor, con una clave auto-generada de valor ascendente
+        dbRef.push().setValue(pred);
 
         //Google API Client
         //Definimos que informacion queremos recuperar del usuario que se identifique
