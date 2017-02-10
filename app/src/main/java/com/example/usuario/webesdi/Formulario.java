@@ -34,9 +34,9 @@ public class Formulario extends AppCompatActivity {
 
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Mail m = new Mail("oscergar@gmail.com", "kirowser");
+                Mail m = new Mail("EsdiCorreos@gmail.com", "esdi1234");
 
-                String[] toArr = {"oscergar@gmail.com"};
+                String[] toArr = {"EsdiCorreos@gmail.com"};
                 m.set_to(toArr);
                 m.set_from("sugerencia");
                 String asunto = etxtAsunto.getText().toString();

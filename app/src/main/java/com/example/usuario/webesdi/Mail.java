@@ -2,7 +2,6 @@ package com.example.usuario.webesdi;
 
 import java.util.Date;
 import java.util.Properties;
-
 import javax.activation.CommandMap;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
