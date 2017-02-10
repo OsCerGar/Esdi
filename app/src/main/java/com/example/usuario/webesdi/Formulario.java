@@ -1,5 +1,4 @@
 package com.example.usuario.webesdi;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -9,13 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 public class Formulario extends AppCompatActivity {
     EditText etxtBody;
     EditText etxtAsunto;
     String nombre ;
     Button btnEnviar;
     @Override
+
 
 
     protected void onCreate(Bundle savedInstanceState) {
