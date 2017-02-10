@@ -21,8 +21,12 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 //aqui hay que añadir un if, que mire el id de la cuenta y active  un activity o otro dependiendo.
 
 public class MainActivity extends AppCompatActivity
@@ -44,32 +48,19 @@ public class MainActivity extends AppCompatActivity
     private DatabaseReference dbESDi;
     private static final String TAGLOG = "firebase-db";
 
+    String valor ="patata";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnEntrar = (Button)findViewById(R.id.btnEntrar);
-        btnSignIn = (SignInButton)findViewById(R.id.sign_in_button);
-        btnSignOut = (Button)findViewById(R.id.sign_out_button);
-        btnRevoke = (Button)findViewById(R.id.revoke_button);
-        txtNombre = (TextView)findViewById(R.id.txtNombre);
-        txtEmail = (TextView)findViewById(R.id.txtEmail);
-
-
-      //  dbESDi = FirebaseDatabase.getInstance().getReference().child("usuario");
-
-
-        //crea una referencia a la base de datos, nodo predicciones
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("usuario");
-
-//crea un objeto de la clase predicciones
-        Usuario usu = new Usuario("Humberto","humberto@falso.es");
-//hace un set a la referencia de la base de datos pasandole el objeto prediccion, esto crea el nodo
-        //si no existe o machaca el existente
-              dbRef.child("humbert").setValue(usu);
-        //inserta el valor, con una clave auto-generada de valor ascendente
-      //  dbRef.push().setValue(usu);
+        btnEntrar = (Button) findViewById(R.id.btnEntrar);
+        btnSignIn = (SignInButton) findViewById(R.id.sign_in_button);
+        btnSignOut = (Button) findViewById(R.id.sign_out_button);
+        btnRevoke = (Button) findViewById(R.id.revoke_button);
+        txtNombre = (TextView) findViewById(R.id.txtNombre);
+        txtEmail = (TextView) findViewById(R.id.txtEmail);
 
 
 
@@ -133,23 +124,26 @@ public class MainActivity extends AppCompatActivity
 
         updateUI(false);
         btnEntrar.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
+            public void onClick(View v) {
                 iniciarActivity();
             }
         });
     }
+
     //mira el Id de la cuenta logeada, y comprueba si es de una lista.
-     void iniciarActivity(){
+    void iniciarActivity() {
         Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
-         String mensaje = txtEmail.getText().toString();
-         intent.putExtra("email",mensaje );
+        String mensaje = txtEmail.getText().toString();
+        intent.putExtra("email", mensaje);
         startActivity(intent);
     }
+
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Toast.makeText(this, "Error de conexion!", Toast.LENGTH_SHORT).show();
         Log.e("GoogleSignIn", "OnConnectionFailed: " + connectionResult);
     }
+
     // nos llega el resultado del login, le aplicamos getSignInResultFromIntent, y iniciamos un metodo para gestionarlo.
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -162,15 +156,61 @@ public class MainActivity extends AppCompatActivity
             handleSignInResult(result);
         }
     }
+
     //Miramos si la conexion ha salido bien con .isSucces, si es que si, guardamos la cuenta logeada
     // en un GoogleSignInAccount, y utilizamos su datos para actualizar textos de la interfaz,
     // en ambos casos actualiamos la UI, para que se adapte al estado del usuario
     private void handleSignInResult(GoogleSignInResult result) {
+
+
+
         if (result.isSuccess()) {
             //Usuario logueado --> Mostramos sus datos
             GoogleSignInAccount acct = result.getSignInAccount();
+
+
+            String Email = acct.getEmail();
+            Email = Email.replace('.', '_');
+
+
+            //comprobar si el usuario ya existe en la BD
+            DatabaseReference dbREAD = FirebaseDatabase.getInstance().getReference()
+                    .child("usuario")
+                    .child(Email)
+                    .child("correo");
+
+            dbREAD.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    valor = dataSnapshot.getValue().toString();
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.e(TAGLOG, "Pifiada!", databaseError.toException());
+                }
+            });
+
+//si el usuario no existe, lo crea
+            if (valor != acct.getEmail()) {
+
+
+                //crea una referencia a la base de datos, nodo usuario
+                DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("usuario");
+
+                //crea un objeto de la clase Usuario
+                Usuario usu = new Usuario(acct.getDisplayName(), acct.getEmail(), "creado");
+
+//hace un set a la referencia de la base de datos pasandole el objeto usu, esto crea el nodo
+                //si no existe o machaca el existente
+                dbRef.child(Email).setValue(usu);
+//aqui habra que insertar un control de errores
+            }
             txtNombre.setText(acct.getDisplayName());
-            txtEmail.setText(acct.getEmail());
+            txtEmail.setText("el valor es: "+ valor);
+
+
             updateUI(true);
 
 
@@ -179,6 +219,7 @@ public class MainActivity extends AppCompatActivity
             updateUI(false);
         }
     }
+
     // Enseña los botones que interesan para el estado del usuario(si ya ha logeado no le enseñamos el SignIn)
     private void updateUI(boolean signedIn) {
         if (signedIn) {
@@ -194,6 +235,7 @@ public class MainActivity extends AppCompatActivity
             btnRevoke.setVisibility(View.GONE);
         }
     }
+
     //Todo este codigo en onStart se encarga de logear al usuario si ya ha logeado anteriormente,
     // sin tener que hacer click en Sign In de nuevo
     @Override
