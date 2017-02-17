@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.usuario.webesdi">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,9 +20,22 @@
         <activity android:name=".MenuPrincipal" />
         <activity android:name=".PaginaWeb" />
 
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
-        <activity android:name=".Formulario"></activity>
+        <activity android:name=".Contacto"></activity>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAwUhDtNOyH1yEDnwGssnVawfls6eiXSfg"/>
+        <uses-feature
+            android:glEsVersion="0x00020000"
+            android:required="true"/>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
