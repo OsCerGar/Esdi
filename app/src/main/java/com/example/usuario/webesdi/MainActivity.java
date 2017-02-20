@@ -47,8 +47,12 @@ public class MainActivity extends AppCompatActivity
 
     private DatabaseReference dbESDi;
     private static final String TAGLOG = "firebase-db";
+    private DatabaseReference dbREAD;
+    private ValueEventListener eventListener;
 
-    String valor ="patata";
+    Usuario usuarioLogueado;
+
+    String valor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +65,6 @@ public class MainActivity extends AppCompatActivity
         btnRevoke = (Button) findViewById(R.id.revoke_button);
         txtNombre = (TextView) findViewById(R.id.txtNombre);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
-
-
 
 
         //Google API Client
@@ -162,40 +164,23 @@ public class MainActivity extends AppCompatActivity
     // en ambos casos actualiamos la UI, para que se adapte al estado del usuario
     private void handleSignInResult(GoogleSignInResult result) {
 
-
-
         if (result.isSuccess()) {
             //Usuario logueado --> Mostramos sus datos
             GoogleSignInAccount acct = result.getSignInAccount();
 
-
             String Email = acct.getEmail();
-            Email = Email.replace('.', '_');
-
-
-            //comprobar si el usuario ya existe en la BD
-            DatabaseReference dbREAD = FirebaseDatabase.getInstance().getReference()
-                    .child("usuario")
-                    .child(Email)
-                    .child("correo");
-
-            dbREAD.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    valor = dataSnapshot.getValue().toString();
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.e(TAGLOG, "Pifiada!", databaseError.toException());
-                }
-            });
-
+            usuarioLogueado = new Usuario(acct.getEmail(), acct.getDisplayName(), "plebe");
+            compruebaUsuario(usuarioLogueado);
+/*
 //si el usuario no existe, lo crea
-            if (valor != acct.getEmail()) {
+            Log.d(TAGLOG, "******** recibido de compruebausuario " + compruebaUsuario(Email) +" email es: "+ Email);
+            if (compruebaUsuario(Email).equals(acct.getEmail())) {
 
+                Log.d(TAGLOG, "****************ha entrado***************************");
 
+            } else {
+
+                Log.d(TAGLOG, "*********************no ha entrado************************");
                 //crea una referencia a la base de datos, nodo usuario
                 DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("usuario");
 
@@ -207,8 +192,9 @@ public class MainActivity extends AppCompatActivity
                 dbRef.child(Email).setValue(usu);
 //aqui habra que insertar un control de errores
             }
+*/
             txtNombre.setText(acct.getDisplayName());
-            txtEmail.setText("el valor es: "+ valor);
+            txtEmail.setText(acct.getEmail());
 
 
             updateUI(true);
@@ -219,6 +205,85 @@ public class MainActivity extends AppCompatActivity
             updateUI(false);
         }
     }
+
+
+    private void compruebaUsuario(Usuario Usuariologueado) {
+
+        final Usuario usuariocutre = Usuariologueado;
+        valor = "patata";
+        //comprobar si el usuario ya existe en la BD
+        dbREAD = FirebaseDatabase.getInstance().getReference()
+                .child("usuario")
+                .child(Usuariologueado.getID())
+                .child("correo");
+
+        eventListener = new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                valor = dataSnapshot.getValue().toString();
+                Log.d(TAGLOG, "********recibido en compruebausuario: " + dataSnapshot.getValue().toString() + " valor es: " + valor);
+
+
+                if (valor.equals(usuariocutre.getCorreo())) {
+
+                    Log.d(TAGLOG, "****************ha entrado***************************");
+
+                } else {
+
+                    Log.d(TAGLOG, "*********************no ha entrado************************");
+                    //crea una referencia a la base de datos, nodo usuario
+                    DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("usuario");
+
+                    //crea un objeto de la clase Usuario
+                    Usuario usu = new Usuario(usuariocutre.getNombre(), usuariocutre.getCorreo(), "creado");
+
+//hace un set a la referencia de la base de datos pasandole el objeto usu, esto crea el nodo
+                    //si no existe o machaca el existente
+                    dbRef.child(usuariocutre.getID()).setValue(usu);
+//aqui habra que insertar un control de errores
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAGLOG, "Pifiada!", databaseError.toException());
+            }
+        };
+
+        dbREAD.addListenerForSingleValueEvent(eventListener);
+    }
+
+
+    /*
+    private String compruebaUsuario (String Email){
+        valor = "patata";
+        //comprobar si el usuario ya existe en la BD
+        DatabaseReference dbREAD = FirebaseDatabase.getInstance().getReference()
+                .child("usuario")
+                .child(Email)
+                .child("correo");
+
+        dbREAD.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                valor = dataSnapshot.getValue().toString();
+                //  txtEmail.setText(dataSnapshot.getValue().toString() + " - "+ valor);
+                Log.d(TAGLOG, "********recibido en compruebausuario: " + dataSnapshot.getValue().toString() + " valor es: "+ valor);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAGLOG, "Pifiada!", databaseError.toException());
+            }
+        });
+        return valor;
+    }
+
+*/
 
     // Enseña los botones que interesan para el estado del usuario(si ya ha logeado no le enseñamos el SignIn)
     private void updateUI(boolean signedIn) {
