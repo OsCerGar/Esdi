@@ -44,16 +44,16 @@
                 android:id="@+id/brnpaginaweb" />
 
             <Button
-                android:text="contactar"
+                android:text="Tutoriales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/button3" />
+                android:id="@+id/btnTutoriales" />
 
             <Button
-                android:text="Sugerencias"
+                android:text="Contacto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnFormulario" />
+                android:id="@+id/btnContacto" />
         </LinearLayout>
     </ScrollView>
 

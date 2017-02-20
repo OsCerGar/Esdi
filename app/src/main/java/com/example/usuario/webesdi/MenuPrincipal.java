@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class MenuPrincipal extends AppCompatActivity {
     Button btnpaginaweb;
-    Button btnFormulario;
+    Button btnContacto;
     String nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class MenuPrincipal extends AppCompatActivity {
         String nombre = Mainact.getStringExtra("email");
 
         btnpaginaweb = (Button) findViewById(R.id.brnpaginaweb);
-        btnFormulario = (Button) findViewById(R.id.btnFormulario);
+        btnContacto = (Button) findViewById(R.id.btnContacto);
 
         btnpaginaweb.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
@@ -27,7 +27,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
                 }
         });
-        btnFormulario.setOnClickListener(new View.OnClickListener() {
+        btnContacto.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 lanzarActivity2();
 
@@ -40,7 +40,7 @@ public class MenuPrincipal extends AppCompatActivity {
         startActivity(intent);
     }
     private void lanzarActivity2(){
-        Intent intent = new Intent(MenuPrincipal.this,Formulario.class);
+        Intent intent = new Intent(MenuPrincipal.this,Contacto.class);
         intent.putExtra("nombre",nombre );
         startActivity(intent);
     }
