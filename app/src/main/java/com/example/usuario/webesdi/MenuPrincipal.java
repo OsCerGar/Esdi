@@ -5,21 +5,26 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MenuPrincipal extends AppCompatActivity {
     Button btnpaginaweb;
     Button btnContacto;
-    String nombre;
+    String email;
+    TextView txtEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
         Intent Mainact = getIntent();
-        String nombre = Mainact.getStringExtra("email");
+        String email = Mainact.getStringExtra("email");
 
         btnpaginaweb = (Button) findViewById(R.id.brnpaginaweb);
         btnContacto = (Button) findViewById(R.id.btnContacto);
+        txtEmail = (TextView)findViewById(R.id.txtEmail);
+        txtEmail.setText(email);
 
         btnpaginaweb.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
@@ -41,7 +46,7 @@ public class MenuPrincipal extends AppCompatActivity {
     }
     private void lanzarActivity2(){
         Intent intent = new Intent(MenuPrincipal.this,Contacto.class);
-        intent.putExtra("nombre",nombre );
+        intent.putExtra("email",email );
         startActivity(intent);
     }
 

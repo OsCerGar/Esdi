@@ -24,8 +24,7 @@ import com.google.android.gms.common.api.Status;
 
 public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener {
-    //probando
-    //probando 2
+
 
     private SignInButton btnSignIn;
     private Button btnSignOut;
