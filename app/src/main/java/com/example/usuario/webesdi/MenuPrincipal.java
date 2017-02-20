@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MenuPrincipal extends AppCompatActivity {
     Button btnpaginaweb;
     Button btnContacto;
     String nombre;
+    TextView txtTitulo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +22,8 @@ public class MenuPrincipal extends AppCompatActivity {
 
         btnpaginaweb = (Button) findViewById(R.id.brnpaginaweb);
         btnContacto = (Button) findViewById(R.id.btnContacto);
+        txtTitulo = (TextView) findViewById(R.id.txtTitulo);
+        txtTitulo.setText(nombre);
 
         btnpaginaweb.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
