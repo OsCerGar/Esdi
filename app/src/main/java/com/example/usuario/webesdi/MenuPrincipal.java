@@ -19,7 +19,7 @@ public class MenuPrincipal extends AppCompatActivity {
         setContentView(R.layout.activity_menu_principal);
 
         Intent Mainact = getIntent();
-        String email = Mainact.getStringExtra("email");
+        email = Mainact.getStringExtra("email");
 
         btnpaginaweb = (Button) findViewById(R.id.brnpaginaweb);
         btnContacto = (Button) findViewById(R.id.btnContacto);

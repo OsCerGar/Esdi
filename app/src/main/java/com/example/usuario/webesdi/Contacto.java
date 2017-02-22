@@ -1,7 +1,9 @@
 package com.example.usuario.webesdi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -13,10 +15,20 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Contacto extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mapa;
+    String email;
+    TextView txtEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacto);
+
+
+        Intent Mainact = getIntent();
+        email = Mainact.getStringExtra("email");
+        txtEmail = (TextView)findViewById(R.id.txtEmail);
+        txtEmail.setText(email);
+
 
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
