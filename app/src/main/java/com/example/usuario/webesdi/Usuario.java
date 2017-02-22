@@ -20,7 +20,6 @@ public class Usuario {
         this.rol = rol;
     }
 
-
     public String getNombre() {
         return nombre;
     }
@@ -46,10 +45,13 @@ public class Usuario {
     }
 
     public String getID() {
+
+        setID();
+
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID() {
         this.ID = correo.replace('.', '_');
     }
 

@@ -3,6 +3,7 @@ package com.example.usuario.webesdi;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -116,10 +117,18 @@ public class MainActivity extends AppCompatActivity
     }
     //mira el Id de la cuenta logeada, y comprueba si es de una lista.
      void iniciarActivity(){
-        Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
-         String mensaje = txtEmail.getText().toString();
-         intent.putExtra("email",mensaje );
-        startActivity(intent);
+         String email = txtEmail.getText().toString();
+         String nombre = txtNombre.getText().toString();
+
+         Bundle b = new Bundle();
+         b.putString("email", email);
+         b.putString("nombre", nombre);
+
+         Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
+
+         intent.putExtras(b);
+
+         startActivity(intent);
     }
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {

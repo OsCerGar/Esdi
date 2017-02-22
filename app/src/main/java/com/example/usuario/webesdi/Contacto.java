@@ -3,6 +3,7 @@ package com.example.usuario.webesdi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -15,8 +16,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Contacto extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mapa;
-    String email;
+
     TextView txtEmail;
+    Bundle b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +27,14 @@ public class Contacto extends AppCompatActivity implements OnMapReadyCallback {
 
 
         Intent Mainact = getIntent();
-        email = Mainact.getStringExtra("email");
+
+        b = Mainact.getExtras();
+
+        String email = b.getString("email");
+        String nombre = b.getString("nombre");
+
         txtEmail = (TextView)findViewById(R.id.txtEmail);
-        txtEmail.setText(email);
+        txtEmail.setText(email + " - " + nombre);
 
 
         MapFragment mapFragment = (MapFragment) getFragmentManager()
@@ -60,4 +67,11 @@ public class Contacto extends AppCompatActivity implements OnMapReadyCallback {
                 .position(new LatLng(41.5438081, 2.1168294000000287))
                 .title("ESDI: Sabadell"));
     }
+
+    public void lanzarMensajes(View V){
+        Intent intent = new Intent(Contacto.this,Mensajes.class);
+        intent.putExtras(b);
+        startActivity(intent);
+    }
+
 }

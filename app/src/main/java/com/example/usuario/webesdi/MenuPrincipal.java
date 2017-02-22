@@ -11,7 +11,10 @@ public class MenuPrincipal extends AppCompatActivity {
     Button btnpaginaweb;
     Button btnContacto;
     String email;
+    String nombre;
     TextView txtEmail;
+    Usuario usuario;
+    Bundle b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +22,18 @@ public class MenuPrincipal extends AppCompatActivity {
         setContentView(R.layout.activity_menu_principal);
 
         Intent Mainact = getIntent();
-        email = Mainact.getStringExtra("email");
+
+        b = Mainact.getExtras();
+
+        email = b.getString("email");
+        nombre = b.getString("nombre");
+
+      //  email = Mainact.getStringExtra("email");
 
         btnpaginaweb = (Button) findViewById(R.id.brnpaginaweb);
         btnContacto = (Button) findViewById(R.id.btnContacto);
         txtEmail = (TextView)findViewById(R.id.txtEmail);
-        txtEmail.setText(email);
+        txtEmail.setText(email + " - " + nombre);
 
         btnpaginaweb.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
@@ -46,7 +55,9 @@ public class MenuPrincipal extends AppCompatActivity {
     }
     private void lanzarActivity2(){
         Intent intent = new Intent(MenuPrincipal.this,Contacto.class);
-        intent.putExtra("email",email );
+
+        intent.putExtras(b);
+       // intent.putExtra("email",email );
         startActivity(intent);
     }
 
