@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class Mensajes extends AppCompatActivity {
 
@@ -34,23 +36,42 @@ public class Mensajes extends AppCompatActivity {
         inChat = (EditText) findViewById(R.id.inChat);
         txtEmail = (TextView)findViewById(R.id.txtEmail);
         txtChat = (TextView)findViewById(R.id.txtChat);
-
         inDestino = (Spinner)findViewById(R.id.inDestino);
 
-        txtEmail.setText(email + " - " + nombre);
+       // txtEmail.setText(email + " - " + nombre);
 
 
-        final String[] datos =
-                new String[]{"sugerencia","Incidencia","Consulta"};
+        //definición del spinner
+        final String[] datos = new String[]{"sugerencia","Incidencia","Consulta"};
 
-        ArrayAdapter<String> adaptador =
-                new ArrayAdapter<String>(this,
-                        android.R.layout.simple_spinner_item, datos);
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, datos);
 
-        adaptador.setDropDownViewResource(
-                android.R.layout.simple_spinner_dropdown_item);
+        adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         inDestino.setAdapter(adaptador);
+
+
+        inDestino.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            //metodo del spinner cuando se selecciona algo
+                    public void onItemSelected(AdapterView<?> parent,android.view.View v, int position, long id) {
+                        //switch con el resultado de la posicion seleccionadan, devuelve un int
+                        switch (inDestino.getSelectedItemPosition()){
+                            case 0: txtEmail.setText("Seleccionado: 0 " + parent.getItemAtPosition(position));
+                                break;
+                            case 1: txtEmail.setText("Seleccionado: 1 " + parent.getItemAtPosition(position));
+                                break;
+                            case 2: txtEmail.setText("Seleccionado: 2 " + parent.getItemAtPosition(position));
+                                break;
+                            default: txtEmail.setText("invalido " + parent.getItemAtPosition(position));
+                                break;
+                        }
+                    }
+            //metodo del spinner cuando no se selecciona nada
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        Toast.makeText(getApplicationContext(), "nada en el spinner", Toast.LENGTH_LONG).show();
+                    }
+                });
+
 
     }
 
