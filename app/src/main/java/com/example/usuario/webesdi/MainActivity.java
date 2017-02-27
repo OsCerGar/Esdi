@@ -3,7 +3,6 @@ package com.example.usuario.webesdi;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +20,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 //aqui hay que añadir un if, que mire el id de la cuenta y active  un activity o otro dependiendo.
 
 public class MainActivity extends AppCompatActivity
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity
     private TextView txtNombre;
     private TextView txtEmail;
 
+  //  DatabaseReference dbMensajes;
+
     private GoogleApiClient apiClient;
     private static final int RC_SIGN_IN = 1001;
 
@@ -43,6 +46,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         btnEntrar = (Button)findViewById(R.id.btnEntrar);
         btnSignIn = (SignInButton)findViewById(R.id.sign_in_button);
@@ -114,6 +119,9 @@ public class MainActivity extends AppCompatActivity
                 iniciarActivity();
             }
         });
+
+        // dbMensajes = FirebaseDatabase.getInstance().getReference().child("usuario");
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference().child("usuario");
     }
     //mira el Id de la cuenta logeada, y comprueba si es de una lista.
      void iniciarActivity(){

@@ -21,6 +21,14 @@
         {
           "client_id": "868093173664-060v6uskphhaqrak1i3k4ajej5g15t3s.apps.googleusercontent.com",
           "client_type": 3
+        },
+        {
+          "client_id": "868093173664-qhmbchn87bfsk9fsqs2of7cmfj90t06p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.usuario.webesdi",
+            "certificate_hash": "72af88ad896d97d411c5342c6b3caabebf2076f2"
+          }
         }
       ],
       "api_key": [

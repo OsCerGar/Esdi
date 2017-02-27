@@ -12,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Mensajes extends AppCompatActivity {
 
 
@@ -21,11 +24,15 @@ public class Mensajes extends AppCompatActivity {
     String texto ="";
     Spinner inDestino;
     Bundle b;
+    private DatabaseReference dbMensajes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mensajes);
+
+        dbMensajes = FirebaseDatabase.getInstance().getReference().child("usuario");
+      //  dbMensajes = FirebaseDatabase.getInstance().getReference().child("prediccion-hoy");
 
         //recibe los datos de usuario a traves del bundle del intent
         Intent Mainact = getIntent();
@@ -79,6 +86,7 @@ public class Mensajes extends AppCompatActivity {
 
         texto = (texto + b.getString("nombre") + ": " + inChat.getText().toString()+ "\n");
         txtChat.setText(texto);
+        dbMensajes.push().setValue(inChat.getText().toString());
         inChat.setText("");
         txtChat.setMovementMethod(new ScrollingMovementMethod());
 
