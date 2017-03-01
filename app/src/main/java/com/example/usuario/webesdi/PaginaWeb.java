@@ -12,7 +12,7 @@ public class PaginaWeb extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagina_web);
-
+        //trabaja con el webView del xml, simplemente le hace cargar una URL dentro de la app.
         WebView myWebView = (WebView) findViewById(R.id.webView);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);

@@ -59,6 +59,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnContacto" />
+
+            <Button
+                android:text="Disponibilidad Aulas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btndispoAulas" />
+
+            <Button
+                android:text="Mensajes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnMensajes" />
         </LinearLayout>
     </ScrollView>
 
