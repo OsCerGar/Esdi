@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WebEsdi</string>
+    <string name="title_activity_disponibilidad">Disponibilidad</string>
 </resources>
