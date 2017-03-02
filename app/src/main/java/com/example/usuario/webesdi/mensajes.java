@@ -18,7 +18,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Mensajes extends AppCompatActivity {
 
@@ -45,6 +49,7 @@ public class Mensajes extends AppCompatActivity {
 
         String nombre = b.getString("nombre");
         String email = b.getString("email");
+        //  Log.d(TAGLOG, String.valueOf("=========================> "+b.getString("rol")+" <==============="));
         //el ID es el email, cambiando el punto por el guion bajo, ya que firebase no acepta puntos en el nombre de nodo
         ID = email.replace(".", "_");
 
@@ -101,20 +106,76 @@ public class Mensajes extends AppCompatActivity {
 
 
     public void muestraTexto() {
+
+
+        DatabaseReference referencexx = FirebaseDatabase.getInstance().getReference();
+
+        Query query = referencexx.child("issue").orderByChild("id").equalTo(0);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // dataSnapshot is the "issue" node with all children with id 0
+                    for (DataSnapshot issue : dataSnapshot.getChildren()) {
+                        // do something with the individual "issues"
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         //instancia la base de datos de firebase
-        dbMensajes = FirebaseDatabase.getInstance().getReference().child(ID);
+        dbMensajes = FirebaseDatabase.getInstance().getReference().child(txtEmail.getText().toString());
 
+        //hace una consulta para mostrar en la aplicacion mediante un recyclerview
+        Query dbQuery =
+                dbMensajes.orderByKey()
+                        .equalTo("KeDos9KcJekTU-EAWDg");
 
-        eventListener = new ValueEventListener() {
+/*
+        // My top posts by number of stars
+        dbQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 texto = "";
                 int cont = 0;
-                for (DataSnapshot childDataSnapshot : dataSnapshot.child(txtEmail.getText().toString()).getChildren()) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     cont++;
-                  //  Log.d(TAGLOG, "" + childDataSnapshot.getKey() + ": " + childDataSnapshot.getValue());
+                    //  Log.d(TAGLOG, "" + childDataSnapshot.getKey() + ": " + childDataSnapshot.getValue());
                     //añade al texto que ya hay, el nombre de usuario mas el texto nuevo
-                    texto = (texto + b.getString("nombre") + ": " + childDataSnapshot.getValue() + "\n");
+                    //  texto = (texto + nodoUsuario.getKey() + ": " + childDataSnapshot.getValue() + "\n");
+                    texto = (texto + dataSnapshot.child("Nombre").getValue() + ": " + dataSnapshot.child("Mensaje").getValue() + "\n");
+                    //carga el nuevo texto al textview
+                    txtChat.setText(texto);
+                    Log.d(TAGLOG, String.valueOf(cont));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.d(TAGLOG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        });
+*/
+        eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot nodoUsuario) {
+                texto = "";
+                int cont = 0;
+                // for (DataSnapshot childDataSnapshot : nodoUsuario.child(txtEmail.getText().toString()).getChildren()) {
+                for (DataSnapshot childDataSnapshot : nodoUsuario.getChildren()) {
+                    cont++;
+                    //  Log.d(TAGLOG, "" + childDataSnapshot.getKey() + ": " + childDataSnapshot.getValue());
+                    //añade al texto que ya hay, el nombre de usuario mas el texto nuevo
+                    //  texto = (texto + nodoUsuario.getKey() + ": " + childDataSnapshot.getValue() + "\n");
+                    texto = (texto + childDataSnapshot.child("Nombre").getValue() + ": " + childDataSnapshot.child("Mensaje").getValue() + "\n");
                     //carga el nuevo texto al textview
                     txtChat.setText(texto);
                     Log.d(TAGLOG, String.valueOf(cont));
@@ -132,23 +193,27 @@ public class Mensajes extends AppCompatActivity {
         };
 
 
-        dbMensajes.addValueEventListener(eventListener);
+        dbQuery.addValueEventListener(eventListener);
 
     }
 
 
-    //metedo que se ejecuta al clickar enviar
+    //metodo que se ejecuta al clickar enviar
     public void entraTexto(View v) {
-        //añade al texto que ya hay, el nombre de usuario mas el texto nuevo
-        //  texto = (texto + b.getString("nombre") + ": " + inChat.getText().toString() + "\n");
-        //carga el nuevo texto al textview
-        //txtChat.setText(texto);
-        //sube el texto entrado a firebase
-        dbMensajes.child(txtEmail.getText().toString()).push().setValue(inChat.getText().toString());
+        //instancia la base de datos de firebase
+        DatabaseReference dbEnviar = FirebaseDatabase.getInstance().getReference().child(txtEmail.getText().toString());
+        //crea una lista con datos del usuario y el mensaje introducido
+        Map<String, String> envio = new HashMap<>();
+        envio.put("Correo", b.getString("email"));
+        envio.put("Nombre", b.getString("nombre"));
+        envio.put("Mensaje", inChat.getText().toString());
+
+        //sube el texto entrado a firebase, al nodo del usuario
+        //  dbMensajes.child(txtEmail.getText().toString()).push().setValue(inChat.getText().toString());
+        dbEnviar.push().setValue(envio);
+
         //vacia la caja de entrada de texto
         inChat.setText("");
-        //permite el scroll de la ventana del textview
-        // txtChat.setMovementMethod(new ScrollingMovementMethod());
 
     }
 }
