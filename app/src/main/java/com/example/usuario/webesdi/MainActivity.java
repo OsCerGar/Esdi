@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity
     private Button btnEntrar;
     private TextView txtNombre;
     private TextView txtEmail;
+    private String rol = "master";
 
 
 
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity
          Bundle b = new Bundle();
          b.putString("email", email);
          b.putString("nombre", nombre);
+         b.putString("rol", rol);
 
          Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
 
