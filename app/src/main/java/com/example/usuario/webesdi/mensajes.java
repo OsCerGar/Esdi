@@ -107,7 +107,7 @@ public class Mensajes extends AppCompatActivity {
 
     public void muestraTexto() {
 
-
+/*
         DatabaseReference referencexx = FirebaseDatabase.getInstance().getReference();
 
         Query query = referencexx.child("issue").orderByChild("id").equalTo(0);
@@ -129,15 +129,9 @@ public class Mensajes extends AppCompatActivity {
         });
 
 
-        //instancia la base de datos de firebase
-        dbMensajes = FirebaseDatabase.getInstance().getReference().child(txtEmail.getText().toString());
 
-        //hace una consulta para mostrar en la aplicacion mediante un recyclerview
-        Query dbQuery =
-                dbMensajes.orderByKey()
-                        .equalTo("KeDos9KcJekTU-EAWDg");
 
-/*
+
         // My top posts by number of stars
         dbQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -164,6 +158,16 @@ public class Mensajes extends AppCompatActivity {
             }
         });
 */
+
+
+        //instancia la base de datos de firebase
+        dbMensajes = FirebaseDatabase.getInstance().getReference().child(txtEmail.getText().toString());
+
+        //hace una consulta para mostrar en la aplicacion mediante un recyclerview
+        Query dbQuery =
+                dbMensajes.orderByKey();
+
+
         eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot nodoUsuario) {
@@ -175,10 +179,15 @@ public class Mensajes extends AppCompatActivity {
                     //  Log.d(TAGLOG, "" + childDataSnapshot.getKey() + ": " + childDataSnapshot.getValue());
                     //añade al texto que ya hay, el nombre de usuario mas el texto nuevo
                     //  texto = (texto + nodoUsuario.getKey() + ": " + childDataSnapshot.getValue() + "\n");
-                    texto = (texto + childDataSnapshot.child("Nombre").getValue() + ": " + childDataSnapshot.child("Mensaje").getValue() + "\n");
-                    //carga el nuevo texto al textview
-                    txtChat.setText(texto);
-                    Log.d(TAGLOG, String.valueOf(cont));
+                    Log.d(TAGLOG, "==++===" + childDataSnapshot.child("Correo").getValue() + ": " + b.getString("email"));
+
+                    //si los mensajes recibidos son del usuario logueado, se muestran
+                    if ((childDataSnapshot.child("Correo").getValue()).equals (b.getString("email"))) {
+                        texto = (texto + childDataSnapshot.child("Nombre").getValue() + ": " + childDataSnapshot.child("Mensaje").getValue() + "\n");
+                        //carga el nuevo texto al textview
+                        txtChat.setText(texto);
+                        Log.d(TAGLOG, String.valueOf(cont));
+                    }
                 }
 
                 //permite el scroll de la ventana del textview

@@ -75,14 +75,13 @@ public class MenuPrincipal extends AppCompatActivity {
     }
     private void lanzarContacto(){
         Intent intent = new Intent(MenuPrincipal.this,Contacto.class);
-
         intent.putExtras(b);
-       // intent.putExtra("email",email );
         startActivity(intent);
     }
 
     private void lanzarMensajes3(){
         Intent intent = new Intent(MenuPrincipal.this,Mensajes.class);
+        intent.putExtras(b);
         startActivity(intent);
     }
     private void lanzarDispo(){

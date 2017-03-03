@@ -25,13 +25,12 @@ public class Contacto extends AppCompatActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacto);
 
-
+        //recibe los datos de usuario a traves del bundle del intent
         Intent Mainact = getIntent();
-
         b = Mainact.getExtras();
 
-        String email = b.getString("email");
         String nombre = b.getString("nombre");
+        String email = b.getString("email");
 
         txtEmail = (TextView)findViewById(R.id.txtEmail);
         txtEmail.setText(email + " - " + nombre);
