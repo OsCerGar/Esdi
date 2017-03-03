@@ -27,6 +27,7 @@
         <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
         <activity android:name=".Contacto" />
+        <activity android:name=".DispoAulas" />
 
         <meta-data
             android:name="com.google.android.gms.version"
