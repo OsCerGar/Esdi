@@ -50,8 +50,6 @@ public class Mensajes extends AppCompatActivity {
         String nombre = b.getString("nombre");
         String email = b.getString("email");
         //  Log.d(TAGLOG, String.valueOf("=========================> "+b.getString("rol")+" <==============="));
-        //el ID es el email, cambiando el punto por el guion bajo, ya que firebase no acepta puntos en el nombre de nodo
-        ID = email.replace(".", "_");
 
 
         inChat = (EditText) findViewById(R.id.inChat);
@@ -73,26 +71,32 @@ public class Mensajes extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
 
                 txtEmail.setText(parent.getItemAtPosition(position).toString());
-                muestraTexto();
+                muestraMensajes();
 
-
-                /*
                 //switch con el resultado de la posicion seleccionadan,
                 switch (inDestino.getSelectedItemPosition()) {
                     case 0:
-                        txtEmail.setText("Seleccionado: 0 " + parent.getItemAtPosition(position));
+                        //llama a muestratexto y dependiendo del rol muestra los mensajes
+                        //propios o todos ---hecho---
+                       // txtEmail.setText("Seleccionado: 0 " + parent.getItemAtPosition(position));
                         break;
                     case 1:
-                        txtEmail.setText("Seleccionado: 1 " + parent.getItemAtPosition(position));
+                       // txtEmail.setText("Seleccionado: 1 " + parent.getItemAtPosition(position));
                         break;
                     case 2:
-                        txtEmail.setText("Seleccionado: 2 " + parent.getItemAtPosition(position));
+                        //if master llama a muestratexto y a creaspinner, que genera un spinner
+                        //con todos los correos de las consultas
+                        //al seleccionar uno de los correos se llama a otro muestratexto
+                        //que muestra solo los mensajes del correo seleccionado y guarda los enviados
+                        //al correo seleccionado como si fueran suyos
+
+                      //  txtEmail.setText("Seleccionado: 2 " + parent.getItemAtPosition(position));
                         break;
                     default:
                         txtEmail.setText("invalido " + parent.getItemAtPosition(position));
                         break;
                 }
-                */
+
             }
 
             //metodo del spinner cuando no se selecciona nada
@@ -105,68 +109,17 @@ public class Mensajes extends AppCompatActivity {
     }
 
 
-    public void muestraTexto() {
+    public void muestraMensajes() {
 
-/*
-        DatabaseReference referencexx = FirebaseDatabase.getInstance().getReference();
-
-        Query query = referencexx.child("issue").orderByChild("id").equalTo(0);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    // dataSnapshot is the "issue" node with all children with id 0
-                    for (DataSnapshot issue : dataSnapshot.getChildren()) {
-                        // do something with the individual "issues"
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-
-
-        // My top posts by number of stars
-        dbQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                texto = "";
-                int cont = 0;
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    cont++;
-                    //  Log.d(TAGLOG, "" + childDataSnapshot.getKey() + ": " + childDataSnapshot.getValue());
-                    //añade al texto que ya hay, el nombre de usuario mas el texto nuevo
-                    //  texto = (texto + nodoUsuario.getKey() + ": " + childDataSnapshot.getValue() + "\n");
-                    texto = (texto + dataSnapshot.child("Nombre").getValue() + ": " + dataSnapshot.child("Mensaje").getValue() + "\n");
-                    //carga el nuevo texto al textview
-                    txtChat.setText(texto);
-                    Log.d(TAGLOG, String.valueOf(cont));
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.d(TAGLOG, "loadPost:onCancelled", databaseError.toException());
-                // ...
-            }
-        });
-*/
-
+        //poner como parametro recibido el correo a mostrar, asi se reutiliza
+        //para los mensajes
 
         //instancia la base de datos de firebase
         dbMensajes = FirebaseDatabase.getInstance().getReference().child(txtEmail.getText().toString());
 
-        //hace una consulta para mostrar en la aplicacion mediante un recyclerview
-        Query dbQuery =
-                dbMensajes.orderByKey();
-
+        //hace una consulta para mostrar los mensajes ordenados por fecha
+        Query dbQuery = dbMensajes.orderByKey();
+        txtChat.setText("");
 
         eventListener = new ValueEventListener() {
             @Override
@@ -179,14 +132,19 @@ public class Mensajes extends AppCompatActivity {
                     //  Log.d(TAGLOG, "" + childDataSnapshot.getKey() + ": " + childDataSnapshot.getValue());
                     //añade al texto que ya hay, el nombre de usuario mas el texto nuevo
                     //  texto = (texto + nodoUsuario.getKey() + ": " + childDataSnapshot.getValue() + "\n");
-                    Log.d(TAGLOG, "==++===" + childDataSnapshot.child("Correo").getValue() + ": " + b.getString("email"));
+                    //  Log.d(TAGLOG, "==++===" + childDataSnapshot.child("Correo").getValue() + ": " + b.getString("email"));
 
-                    //si los mensajes recibidos son del usuario logueado, se muestran
-                    if ((childDataSnapshot.child("Correo").getValue()).equals (b.getString("email"))) {
+                    //si el usuario logueado es master muestra todos los mensajes, si no muestra solo
+                    //los que coincide su correo con el del correo del mensaje de la DB
+                    if ((b.getString("rol")).equals("master")) {
                         texto = (texto + childDataSnapshot.child("Nombre").getValue() + ": " + childDataSnapshot.child("Mensaje").getValue() + "\n");
                         //carga el nuevo texto al textview
                         txtChat.setText(texto);
-                        Log.d(TAGLOG, String.valueOf(cont));
+
+                    } else if ((childDataSnapshot.child("Correo").getValue()).equals(b.getString("email"))) {
+                        texto = (texto + childDataSnapshot.child("Nombre").getValue() + ": " + childDataSnapshot.child("Mensaje").getValue() + "\n");
+                        //carga el nuevo texto al textview
+                        txtChat.setText(texto);
                     }
                 }
 
@@ -205,6 +163,8 @@ public class Mensajes extends AppCompatActivity {
         dbQuery.addValueEventListener(eventListener);
 
     }
+
+
 
 
     //metodo que se ejecuta al clickar enviar
