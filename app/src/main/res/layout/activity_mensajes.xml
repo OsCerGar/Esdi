@@ -50,12 +50,19 @@
         android:layout_alignParentStart="true" />
 
     <Spinner
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/inDestino"
+        android:id="@+id/spDestino"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/imageButton"
-        android:layout_alignEnd="@+id/imageButton"
         android:layout_marginBottom="49dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spCorreo"
+        android:layout_alignTop="@+id/spDestino"
+        android:layout_alignLeft="@+id/txtEmail"
+        android:layout_alignStart="@+id/txtEmail"
+        android:spinnerMode="dialog" />
 
 </RelativeLayout>
