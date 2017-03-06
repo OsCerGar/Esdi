@@ -21,7 +21,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Mensajes extends AppCompatActivity {
@@ -31,12 +33,14 @@ public class Mensajes extends AppCompatActivity {
     TextView txtChat;
     EditText inChat;
     String texto;
-    Spinner inDestino;
+    Spinner spDestino;
+    Spinner spCorreo;
     Bundle b;
-    String ID;
-    private DatabaseReference dbMensajes;
+    List<String> datos2;
+    //private DatabaseReference dbMensajes;
+    //private ValueEventListener eventListener;
     private static final String TAGLOG = "firebase-db";
-    private ValueEventListener eventListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,18 +59,19 @@ public class Mensajes extends AppCompatActivity {
         inChat = (EditText) findViewById(R.id.inChat);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
         txtChat = (TextView) findViewById(R.id.txtChat);
-        inDestino = (Spinner) findViewById(R.id.inDestino);
+        spDestino = (Spinner) findViewById(R.id.spDestino);
+        spCorreo = (Spinner) findViewById(R.id.spCorreo);
 
 
-        //definición del spinner
+        //definición del spinner de conversacion
         //lista de elementos del spinner (modificar aqui las opciones del desplegable)
         final String[] datos = new String[]{"Sugerencia", "Incidencia", "Consulta"};
 
-        //creacion del adaptador
+        //creacion del adaptador del spinner
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datos);
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        inDestino.setAdapter(adaptador);
-        inDestino.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spDestino.setAdapter(adaptador);
+        spDestino.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             //metodo del spinner cuando se selecciona algo
             public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
 
@@ -74,23 +79,30 @@ public class Mensajes extends AppCompatActivity {
                 muestraMensajes();
 
                 //switch con el resultado de la posicion seleccionadan,
-                switch (inDestino.getSelectedItemPosition()) {
+                switch (spDestino.getSelectedItemPosition()) {
                     case 0:
+                        spCorreo.setVisibility(View.GONE);
                         //llama a muestratexto y dependiendo del rol muestra los mensajes
                         //propios o todos ---hecho---
-                       // txtEmail.setText("Seleccionado: 0 " + parent.getItemAtPosition(position));
+                        // txtEmail.setText("Seleccionado: 0 " + parent.getItemAtPosition(position));
                         break;
                     case 1:
-                       // txtEmail.setText("Seleccionado: 1 " + parent.getItemAtPosition(position));
+                        spCorreo.setVisibility(View.GONE);
+                        // txtEmail.setText("Seleccionado: 1 " + parent.getItemAtPosition(position));
                         break;
                     case 2:
                         //if master llama a muestratexto y a creaspinner, que genera un spinner
                         //con todos los correos de las consultas
+                        if ((b.getString("rol")).equals("master")) {
+                            creaSpinnerCorreo();
+                            spCorreo.setVisibility(View.VISIBLE);
+                        }
+
                         //al seleccionar uno de los correos se llama a otro muestratexto
                         //que muestra solo los mensajes del correo seleccionado y guarda los enviados
                         //al correo seleccionado como si fueran suyos
 
-                      //  txtEmail.setText("Seleccionado: 2 " + parent.getItemAtPosition(position));
+                        //  txtEmail.setText("Seleccionado: 2 " + parent.getItemAtPosition(position));
                         break;
                     default:
                         txtEmail.setText("invalido " + parent.getItemAtPosition(position));
@@ -106,22 +118,88 @@ public class Mensajes extends AppCompatActivity {
 
         });
 
+
+    }
+
+
+    public void creaSpinnerCorreo() {
+        //definición del spinner de conversacion
+        //crea una lista dinamica y se carga con los elementos recibidos de la BD
+
+        datos2 = new ArrayList<String>();
+        datos2.add("primer dato");
+
+        //instancia la base de datos de firebase
+        DatabaseReference dbMensajes = FirebaseDatabase.getInstance().getReference().child(txtEmail.getText().toString());
+        Query dbQuery = dbMensajes.orderByKey();
+
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot nodoUsuario) {
+                //en caa bucle carga jun nuevo elemento a la lista
+                for (DataSnapshot childDataSnapshot : nodoUsuario.getChildren()) {
+                    datos2.add(childDataSnapshot.child("Correo").getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAGLOG, "Error!", databaseError.toException());
+            }
+        };
+
+
+        dbQuery.addValueEventListener(eventListener);
+
+
+
+        //creacion del adaptador del spinner
+        ArrayAdapter<String> adaptador2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datos2);
+        adaptador2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spCorreo.setAdapter(adaptador2);
+        spCorreo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            //metodo del spinner cuando se selecciona algo
+            public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
+
+                //switch con el resultado de la posicion seleccionadan,
+                switch (spCorreo.getSelectedItemPosition()) {
+                    case 0:
+                        Log.d(TAGLOG, "Seleccionado: 0 " + parent.getItemAtPosition(position));
+                        break;
+                    case 1:
+                        Log.d(TAGLOG, "Seleccionado: 1 " + parent.getItemAtPosition(position));
+                        break;
+                    case 2:
+                        Log.d(TAGLOG, "Seleccionado: 2 " + parent.getItemAtPosition(position));
+                        break;
+                    default:
+
+                        break;
+                }
+
+            }
+
+            //metodo del spinner cuando no se selecciona nada
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(getApplicationContext(), "nada en el spinner", Toast.LENGTH_LONG).show();
+            }
+
+        });
     }
 
 
     public void muestraMensajes() {
-
         //poner como parametro recibido el correo a mostrar, asi se reutiliza
         //para los mensajes
 
         //instancia la base de datos de firebase
-        dbMensajes = FirebaseDatabase.getInstance().getReference().child(txtEmail.getText().toString());
+        DatabaseReference dbMensajes = FirebaseDatabase.getInstance().getReference().child(txtEmail.getText().toString());
 
         //hace una consulta para mostrar los mensajes ordenados por fecha
         Query dbQuery = dbMensajes.orderByKey();
         txtChat.setText("");
 
-        eventListener = new ValueEventListener() {
+        ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot nodoUsuario) {
                 texto = "";
@@ -138,14 +216,12 @@ public class Mensajes extends AppCompatActivity {
                     //los que coincide su correo con el del correo del mensaje de la DB
                     if ((b.getString("rol")).equals("master")) {
                         texto = (texto + childDataSnapshot.child("Nombre").getValue() + ": " + childDataSnapshot.child("Mensaje").getValue() + "\n");
-                        //carga el nuevo texto al textview
-                        txtChat.setText(texto);
 
                     } else if ((childDataSnapshot.child("Correo").getValue()).equals(b.getString("email"))) {
                         texto = (texto + childDataSnapshot.child("Nombre").getValue() + ": " + childDataSnapshot.child("Mensaje").getValue() + "\n");
-                        //carga el nuevo texto al textview
-                        txtChat.setText(texto);
                     }
+                    //carga el nuevo texto al textview
+                    txtChat.setText(texto);
                 }
 
                 //permite el scroll de la ventana del textview
@@ -163,8 +239,6 @@ public class Mensajes extends AppCompatActivity {
         dbQuery.addValueEventListener(eventListener);
 
     }
-
-
 
 
     //metodo que se ejecuta al clickar enviar
