@@ -40,7 +40,7 @@
                 android:id="@+id/imageView3"
                 android:adjustViewBounds="true"
                 android:cropToPadding="false"
-                app:srcCompat="@drawable/mapaprueba" />
+                app:srcCompat="@drawable/edifici_esdi_planta" />
 
             <Button
                 android:text="Pagina web "

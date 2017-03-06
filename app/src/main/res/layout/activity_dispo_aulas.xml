@@ -15,7 +15,7 @@
         android:id="@+id/ivMapa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/EdificiESDiplanta"
+        android:src="@drawable/edifici_esdi_planta"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/EdificiESDih1rojo"
+        android:src="@drawable/edifici_esdi_h1rojo"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/ivMapa"
         android:layout_alignStart="@+id/ivMapa" />
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/EdificiESDih2rojo"
+        android:src="@drawable/edifici_esdi_h2rojo"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/ivMapa"
         android:layout_alignStart="@+id/ivMapa" />
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/EdificiESDih3rojo"
+        android:src="@drawable/edifici_esdi_h3rojo"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/ivMapa"
         android:layout_alignStart="@+id/ivMapa" />
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/EdificiESDih4rojo"
+        android:src="@drawable/edifici_esdi_h4rojo"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/ivMapa"
         android:layout_alignStart="@+id/ivMapa" />
@@ -70,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/EdificiESDih5rojo"
+        android:src="@drawable/edifici_esdi_h5rojo"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/ivMapa"
         android:layout_alignStart="@+id/ivMapa" />
