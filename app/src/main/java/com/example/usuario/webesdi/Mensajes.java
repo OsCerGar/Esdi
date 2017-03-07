@@ -75,18 +75,20 @@ public class Mensajes extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
 
                 txtEmail.setText(parent.getItemAtPosition(position).toString());
-                muestraMensajes();
+
 
                 //switch con el resultado de la posicion seleccionadan,
                 switch (spDestino.getSelectedItemPosition()) {
                     case 0:
-                        spCorreo.setVisibility(View.GONE);
                         //llama a muestratexto y dependiendo del rol muestra los mensajes
                         //propios o todos ---hecho---
+                        spCorreo.setVisibility(View.GONE);
+                        muestraMensajes(b.getString("correo"));
                         // txtEmail.setText("Seleccionado: 0 " + parent.getItemAtPosition(position));
                         break;
                     case 1:
                         spCorreo.setVisibility(View.GONE);
+                        muestraMensajes(b.getString("correo"));
                         // txtEmail.setText("Seleccionado: 1 " + parent.getItemAtPosition(position));
                         break;
                     case 2:
@@ -135,9 +137,14 @@ public class Mensajes extends AppCompatActivity {
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot nodoUsuario) {
-                //en caa bucle carga jun nuevo elemento a la lista
+                //en cada bucle carga un nuevo elemento a la lista
                 for (DataSnapshot childDataSnapshot : nodoUsuario.getChildren()) {
-                    datos2.add(childDataSnapshot.child("Correo").getValue().toString());
+                    if (datos2.contains(childDataSnapshot.child("Correo").getValue().toString())) {
+                        //   Log.d(TAGLOG, "======= paso por aqui ==========   " + childDataSnapshot.child("Correo").getValue().toString());
+
+                    } else {
+                        datos2.add(childDataSnapshot.child("Correo").getValue().toString());
+                    }
                 }
             }
 
@@ -151,7 +158,6 @@ public class Mensajes extends AppCompatActivity {
         dbQuery.addValueEventListener(eventListener);
 
 
-
         //creacion del adaptador del spinner
         ArrayAdapter<String> adaptador2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datos2);
         adaptador2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -160,21 +166,8 @@ public class Mensajes extends AppCompatActivity {
             //metodo del spinner cuando se selecciona algo
             public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
 
-                //switch con el resultado de la posicion seleccionadan,
-                switch (spCorreo.getSelectedItemPosition()) {
-                    case 0:
-                        Log.d(TAGLOG, "Seleccionado: 0 " + parent.getItemAtPosition(position));
-                        break;
-                    case 1:
-                        Log.d(TAGLOG, "Seleccionado: 1 " + parent.getItemAtPosition(position));
-                        break;
-                    case 2:
-                        Log.d(TAGLOG, "Seleccionado: 2 " + parent.getItemAtPosition(position));
-                        break;
-                    default:
 
-                        break;
-                }
+                txtEmail.setText(parent.getItemAtPosition(position).toString());
 
             }
 
@@ -187,12 +180,12 @@ public class Mensajes extends AppCompatActivity {
     }
 
 
-    public void muestraMensajes() {
+    public void muestraMensajes(String correo) {
         //poner como parametro recibido el correo a mostrar, asi se reutiliza
         //para los mensajes
 
         //instancia la base de datos de firebase
-        DatabaseReference dbMensajes = FirebaseDatabase.getInstance().getReference().child(txtEmail.getText().toString());
+        DatabaseReference dbMensajes = FirebaseDatabase.getInstance().getReference().child(correo);
 
         //hace una consulta para mostrar los mensajes ordenados por fecha
         Query dbQuery = dbMensajes.orderByKey();
@@ -202,14 +195,8 @@ public class Mensajes extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot nodoUsuario) {
                 texto = "";
-                int cont = 0;
                 // for (DataSnapshot childDataSnapshot : nodoUsuario.child(txtEmail.getText().toString()).getChildren()) {
                 for (DataSnapshot childDataSnapshot : nodoUsuario.getChildren()) {
-                    cont++;
-                    //  Log.d(TAGLOG, "" + childDataSnapshot.getKey() + ": " + childDataSnapshot.getValue());
-                    //añade al texto que ya hay, el nombre de usuario mas el texto nuevo
-                    //  texto = (texto + nodoUsuario.getKey() + ": " + childDataSnapshot.getValue() + "\n");
-                    //  Log.d(TAGLOG, "==++===" + childDataSnapshot.child("Correo").getValue() + ": " + b.getString("email"));
 
                     //si el usuario logueado es master muestra todos los mensajes, si no muestra solo
                     //los que coincide su correo con el del correo del mensaje de la DB
