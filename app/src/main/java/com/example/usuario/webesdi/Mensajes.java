@@ -185,7 +185,7 @@ public class Mensajes extends AppCompatActivity {
         //para los mensajes
 
         //instancia la base de datos de firebase
-        DatabaseReference dbMensajes = FirebaseDatabase.getInstance().getReference().child(correo);
+        DatabaseReference dbMensajes = FirebaseDatabase.getInstance().getReference().child(txtEmail.getText().toString());
 
         //hace una consulta para mostrar los mensajes ordenados por fecha
         Query dbQuery = dbMensajes.orderByKey();
