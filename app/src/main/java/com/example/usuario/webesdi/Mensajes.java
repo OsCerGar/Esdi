@@ -1,6 +1,7 @@
 package com.example.usuario.webesdi;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,11 +32,14 @@ public class Mensajes extends AppCompatActivity {
 
     TextView txtEmail;
     TextView txtChat;
+    String consulta;
+    String correo;
     EditText inChat;
     String texto;
     Spinner spDestino;
     Spinner spCorreo;
     Bundle b;
+    ImageButton enviar;
     List<String> datos2;
     //private DatabaseReference dbMensajes;
     //private ValueEventListener eventListener;
@@ -50,8 +55,6 @@ public class Mensajes extends AppCompatActivity {
         Intent Mainact = getIntent();
         b = Mainact.getExtras();
 
-        String nombre = b.getString("nombre");
-        String email = b.getString("email");
         //  Log.d(TAGLOG, String.valueOf("=========================> "+b.getString("rol")+" <==============="));
 
 
@@ -60,7 +63,9 @@ public class Mensajes extends AppCompatActivity {
         txtChat = (TextView) findViewById(R.id.txtChat);
         spDestino = (Spinner) findViewById(R.id.spDestino);
         spCorreo = (Spinner) findViewById(R.id.spCorreo);
+        enviar = (ImageButton) findViewById(R.id.imageButton);
 
+        correo = b.getString("email"); //inicialmente el correo es el del usuario logueado
 
         //definición del spinner de conversacion
         //lista de elementos del spinner (modificar aqui las opciones del desplegable)
@@ -74,7 +79,8 @@ public class Mensajes extends AppCompatActivity {
             //metodo del spinner cuando se selecciona algo
             public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
 
-                txtEmail.setText(parent.getItemAtPosition(position).toString());
+                consulta = parent.getItemAtPosition(position).toString();
+                txtEmail.setText(consulta);
 
 
                 //switch con el resultado de la posicion seleccionadan,
@@ -83,25 +89,27 @@ public class Mensajes extends AppCompatActivity {
                         //llama a muestratexto y dependiendo del rol muestra los mensajes
                         //propios o todos ---hecho---
                         spCorreo.setVisibility(View.GONE);
-                        muestraMensajes(b.getString("correo"));
+                        muestraMensajes(b.getString("email").toString());
                         // txtEmail.setText("Seleccionado: 0 " + parent.getItemAtPosition(position));
                         break;
                     case 1:
                         spCorreo.setVisibility(View.GONE);
-                        muestraMensajes(b.getString("correo"));
+                        muestraMensajes(b.getString("email").toString());
                         // txtEmail.setText("Seleccionado: 1 " + parent.getItemAtPosition(position));
                         break;
                     case 2:
                         //if master llama a muestratexto y a creaspinner, que genera un spinner
                         //con todos los correos de las consultas
-                        if ((b.getString("rol")).equals("master")) {
-                            creaSpinnerCorreo();
-                            spCorreo.setVisibility(View.VISIBLE);
-                        }
-
                         //al seleccionar uno de los correos se llama a otro muestratexto
                         //que muestra solo los mensajes del correo seleccionado y guarda los enviados
                         //al correo seleccionado como si fueran suyos
+                        if ((b.getString("rol")).equals("master")) {
+                            creaSpinnerCorreo();
+                            spCorreo.setVisibility(View.VISIBLE);
+                        } else {
+                            spCorreo.setVisibility(View.GONE);
+                            muestraMensajes(b.getString("email").toString());
+                        }
 
                         //  txtEmail.setText("Seleccionado: 2 " + parent.getItemAtPosition(position));
                         break;
@@ -128,10 +136,10 @@ public class Mensajes extends AppCompatActivity {
         //crea una lista dinamica y se carga con los elementos recibidos de la BD
 
         datos2 = new ArrayList<String>();
-        datos2.add("primer dato");
+        datos2.add("todos");
 
         //instancia la base de datos de firebase
-        DatabaseReference dbMensajes = FirebaseDatabase.getInstance().getReference().child(txtEmail.getText().toString());
+        DatabaseReference dbMensajes = FirebaseDatabase.getInstance().getReference().child(consulta);
         Query dbQuery = dbMensajes.orderByKey();
 
         ValueEventListener eventListener = new ValueEventListener() {
@@ -141,6 +149,7 @@ public class Mensajes extends AppCompatActivity {
                 for (DataSnapshot childDataSnapshot : nodoUsuario.getChildren()) {
                     if (datos2.contains(childDataSnapshot.child("Correo").getValue().toString())) {
                         //   Log.d(TAGLOG, "======= paso por aqui ==========   " + childDataSnapshot.child("Correo").getValue().toString());
+                        //si el correo ya se ha añadido antes al arraylist, no hace nada, así no se duplica
 
                     } else {
                         datos2.add(childDataSnapshot.child("Correo").getValue().toString());
@@ -167,8 +176,10 @@ public class Mensajes extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
 
 
-                txtEmail.setText(parent.getItemAtPosition(position).toString());
-
+               // txtEmail.setText(parent.getItemAtPosition(position).toString());
+                correo = parent.getItemAtPosition(position).toString();
+                txtEmail.setText(consulta + " de " + correo);
+                muestraMensajes(correo);
             }
 
             //metodo del spinner cuando no se selecciona nada
@@ -180,12 +191,12 @@ public class Mensajes extends AppCompatActivity {
     }
 
 
-    public void muestraMensajes(String correo) {
+    public void muestraMensajes(final String correo) {
         //poner como parametro recibido el correo a mostrar, asi se reutiliza
         //para los mensajes
 
         //instancia la base de datos de firebase
-        DatabaseReference dbMensajes = FirebaseDatabase.getInstance().getReference().child(txtEmail.getText().toString());
+        DatabaseReference dbMensajes = FirebaseDatabase.getInstance().getReference().child(consulta);
 
         //hace una consulta para mostrar los mensajes ordenados por fecha
         Query dbQuery = dbMensajes.orderByKey();
@@ -198,12 +209,14 @@ public class Mensajes extends AppCompatActivity {
                 // for (DataSnapshot childDataSnapshot : nodoUsuario.child(txtEmail.getText().toString()).getChildren()) {
                 for (DataSnapshot childDataSnapshot : nodoUsuario.getChildren()) {
 
-                    //si el usuario logueado es master muestra todos los mensajes, si no muestra solo
-                    //los que coincide su correo con el del correo del mensaje de la DB
-                    if ((b.getString("rol")).equals("master")) {
+                    //si el usuario logueado es master y selecciona "todos" en el spinner, muestra todos los mensajes, si no muestra solo
+                    //los que coincide su correo (que le pasamos al llamar al procedimiento) con el del correo del mensaje de la DB
+                    if ((b.getString("rol")).equals("master") && correo.equals("todos")) {
+                        enviar.setVisibility(View.GONE);
                         texto = (texto + childDataSnapshot.child("Nombre").getValue() + ": " + childDataSnapshot.child("Mensaje").getValue() + "\n");
 
-                    } else if ((childDataSnapshot.child("Correo").getValue()).equals(b.getString("email"))) {
+                    } else if ((childDataSnapshot.child("Correo").getValue()).equals(correo)) {
+                        enviar.setVisibility(View.VISIBLE);
                         texto = (texto + childDataSnapshot.child("Nombre").getValue() + ": " + childDataSnapshot.child("Mensaje").getValue() + "\n");
                     }
                     //carga el nuevo texto al textview
@@ -230,10 +243,10 @@ public class Mensajes extends AppCompatActivity {
     //metodo que se ejecuta al clickar enviar
     public void entraTexto(View v) {
         //instancia la base de datos de firebase
-        DatabaseReference dbEnviar = FirebaseDatabase.getInstance().getReference().child(txtEmail.getText().toString());
+        DatabaseReference dbEnviar = FirebaseDatabase.getInstance().getReference().child(consulta);
         //crea una lista con datos del usuario y el mensaje introducido
         Map<String, String> envio = new HashMap<>();
-        envio.put("Correo", b.getString("email"));
+        envio.put("Correo", correo);
         envio.put("Nombre", b.getString("nombre"));
         envio.put("Mensaje", inChat.getText().toString());
 
