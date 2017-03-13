@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity
     private Button btnEntrar;
     private TextView txtNombre;
     private TextView txtEmail;
-    private String rol = "master";
+    private String rol = "slave";
+    private static final String TAGLOG = "firebase-db";
 
 
 
@@ -122,6 +123,7 @@ public class MainActivity extends AppCompatActivity
         });
 
 
+
     }
     //mira el Id de la cuenta logeada, y comprueba si es de una lista.
      void iniciarActivity(){
@@ -133,9 +135,13 @@ public class MainActivity extends AppCompatActivity
          b.putString("nombre", nombre);
          b.putString("rol", rol);
 
+
+
          Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
 
          intent.putExtras(b);
+
+
 
          startActivity(intent);
     }
@@ -165,6 +171,9 @@ public class MainActivity extends AppCompatActivity
             GoogleSignInAccount acct = result.getSignInAccount();
             txtNombre.setText(acct.getDisplayName());
             txtEmail.setText(acct.getEmail());
+
+           // Log.d(TAGLOG,"====> "+ acct.getEmail().toString()+" - "+acct.getDisplayName().toString()+" - "+rol+"<=======");
+
             updateUI(true);
 
 
