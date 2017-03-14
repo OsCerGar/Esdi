@@ -16,6 +16,7 @@ public class MenuPrincipal extends AppCompatActivity {
     Button btnContacto;
     Button btnMensajes;
     Button btndispoAulas;
+    Button btnIncidencias;
     String email;
     String nombre;
     TextView txtEmail;
@@ -40,6 +41,7 @@ public class MenuPrincipal extends AppCompatActivity {
         btnContacto = (Button) findViewById(R.id.btnContacto);
         btnMensajes = (Button) findViewById(R.id.btnMensajes);
         btndispoAulas = (Button) findViewById(R.id.btndispoAulas);
+        btnIncidencias = (Button) findViewById(R.id.btnIncidencias);
         txtEmail = (TextView)findViewById(R.id.txtEmail);
         txtEmail.setText(email + " - " + nombre);
 
@@ -68,6 +70,13 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         });
 
+        btnIncidencias.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                lanzarIncidencias();
+
+            }
+        });
+
     }
     private void lanzarPaginaWeb(){
         Intent intent = new Intent(MenuPrincipal.this,PaginaWeb.class);
@@ -89,5 +98,9 @@ public class MenuPrincipal extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void lanzarIncidencias(){
+        Intent intent = new Intent(MenuPrincipal.this,GLPI.class);
+        startActivity(intent);
+    }
 
 }

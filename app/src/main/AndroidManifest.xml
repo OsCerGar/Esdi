@@ -40,7 +40,8 @@
             android:glEsVersion="0x00020000"
             android:required="true" />
 
-        <activity android:name=".Mensajes"></activity>
+        <activity android:name=".Mensajes" />
+        <activity android:name=".GLPI"></activity>
     </application>
 
 </manifest>
