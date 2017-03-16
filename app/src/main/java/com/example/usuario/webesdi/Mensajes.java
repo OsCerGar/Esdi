@@ -195,14 +195,16 @@ public class Mensajes extends AppCompatActivity {
                 correo = parent.getItemAtPosition(position).toString();
                 txtEmail.setText(consulta + " de " + correo);
 
-                switch (spDestino.getSelectedItemPosition()) {
+                switch (spCorreo.getSelectedItemPosition()) {
                     case 0:
                         //si se selecciona todos, oculta el boton enviar
                         enviar.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), "todos seleccionados "+spCorreo.getSelectedItemPosition(), Toast.LENGTH_LONG).show();
                         break;
                     default:
                         //por defecto muestra el boton enviar
                         enviar.setVisibility(View.VISIBLE);
+                        Toast.makeText(getApplicationContext(), "otros seleccionados "+spCorreo.getSelectedItemPosition(), Toast.LENGTH_LONG).show();
                         break;
                 }
 

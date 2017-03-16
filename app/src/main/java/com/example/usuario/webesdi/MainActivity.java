@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity
     private Button btnEntrar;
     private TextView txtNombre;
     private TextView txtEmail;
-    private String rol = "slave";
+    private String rol = "master";
     private static final String TAGLOG = "firebase-db";
 
 
