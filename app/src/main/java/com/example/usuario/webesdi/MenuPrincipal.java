@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
- // Para no tener que crear varios menús, tenemos que añadir un control del tipo de cuenta logeada
+
+import com.google.firebase.auth.FirebaseAuth;
+// Para no tener que crear varios menús, tenemos que añadir un control del tipo de cuenta logeada
 //  (Lo podemos hacer con un extra del intent) y esconder o mostrar los botones que toquen.
 
 // como idea, podriamos substituir el mapa que tenemos ahora por noticias. Para que sea mas visual.
@@ -22,6 +24,7 @@ public class MenuPrincipal extends AppCompatActivity {
     TextView txtEmail;
     Usuario usuario;
     Bundle b;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
