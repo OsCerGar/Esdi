@@ -3,6 +3,7 @@ package com.example.usuario.webesdi;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity
 
     private GoogleApiClient apiClient;
     private static final int RC_SIGN_IN = 1001;
+
+
 
     private ProgressDialog progressDialog;
 
@@ -70,6 +75,9 @@ public class MainActivity extends AppCompatActivity
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+
+
 
         //Personalización del botón de login(css)
 
@@ -135,13 +143,9 @@ public class MainActivity extends AppCompatActivity
          b.putString("nombre", nombre);
          b.putString("rol", rol);
 
-
-
          Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
 
          intent.putExtras(b);
-
-
 
          startActivity(intent);
     }
@@ -160,6 +164,7 @@ public class MainActivity extends AppCompatActivity
                     Auth.GoogleSignInApi.getSignInResultFromIntent(data);
 
             handleSignInResult(result);
+
         }
     }
     //Miramos si la conexion ha salido bien con .isSucces, si es que si, guardamos la cuenta logeada

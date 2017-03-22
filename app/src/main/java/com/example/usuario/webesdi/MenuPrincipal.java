@@ -40,7 +40,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
       //  email = Mainact.getStringExtra("email");
 
-        btnpaginaweb = (Button) findViewById(R.id.brnpaginaweb);
+        btnpaginaweb = (Button) findViewById(R.id.btnpaginaweb);
         btnContacto = (Button) findViewById(R.id.btnContacto);
         btnMensajes = (Button) findViewById(R.id.btnMensajes);
         btndispoAulas = (Button) findViewById(R.id.btndispoAulas);
@@ -66,13 +66,12 @@ public class MenuPrincipal extends AppCompatActivity {
 
             }
         });
-        btnContacto.setOnClickListener(new View.OnClickListener() {
+        btndispoAulas.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 lanzarDispo();
 
             }
         });
-
         btnIncidencias.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 lanzarIncidencias();
