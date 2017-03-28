@@ -17,6 +17,6 @@ public class GLPI extends AppCompatActivity {
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         myWebView.setWebViewClient(new WebViewClient());
-        myWebView.loadUrl("http://172.1.30.10/glpi/front/helpdesk.public.php?create_ticket=1");
+        myWebView.loadUrl("http://ddt.esdi.es/cau");
     }
 }
