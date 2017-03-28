@@ -41,7 +41,8 @@
             android:required="true" />
 
         <activity android:name=".Mensajes" />
-        <activity android:name=".GLPI"></activity>
+        <activity android:name=".GLPI" />
+       <!-- <activity android:name=".GoogleSignInActivity"></activity>-->
     </application>
 
 </manifest>

@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">ProyectoEsdi</string>
     <string name="title_activity_disponibilidad">Disponibilidad</string>
+    <string name="google_title_text">Iniciar sesión</string>
+    <string name="signed_out">Desconectado</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="sign_out">Salir</string>
+    <string name="disconnect">Desconectar</string>
+    <string name="log_in">Entrar</string>
+    <string name="google_status_fmt">Cuenta: %s</string>
+    <string name="firebase_status_fmt">Usuario: %s</string>
+    <string name="loading">Loading…</string>
 </resources>
