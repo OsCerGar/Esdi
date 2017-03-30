@@ -1,6 +1,9 @@
 package com.example.usuario.webesdi;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +28,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 
 public class MainActivity extends BaseActivity implements
         GoogleApiClient.OnConnectionFailedListener,
@@ -32,6 +46,9 @@ public class MainActivity extends BaseActivity implements
 
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
+
+    public static final int CONNECTION_TIMEOUT = 10000;
+    public static final int READ_TIMEOUT = 15000;
 
     // [START declare_auth]
     private FirebaseAuth mAuth;
@@ -44,6 +61,7 @@ public class MainActivity extends BaseActivity implements
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
     private TextView mDetailTextView;
+    private TextView txtAcceso;
 
     private Button btnEntrar;
     private String Nombre;
@@ -56,11 +74,12 @@ public class MainActivity extends BaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnEntrar = (Button)findViewById(R.id.btnEntrar);
+        btnEntrar = (Button) findViewById(R.id.btnEntrar);
 
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
         mDetailTextView = (TextView) findViewById(R.id.detail);
+        txtAcceso = (TextView) findViewById(R.id.txtAcceso);
 
         // Button listeners
         findViewById(R.id.sign_in_button).setOnClickListener(this);
@@ -105,14 +124,14 @@ public class MainActivity extends BaseActivity implements
 
 
         btnEntrar.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
+            public void onClick(View v) {
                 iniciarActivity();
             }
         });
     }
 
 
-    void iniciarActivity(){
+    void iniciarActivity() {
 
         Bundle b = new Bundle();
         b.putString("email", Email);
@@ -239,11 +258,20 @@ public class MainActivity extends BaseActivity implements
             mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getDisplayName()));
             Nombre = user.getDisplayName();
 
+
+            //todo insertar comprobacion del nombre de dominio, si es ESDI, ejecutar AsyncLogin para
+            //comprobar las credenciales del usuario, si no es ESDI, directamente pasarlo como
+            //invitado
+            //txtAcceso.setText("Acceso: invitado");
+
+            new AsyncLogin().execute(Email, "1234");
+
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
         } else {
             mStatusTextView.setText(R.string.signed_out);
             mDetailTextView.setText(null);
+            txtAcceso.setText(null);
 
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
@@ -269,5 +297,152 @@ public class MainActivity extends BaseActivity implements
             revokeAccess();
         }
     }
+
+
+    //tarea asincrona que comprueba el usuario logueado mediante firebase auth en una base de
+    //datos sql, si existe, devuelve información tal como el rol
+    private class AsyncLogin extends AsyncTask<String, String, String> {
+        ProgressDialog pdLoading = new ProgressDialog(MainActivity.this);
+        HttpURLConnection conn;
+        URL url = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            //this method will be running on UI thread
+            pdLoading.setMessage("\tLoading...");
+            pdLoading.setCancelable(false);
+            pdLoading.show();
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            //funcion que devuelve un string al metodo postexecute
+            try {
+
+                // direccion del archivo php en el servidor apache
+                url = new URL("http://172.1.30.23/android_login/login.inc.php");
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return "exception 1";
+            }
+            try {
+                // Setup HttpURLConnection class to send and receive data from php and mysql
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(READ_TIMEOUT);
+                conn.setConnectTimeout(CONNECTION_TIMEOUT);
+                conn.setRequestMethod("POST");
+
+                // setDoInput and setDoOutput method depict handling of both send and receive
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+
+                // Append parameters to URL
+                Uri.Builder builder = new Uri.Builder()
+                        .appendQueryParameter("username", params[0]);
+                //   .appendQueryParameter("password", params[1]);
+                String query = builder.build().getEncodedQuery();
+
+                // Open connection for sending data
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(query);
+                writer.flush();
+                writer.close();
+                os.close();
+                conn.connect();
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+                return "exception 2";
+            }
+
+            try {
+
+                int response_code = conn.getResponseCode();
+
+                // Check if successful connection made
+                if (response_code == HttpURLConnection.HTTP_OK) {
+
+                    // Read data sent from server
+                    InputStream input = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                    StringBuilder result = new StringBuilder();
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+                        result.append(line);
+                    }
+
+                    // recibe el string desde el php y lo pasa al postexecute
+                    return (result.toString());
+
+                } else {
+
+                    return ("exception 3");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "exception 3";
+            } finally {
+                conn.disconnect();
+            }
+
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            //se ejecuta tras recibir el string desde doInbackground
+
+            //this method will be running on UI thread
+
+            pdLoading.dismiss();
+
+
+            switch (result) {
+
+                case "exception 0":
+                    Toast.makeText(MainActivity.this, "imposible establecer conexión con la " +
+                            "base de datos SQL desde el servidor", Toast.LENGTH_LONG).show();
+                    break;
+                case "exception 1":
+                    Toast.makeText(MainActivity.this, "imposible establecer conexión con el " +
+                            "servidor", Toast.LENGTH_LONG).show();
+                    break;
+                case "exception 2":
+                    Toast.makeText(MainActivity.this, "fallo al enviar la consulta al" +
+                            "servidor", Toast.LENGTH_LONG).show();
+                    break;
+                case "exception 3":
+                    Toast.makeText(MainActivity.this, "no se recibe respuesta desde el " +
+                            "servidor", Toast.LENGTH_LONG).show();
+                    break;
+                case "usuario":
+                    Toast.makeText(MainActivity.this, "usuario NO encontrado en sql",
+                            Toast.LENGTH_LONG).show();
+                    txtAcceso.setText("Acceso: " + result);
+                    rol = result;
+                    break;
+                default:
+                    Toast.makeText(MainActivity.this, "usuario encontrado en sql",
+                            Toast.LENGTH_LONG).show();
+                    txtAcceso.setText("Acceso: " + result);
+                    rol = result;
+                    break;
+
+            }
+
+        }
+
+    }
+
 }
 
