@@ -50,6 +50,8 @@ public class MainActivity extends BaseActivity implements
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
 
+    private static final String TAGLOG = "firebase-db";
+
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
@@ -66,7 +68,7 @@ public class MainActivity extends BaseActivity implements
     private Button btnEntrar;
     private String Nombre;
     private String Email;
-    private String rol = "master";
+    private String rol = "";
 
 
     @Override
@@ -85,6 +87,7 @@ public class MainActivity extends BaseActivity implements
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
+
 
         // [START config_signin]
         // Configure Google Sign In
@@ -258,13 +261,21 @@ public class MainActivity extends BaseActivity implements
             mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getDisplayName()));
             Nombre = user.getDisplayName();
 
-
-            //todo insertar comprobacion del nombre de dominio, si es ESDI, ejecutar AsyncLogin para
-            //comprobar las credenciales del usuario, si no es ESDI, directamente pasarlo como
+            //comprobacion del nombre de dominio, si es ESDI, ejecutar AsyncLogin para
+            //comprobar el rol del usuario, si no es ESDI, directamente pasarlo como
             //invitado
-            //txtAcceso.setText("Acceso: invitado");
 
-            new AsyncLogin().execute(Email, "1234");
+            String[] dominio = Email.split("@");
+            Log.d(TAGLOG, "======= paso por aqui ==========   " + dominio[0]+" "+dominio[1]);
+          //  Toast.makeText(this, dominio[0]+" "+dominio[1], Toast.LENGTH_LONG).show();
+
+            if (dominio[1].equalsIgnoreCase("esdi.edu.es")){
+                new AsyncLogin().execute(Email, "1234");
+            } else {
+                rol = "invitado";
+                txtAcceso.setText("Acceso: " + rol);
+            }
+
 
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
@@ -276,6 +287,7 @@ public class MainActivity extends BaseActivity implements
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
         }
+
     }
 
     @Override
@@ -323,7 +335,7 @@ public class MainActivity extends BaseActivity implements
             try {
 
                 // direccion del archivo php en el servidor apache
-                url = new URL("http://172.1.30.23/android_login/login.inc.php");
+                url = new URL("http://172.1.30.18/android_login/login.inc.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -408,37 +420,43 @@ public class MainActivity extends BaseActivity implements
 
 
             switch (result) {
-
+                //si no se puede comprobar el usuario en la base de datos, el rol pasa a ser usuario
                 case "exception 0":
                     Toast.makeText(MainActivity.this, "imposible establecer conexión con la " +
                             "base de datos SQL desde el servidor", Toast.LENGTH_LONG).show();
+                    rol = "usuario";
                     break;
                 case "exception 1":
                     Toast.makeText(MainActivity.this, "imposible establecer conexión con el " +
                             "servidor", Toast.LENGTH_LONG).show();
+                    rol = "usuario";
                     break;
                 case "exception 2":
                     Toast.makeText(MainActivity.this, "fallo al enviar la consulta al" +
                             "servidor", Toast.LENGTH_LONG).show();
+                    rol = "usuario";
                     break;
                 case "exception 3":
                     Toast.makeText(MainActivity.this, "no se recibe respuesta desde el " +
                             "servidor", Toast.LENGTH_LONG).show();
                     break;
+                /*
                 case "usuario":
-                    Toast.makeText(MainActivity.this, "usuario NO encontrado en sql",
-                            Toast.LENGTH_LONG).show();
-                    txtAcceso.setText("Acceso: " + result);
+                    Log.d(TAGLOG, "======= usuario ==========   " + result);
+                    //txtAcceso.setText("Acceso: " + result);
                     rol = result;
                     break;
+                    */
+                //si no devuelve una excepcion, es que ha foncionado, entonces el rol pasa a ser
+                //el que devuelve el php
                 default:
-                    Toast.makeText(MainActivity.this, "usuario encontrado en sql",
-                            Toast.LENGTH_LONG).show();
-                    txtAcceso.setText("Acceso: " + result);
+                    Log.d(TAGLOG, "======= usuario ==========   " + result);
+                   // txtAcceso.setText("Acceso: " + result);
                     rol = result;
                     break;
 
             }
+            txtAcceso.setText("Acceso: " + rol);
 
         }
 

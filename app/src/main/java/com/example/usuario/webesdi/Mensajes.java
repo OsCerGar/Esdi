@@ -34,6 +34,7 @@ public class Mensajes extends AppCompatActivity {
     TextView txtChat;
     String consulta;
     String correo;
+    String rolMaster = "administrador"; //nombre del rol con control total
     EditText inChat;
     String texto;
     Spinner spDestino;
@@ -92,7 +93,7 @@ public class Mensajes extends AppCompatActivity {
                         //llama a muestratexto y dependiendo del rol muestra los mensajes
                         //si es master oculta el boton enviar y muestra todos los mensajes
 
-                        if (b.getString("rol").equals("master")){
+                        if (b.getString("rol").equals(rolMaster)){
                             enviar.setVisibility(View.GONE);
                             muestraMensajes("todos");
                         }
@@ -109,7 +110,7 @@ public class Mensajes extends AppCompatActivity {
                         //llama a muestratexto y dependiendo del rol muestra los mensajes
                         //si es master oculta el boton enviar y muestra todos los mensajes
 
-                        if (b.getString("rol").equals("master")){
+                        if (b.getString("rol").equals(rolMaster)){
                             enviar.setVisibility(View.GONE);
                             muestraMensajes("todos");
                         }
@@ -118,7 +119,7 @@ public class Mensajes extends AppCompatActivity {
                         break;
                     case 2:
                         //si es master llama a creaspinnercorreo para seleccionar la conversacion
-                        if ((b.getString("rol")).equals("master")) {
+                        if ((b.getString("rol")).equals(rolMaster)) {
                             creaSpinnerCorreo();
                             spCorreo.setVisibility(View.VISIBLE);
                             //si no es master oculta el spiner de seleccion de conversacion, permite enviar
@@ -184,7 +185,7 @@ public class Mensajes extends AppCompatActivity {
         dbQuery.addValueEventListener(eventListener);
 
 
-        //creacion del adaptador del spinner
+        //creacion del adaptador del spinner de seleccion de conversaciones de consulta
         ArrayAdapter<String> adaptador2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datos2);
         adaptador2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCorreo.setAdapter(adaptador2);
@@ -199,12 +200,12 @@ public class Mensajes extends AppCompatActivity {
                     case 0:
                         //si se selecciona todos, oculta el boton enviar
                         enviar.setVisibility(View.GONE);
-                        Toast.makeText(getApplicationContext(), "todos seleccionados "+spCorreo.getSelectedItemPosition(), Toast.LENGTH_LONG).show();
+                     //   Toast.makeText(getApplicationContext(), "todos seleccionados "+spCorreo.getSelectedItemPosition(), Toast.LENGTH_LONG).show();
                         break;
                     default:
                         //por defecto muestra el boton enviar
                         enviar.setVisibility(View.VISIBLE);
-                        Toast.makeText(getApplicationContext(), "otros seleccionados "+spCorreo.getSelectedItemPosition(), Toast.LENGTH_LONG).show();
+                     //   Toast.makeText(getApplicationContext(), "otros seleccionados "+spCorreo.getSelectedItemPosition(), Toast.LENGTH_LONG).show();
                         break;
                 }
 
@@ -214,7 +215,7 @@ public class Mensajes extends AppCompatActivity {
 
             //metodo del spinner cuando no se selecciona nada
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getApplicationContext(), "nada en el spinner", Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getApplicationContext(), "nada en el spinner", Toast.LENGTH_LONG).show();
             }
 
         });
