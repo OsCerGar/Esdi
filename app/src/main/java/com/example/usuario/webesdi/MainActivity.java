@@ -69,6 +69,8 @@ public class MainActivity extends BaseActivity implements
     private String Nombre;
     private String Email;
     private String rol = "";
+    // direccion del archivo php en el servidor apache
+    private String URLserver = "http://172.1.30.18";
 
 
     @Override
@@ -78,12 +80,13 @@ public class MainActivity extends BaseActivity implements
 
         btnEntrar = (Button) findViewById(R.id.btnEntrar);
 
+        /*
 //todo eliminar esto cuando funcione
         Nombre = "nombre";
         Email = "email@falso.es";
         rol = "usuario";
         iniciarActivity();
-
+*/
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
         mDetailTextView = (TextView) findViewById(R.id.detail);
@@ -146,6 +149,7 @@ public class MainActivity extends BaseActivity implements
         b.putString("email", Email);
         b.putString("nombre", Nombre);
         b.putString("rol", rol);
+        b.putString("URL", URLserver);
 
         Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
 
@@ -272,14 +276,15 @@ public class MainActivity extends BaseActivity implements
             //invitado
 
             String[] dominio = Email.split("@");
-            Log.d(TAGLOG, "======= paso por aqui ==========   " + dominio[0]+" "+dominio[1]);
+          //  Log.d(TAGLOG, "======= paso por aqui ==========   " + dominio[0]+" "+dominio[1]);
           //  Toast.makeText(this, dominio[0]+" "+dominio[1], Toast.LENGTH_LONG).show();
 
             if (dominio[1].equalsIgnoreCase("esdi.edu.es")){
-                new AsyncLogin().execute(Email, "1234");
+                new AsyncLogin().execute(Email);
             } else {
                 rol = "invitado";
-                txtAcceso.setText("Acceso: " + rol);
+
+                txtAcceso.setText(rol);
             }
 
 
@@ -288,6 +293,9 @@ public class MainActivity extends BaseActivity implements
         } else {
             mStatusTextView.setText(R.string.signed_out);
             mDetailTextView.setText(null);
+            //guarda el contenido de txtAcceso en el string antes de borrarlo, de esta forma
+            //queda almacenado el titulo en el idioma seleccionado y se concatena con el rol
+            //al hacer login
             txtAcceso.setText(null);
 
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
@@ -340,8 +348,8 @@ public class MainActivity extends BaseActivity implements
             //funcion que devuelve un string al metodo postexecute
             try {
 
-                // direccion del archivo php en el servidor apache
-                url = new URL("http://172.1.30.18/android_login/login.inc.php");
+
+                url = new URL(URLserver+"/android_login/login.inc.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -456,13 +464,13 @@ public class MainActivity extends BaseActivity implements
                 //si no devuelve una excepcion, es que ha foncionado, entonces el rol pasa a ser
                 //el que devuelve el php
                 default:
-                    Log.d(TAGLOG, "======= usuario ==========   " + result);
+                  //  Log.d(TAGLOG, "======= usuario ==========   " + result);
                    // txtAcceso.setText("Acceso: " + result);
                     rol = result;
                     break;
 
             }
-            txtAcceso.setText("Acceso: " + rol);
+            txtAcceso.setText(rol);
 
         }
 

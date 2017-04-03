@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- main activity -->
+    <string name="app_name">ProyectoEsdi</string>
+    <string name="title_activity_disponibilidad">Disponibilidad</string>
+    <string name="google_title_text">Iniciar sesión</string>
+    <string name="signed_out">Desconectado</string>
+    <string name="acceso">Acceso:</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="sign_out">Salir</string>
+    <string name="disconnect">Desconectar</string>
+    <string name="log_in">Entrar</string>
+    <string name="google_status_fmt">Cuenta: %s</string>
+    <string name="firebase_status_fmt">Usuario: %s</string>
+    <string name="loading">Cargando…</string>
+
+    <!-- contacto -->
+    <string name="contacto_titulo">DEPT. Informatica</string>
+    <string name="contacto_subtitulo">Tienes dudas?</string>
+    <string name="contacto_telefono">-625341986</string>
+    <string name="contacto_correo">-informatica@esdi.edu.es</string>
+    <string name="contacto_habla">Habla con nosotros</string>
+    <string name="contacto_chat">chat</string>
+
+    <!-- menu principal -->
+    <string name="menuP_web">Pagina web</string>
+    <string name="menuP_tutoriales">Tutoriales</string>
+    <string name="menuP_contacto">Contacto</string>
+    <string name="menuP_aulas">Disponibilidad aulas</string>
+    <string name="menuP_mensajes">Mensajes</string>
+    <string name="menuP_incidencias">Incidencias</string>
+
+    <!-- Activity impresoras -->
+    <string name="tituloEstadoImpr">Estado de las impresor de Sabadell</string>
+
+    <!-- Settings -->
+    <string name="confTemaTitulo">Usar el tema claro*: </string>
+    <string name="confLenguaTitulo">Idioma:</string>
+    <string name="confLenguaDescr">Cambia la lengua de la aplicacion sin cambiar la del telefono*</string>
+
+</resources>

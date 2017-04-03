@@ -21,7 +21,6 @@
             android:orientation="vertical" >
 
             <TextView
-                android:text="Visitante"
                 android:layout_width="202dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
@@ -43,37 +42,37 @@
                 app:srcCompat="@drawable/edifici_esdi_planta" />
 
             <Button
-                android:text="Pagina web "
+                android:text="@string/menuP_web"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnpaginaweb" />
 
             <Button
-                android:text="Tutoriales"
+                android:text="@string/menuP_tutoriales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnTutoriales" />
 
             <Button
-                android:text="Contacto"
+                android:text="@string/menuP_contacto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnContacto" />
 
             <Button
-                android:text="Disponibilidad Aulas"
+                android:text="@string/menuP_aulas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btndispoAulas" />
 
             <Button
-                android:text="Mensajes"
+                android:text="@string/menuP_mensajes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnMensajes" />
 
             <Button
-                android:text="Incidencias"
+                android:text="@string/menuP_incidencias"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnIncidencias" />

@@ -22,6 +22,7 @@ public class MenuPrincipal extends AppCompatActivity {
     String email;
     String nombre;
     TextView txtEmail;
+    TextView txtTitulo;
     Usuario usuario;
     Bundle b;
 
@@ -46,7 +47,10 @@ public class MenuPrincipal extends AppCompatActivity {
         btndispoAulas = (Button) findViewById(R.id.btndispoAulas);
         btnIncidencias = (Button) findViewById(R.id.btnIncidencias);
         txtEmail = (TextView)findViewById(R.id.txtEmail);
+        txtTitulo = (TextView)findViewById(R.id.txtTitulo);
         txtEmail.setText(email + " - " + nombre);
+
+        txtTitulo.setText(b.getString("rol"));
 
         btnpaginaweb.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
