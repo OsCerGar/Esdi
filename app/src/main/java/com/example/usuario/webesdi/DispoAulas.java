@@ -22,12 +22,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import static com.example.usuario.webesdi.Loginprueba.CONNECTION_TIMEOUT;
-import static com.example.usuario.webesdi.Loginprueba.READ_TIMEOUT;
-
 public class DispoAulas extends AppCompatActivity {
     ImageView ivMapa,h1,h2,h3,h4,h5;
-
+    public static final int CONNECTION_TIMEOUT = 10000;
+    public static final int READ_TIMEOUT = 15000;
     boolean[] horarioh2;
     boolean[] horarioh3;
     boolean[] horarioh4;
@@ -78,7 +76,7 @@ public class DispoAulas extends AppCompatActivity {
             cambiarh1();
             if(dia!="Sabado"){
                // new AsyncSelect().execute(String.valueOf(cal),dia);
-                new AsyncSelect().execute("09:00:00","Lunes");
+                new AsyncSelect().execute("09:00","Lunes");
             }
         }
 
@@ -148,7 +146,7 @@ public class DispoAulas extends AppCompatActivity {
             try {
 
                 // direccion del archivo php en el servidor apache
-                url = new URL("http://172.1.30.12/android_login/select.inc.php");
+                url = new URL("http://192.168.43.208/android_login/select.inc.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -202,11 +200,11 @@ public class DispoAulas extends AppCompatActivity {
                     String line;
 
                     while ((line = reader.readLine()) != null) {
-                        result.append(line);
+                        //he cambiado esto para que lea linea y la pase directamente al publish(onProgresUpdate)
+                        publishProgress(line.toString());
                     }
 
                     // recibe el string desde el php y lo pasa al postexecute
-                    return (result.toString());
 
                 } else {
 
@@ -218,13 +216,14 @@ public class DispoAulas extends AppCompatActivity {
                 return "exception 3";
             } finally {
                 conn.disconnect();
+                return "OK";
             }
 
 
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onProgressUpdate(String... result) {
             //se ejecuta tras recibir el string desde doInbackground
 
             //this method will be running on UI thread
@@ -232,7 +231,7 @@ public class DispoAulas extends AppCompatActivity {
             pdLoading.dismiss();
 
 
-            switch (result) {
+            switch (result[0]) {
 
                 case "exception 0":
                     Toast.makeText(DispoAulas.this, "imposible establecer conexión con la " +
@@ -251,7 +250,7 @@ public class DispoAulas extends AppCompatActivity {
                             "servidor", Toast.LENGTH_LONG).show();
                     break;
                 case "nada":
-                    Toast.makeText(DispoAulas.this, "Actualizado",
+                    Toast.makeText(DispoAulas.this, "Actualizado sin cambios",
                             Toast.LENGTH_LONG).show();
                     break;
                 case "h2":
@@ -267,12 +266,16 @@ public class DispoAulas extends AppCompatActivity {
                     cambiarh5();
                     break;
                 default:
-                    Toast.makeText(DispoAulas.this, "Actualizado sin cambios",
+                    Toast.makeText(DispoAulas.this, "...",
                             Toast.LENGTH_LONG).show();
                     break;
 
             }
 
+        }
+        protected void onPostExecute(Long result) {
+            Toast.makeText(DispoAulas.this, "Asyntask finalizado",
+                    Toast.LENGTH_LONG).show();
         }
 
     }
