@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 // Para no tener que crear varios menús, tenemos que añadir un control del tipo de cuenta logeada
@@ -19,6 +20,7 @@ public class MenuPrincipal extends AppCompatActivity {
     Button btnMensajes;
     Button btndispoAulas;
     Button btnIncidencias;
+    Button btnSettings;
     String email;
     String nombre;
     TextView txtEmail;
@@ -46,6 +48,8 @@ public class MenuPrincipal extends AppCompatActivity {
         btnMensajes = (Button) findViewById(R.id.btnMensajes);
         btndispoAulas = (Button) findViewById(R.id.btndispoAulas);
         btnIncidencias = (Button) findViewById(R.id.btnIncidencias);
+        btnSettings = (Button) findViewById(R.id.btnSettings);
+
         txtEmail = (TextView)findViewById(R.id.txtEmail);
         txtTitulo = (TextView)findViewById(R.id.txtTitulo);
         txtEmail.setText(email + " - " + nombre);
@@ -83,6 +87,13 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         });
 
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                lanzarSettings();
+
+            }
+        });
+
     }
     private void lanzarPaginaWeb(){
         Intent intent = new Intent(MenuPrincipal.this,PaginaWeb.class);
@@ -106,6 +117,13 @@ public class MenuPrincipal extends AppCompatActivity {
 
     private void lanzarIncidencias(){
         Intent intent = new Intent(MenuPrincipal.this,GLPI.class);
+        intent.putExtras(b);
+        startActivity(intent);
+    }
+
+    private void lanzarSettings(){
+        Intent intent = new Intent(MenuPrincipal.this,Settings.class);
+      //  Toast.makeText(this, "seeeeeettings!", Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 

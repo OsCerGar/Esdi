@@ -28,6 +28,7 @@
     <string name="menuP_aulas">Classroom availability</string>
     <string name="menuP_mensajes">Messages</string>
     <string name="menuP_incidencias">Incidences</string>
+    <string name="menuP_settings">Settings</string>
 
     <!-- Acitvity impresoras -->
     <string name="tituloEstadoImpr">Sabadell\'s printers status:</string>

@@ -29,6 +29,7 @@
     <string name="menuP_aulas">Disponibilidat aules</string>
     <string name="menuP_mensajes">Missatges</string>
     <string name="menuP_incidencias">Incidencies</string>
+    <string name="menuP_settings">Configuraciò</string>
 
     <!-- Activity impresoras -->
     <string name="tituloEstadoImpr">Estat de les impresores de Sabadell</string>

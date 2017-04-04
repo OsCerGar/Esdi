@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 public class GLPI extends AppCompatActivity {
 
@@ -19,7 +20,8 @@ public class GLPI extends AppCompatActivity {
 
         Intent Mainact = getIntent();
         b = Mainact.getExtras();
-        URL = b.getString(URL);
+        URL = b.getString("URL");
+       // Toast.makeText(this, URL, Toast.LENGTH_LONG).show();
         //trabaja con el webView del xml, simplemente le hace cargar una URL dentro de la app.
         WebView myWebView = (WebView) findViewById(R.id.webView);
         WebSettings webSettings = myWebView.getSettings();

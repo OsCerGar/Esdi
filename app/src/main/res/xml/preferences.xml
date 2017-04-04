@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:title="@string/confTemaTitulo"
+        android:key="temaAplicacion"
+        android:defaultValue="true">
+    </SwitchPreference>
+
+    <ListPreference
+        android:title="@string/confLenguaTitulo"
+        android:summary="@string/confLenguaDescr"
+        android:key="lenguaAplicacion"
+        android:defaultValue="1"
+        android:entries="@array/listArray"
+        android:entryValues="@array/listValues">
+
+    </ListPreference>
+</PreferenceScreen>
