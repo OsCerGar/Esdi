@@ -86,13 +86,19 @@ public class MenuPrincipal extends AppCompatActivity {
 
             }
         });
-
         btnSettings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 lanzarSettings();
 
             }
         });
+
+        //solo un administrador puede entrar a incidencias
+        if (b.getString("rol").equalsIgnoreCase("administrador")){
+            btnIncidencias.setVisibility(View.VISIBLE);
+        }else{
+            btnIncidencias.setVisibility(View.GONE);
+        }
 
     }
     private void lanzarPaginaWeb(){

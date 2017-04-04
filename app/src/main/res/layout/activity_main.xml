@@ -18,13 +18,12 @@
         <ImageView
             android:id="@+id/google_icon"
             style="@style/ThemeOverlay.FirebaseIcon"
-            android:layout_width="233dp"
-            android:layout_height="wrap_content"
+            android:layout_width="112dp"
+            android:layout_height="116dp"
             android:contentDescription="@string/desc_firebase_lockup"
-            android:src="@mipmap/logo"
-            android:layout_weight="0.18" />
+            android:src="@mipmap/noulogoesdi" />
 
-           <!-- android:src="@drawable/firebase_lockup_400" -->
+        <!-- android:src="@drawable/firebase_lockup_400" -->
 
 
         <TextView
