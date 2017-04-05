@@ -76,7 +76,10 @@ public class DispoAulas extends AppCompatActivity {
             cambiarh1();
             if(dia!="Sabado"){
                // new AsyncSelect().execute(String.valueOf(cal),dia);
-                new AsyncSelect().execute("09:00","Lunes");
+                new AsyncSelect().execute("09:00","Lunes","h2" );
+                new AsyncSelect().execute("09:00","Lunes","h3" );
+                new AsyncSelect().execute("09:00","Lunes","h4" );
+                new AsyncSelect().execute("09:00","Lunes","h5" );
             }
         }
 
@@ -167,7 +170,8 @@ public class DispoAulas extends AppCompatActivity {
                 // Append parameters to URL
                 Uri.Builder builder = new Uri.Builder()
                         .appendQueryParameter("username", params[0])
-                        .appendQueryParameter("dia", params[1]);
+                        .appendQueryParameter("dia", params[1])
+                        .appendQueryParameter("aula", params[2]);
                 String query = builder.build().getEncodedQuery();
 
                 // Open connection for sending data
@@ -200,11 +204,11 @@ public class DispoAulas extends AppCompatActivity {
                     String line;
 
                     while ((line = reader.readLine()) != null) {
-                        //he cambiado esto para que lea linea y la pase directamente al publish(onProgresUpdate)
-                        publishProgress(line.toString());
+                        result.append(line);
                     }
 
                     // recibe el string desde el php y lo pasa al postexecute
+                    return (result.toString());
 
                 } else {
 
@@ -223,7 +227,7 @@ public class DispoAulas extends AppCompatActivity {
         }
 
         @Override
-        protected void onProgressUpdate(String... result) {
+        protected void onPostExecute(String result) {
             //se ejecuta tras recibir el string desde doInbackground
 
             //this method will be running on UI thread
@@ -231,7 +235,7 @@ public class DispoAulas extends AppCompatActivity {
             pdLoading.dismiss();
 
 
-            switch (result[0]) {
+            switch (result) {
 
                 case "exception 0":
                     Toast.makeText(DispoAulas.this, "imposible establecer conexión con la " +
