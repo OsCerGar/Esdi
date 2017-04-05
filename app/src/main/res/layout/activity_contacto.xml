@@ -24,7 +24,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:text="DEPT. Informatica"
+            android:text="@string/contacto_titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -32,7 +32,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
         <TextView
-            android:text="Tienes dudas?"
+            android:text="@string/contacto_subtitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -40,19 +40,19 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Menu" />
 
         <TextView
-            android:text="-625341986"
+            android:text="@string/contacto_telefono"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/numero" />
 
         <TextView
-            android:text="-informatica@esdi.edu.es"
+            android:text="@string/contacto_correo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/email" />
 
         <TextView
-            android:text="Habla con nosotros"
+            android:text="@string/contacto_habla"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -60,7 +60,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Menu" />
 
         <Button
-            android:text="Chat"
+            android:text="@string/contacto_chat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnChat"
