@@ -23,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class DispoAulas extends AppCompatActivity {
+
+    private String URLserver = "http://192.168.43.208";
     ImageView ivMapa,h1,h2,h3,h4,h5;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
@@ -74,7 +76,7 @@ public class DispoAulas extends AppCompatActivity {
         // comprobarhora mira que no sea por la noche, o mañana (fuera de horarios)
         if (comprobarhora()){
             cambiarh1();
-            if(dia!="Sabado"){
+            if(dia!="patata"){
                // new AsyncSelect().execute(String.valueOf(cal),dia);
                 new AsyncSelect().execute("09:00","Lunes","h2" );
                 new AsyncSelect().execute("09:00","Lunes","h3" );
@@ -84,11 +86,7 @@ public class DispoAulas extends AppCompatActivity {
         }
 
 
-
     }
-
-
-
 
 
 
@@ -148,8 +146,8 @@ public class DispoAulas extends AppCompatActivity {
             //funcion que devuelve un string al metodo postexecute
             try {
 
-                // direccion del archivo php en el servidor apache
-                url = new URL("http://192.168.43.208/android_login/select.inc.php");
+
+                url = new URL(URLserver+"/android_login/select.inc.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -172,6 +170,7 @@ public class DispoAulas extends AppCompatActivity {
                         .appendQueryParameter("username", params[0])
                         .appendQueryParameter("dia", params[1])
                         .appendQueryParameter("aula", params[2]);
+                //   .appendQueryParameter("password", params[1]);
                 String query = builder.build().getEncodedQuery();
 
                 // Open connection for sending data
@@ -220,7 +219,6 @@ public class DispoAulas extends AppCompatActivity {
                 return "exception 3";
             } finally {
                 conn.disconnect();
-                return "OK";
             }
 
 
@@ -236,7 +234,7 @@ public class DispoAulas extends AppCompatActivity {
 
 
             switch (result) {
-
+                //si no se puede comprobar el usuario en la base de datos, el rol pasa a ser usuario
                 case "exception 0":
                     Toast.makeText(DispoAulas.this, "imposible establecer conexión con la " +
                             "base de datos SQL desde el servidor", Toast.LENGTH_LONG).show();
@@ -253,35 +251,44 @@ public class DispoAulas extends AppCompatActivity {
                     Toast.makeText(DispoAulas.this, "no se recibe respuesta desde el " +
                             "servidor", Toast.LENGTH_LONG).show();
                     break;
-                case "nada":
-                    Toast.makeText(DispoAulas.this, "Actualizado sin cambios",
-                            Toast.LENGTH_LONG).show();
-                    break;
                 case "h2":
                     cambiarh2();
+                    Toast.makeText(DispoAulas.this, "h2", Toast.LENGTH_LONG).show();
                     break;
                 case "h3":
                     cambiarh3();
+                    Toast.makeText(DispoAulas.this, "h3", Toast.LENGTH_LONG).show();
                     break;
                 case "h4":
                     cambiarh4();
+                    Toast.makeText(DispoAulas.this,"h4", Toast.LENGTH_LONG).show();
                     break;
                 case "h5":
                     cambiarh5();
+                    Toast.makeText(DispoAulas.this, "h5", Toast.LENGTH_LONG).show();
                     break;
+                /*
+                case "usuario":
+                    Log.d(TAGLOG, "======= usuario ==========   " + result);
+                    //txtAcceso.setText("Acceso: " + result);
+                    rol = result;
+                    break;
+                    */
+                //si no devuelve una excepcion, es que ha foncionado, entonces el rol pasa a ser
+                //el que devuelve el php
                 default:
-                    Toast.makeText(DispoAulas.this, "...",
-                            Toast.LENGTH_LONG).show();
+                    //  Log.d(TAGLOG, "======= usuario ==========   " + result);
+                    // txtAcceso.setText("Acceso: " + result);
+                    Toast.makeText(DispoAulas.this, "Default", Toast.LENGTH_LONG).show();
                     break;
 
             }
 
         }
-        protected void onPostExecute(Long result) {
-            Toast.makeText(DispoAulas.this, "Asyntask finalizado",
-                    Toast.LENGTH_LONG).show();
-        }
 
     }
+
+
+
 }
 

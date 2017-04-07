@@ -70,14 +70,14 @@ public class MainActivity extends BaseActivity implements
     private String Email;
     private String rol = "";
     // direccion del archivo php en el servidor apache
-    private String URLserver = "http://172.1.30.13";
+    private String URLserver = "http://192.168.43.208";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        iniciarActivity();
         btnEntrar = (Button) findViewById(R.id.btnEntrar);
 
         /*
