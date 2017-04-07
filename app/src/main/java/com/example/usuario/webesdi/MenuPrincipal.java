@@ -112,7 +112,8 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     private void lanzarMensajes3(){
-        Intent intent = new Intent(MenuPrincipal.this,Mensajes.class);
+       // Intent intent = new Intent(MenuPrincipal.this,Mensajes.class);
+        Intent intent = new Intent(MenuPrincipal.this,tabs.class);
         intent.putExtras(b);
         startActivity(intent);
     }
