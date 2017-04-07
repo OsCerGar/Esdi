@@ -129,8 +129,11 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     private void lanzarSettings(){
+        Bundle extras = getIntent().getExtras();
+        String nombreActivity = this.getClass().getCanonicalName();
         Intent intent = new Intent(MenuPrincipal.this,Settings.class);
-      //  Toast.makeText(this, "seeeeeettings!", Toast.LENGTH_SHORT).show();
+        intent.putExtra("callingActivity", nombreActivity );
+        intent.putExtras(extras);
         startActivity(intent);
     }
 
