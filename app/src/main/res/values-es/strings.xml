@@ -23,7 +23,7 @@
     <string name="contacto_chat">chat</string>
 
     <!-- menu principal -->
-    <string name="menuP_web">Pagina web</string>
+    <string name="menuP_web">Página web</string>
     <string name="menuP_tutoriales">Tutoriales</string>
     <string name="menuP_contacto">Contacto</string>
     <string name="menuP_aulas">Disponibilidad aulas</string>
@@ -32,7 +32,7 @@
     <string name="menuP_settings">Configuración</string>
 
     <!-- Activity impresoras -->
-    <string name="tituloEstadoImpr">Estado de las impresor de Sabadell</string>
+    <string name="tituloEstadoImpr">Estado de las impresoras de Sabadell</string>
 
     <!-- Settings -->
     <string name="confTemaTitulo">Usar el tema claro*: </string>

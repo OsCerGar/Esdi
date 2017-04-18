@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Mensajes extends AppCompatActivity {
+public class Mensajes extends BaseActivity {
 
 
     // String consulta;

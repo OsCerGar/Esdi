@@ -6,7 +6,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class PaginaWeb extends AppCompatActivity {
+public class PaginaWeb extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

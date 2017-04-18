@@ -14,7 +14,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class Contacto extends AppCompatActivity implements OnMapReadyCallback {
+public class Contacto extends BaseActivity implements OnMapReadyCallback {
     private GoogleMap mapa;
 
     TextView txtEmail;

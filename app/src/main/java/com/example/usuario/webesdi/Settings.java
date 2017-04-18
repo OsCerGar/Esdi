@@ -122,26 +122,6 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
         ponTema(SP);
         super.onStart();
     }
-    /*@Override
-    protected void onPause() {
-        super.onPause();
-        Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
-    }
 
-
-
-    @Override
-    protected void onRestart() {
-        ponTema(SP);
-        super.onRestart();
-        Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onResume() {
-        ponTema(SP);
-        super.onResume();
-        Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
-    }*/
 
 }

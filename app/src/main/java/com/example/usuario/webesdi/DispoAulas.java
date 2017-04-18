@@ -22,7 +22,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class DispoAulas extends AppCompatActivity {
+public class DispoAulas extends BaseActivity {
 
     private String URLserver = "http://192.168.43.208";
     ImageView ivMapa,h1,h2,h3,h4,h5;

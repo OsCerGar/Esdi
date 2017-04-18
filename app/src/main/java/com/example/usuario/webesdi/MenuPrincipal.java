@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 // como idea, podriamos substituir el mapa que tenemos ahora por noticias. Para que sea mas visual.
 
-public class MenuPrincipal extends AppCompatActivity {
+public class MenuPrincipal extends BaseActivity {
     Button btnpaginaweb;
     Button btnContacto;
     Button btnMensajes;

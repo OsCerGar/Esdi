@@ -8,7 +8,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-public class GLPI extends AppCompatActivity {
+public class GLPI extends BaseActivity {
 
     private String URL;
     Bundle b;

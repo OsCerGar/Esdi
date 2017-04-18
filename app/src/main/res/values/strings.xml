@@ -7,7 +7,7 @@
     <string name="acceso">Access:</string>
     <string name="desc_firebase_lockup">Firebase logo and name</string>
     <string name="sign_out">Sign Out</string>
-    <string name="disconnect">Disconnect</string>
+    <string name="disconnect">Disconnect</string> <!-- Seria mejor "log out" no? -->
     <string name="log_in">Log In</string>
     <string name="google_status_fmt">Google User: %s</string>
     <string name="firebase_status_fmt">User: %s</string>
@@ -34,7 +34,7 @@
     <string name="tituloEstadoImpr">Sabadell\'s printers status:</string>
 
     <!-- Configuracion -->
-    <string name="confTemaTitulo">Use light theme*: </string>
+    <string name="confTemaTitulo">Use the light theme*: </string>
     <string name="confLenguaTitulo">Displayed language:</string>
     <string name="confLenguaDescr">Change the app\'s language without changing your phone\'s one*</string>
 
