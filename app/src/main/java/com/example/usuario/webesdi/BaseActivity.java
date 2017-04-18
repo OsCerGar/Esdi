@@ -4,11 +4,13 @@ import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 
 import java.util.Locale;
 
@@ -78,7 +80,7 @@ public class BaseActivity extends AppCompatActivity {
         }
         setLocale(idioma);
     }
-    public void setLocale(String lang) {
+    private void setLocale(String lang) {
         Locale myLocale = new Locale(lang);
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
@@ -86,4 +88,17 @@ public class BaseActivity extends AppCompatActivity {
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
     }
+
+    protected int obtenFondo(){
+        //Se consigue el color actual del fondo del activity. Por si no fuera un color, se pone a 0 (blanco) por defecto
+        int color = 000;
+        TypedValue a = new TypedValue();
+        getTheme().resolveAttribute(android.R.attr.windowBackground, a, true);
+        if (a.type >= TypedValue.TYPE_FIRST_COLOR_INT && a.type <= TypedValue.TYPE_LAST_COLOR_INT) {
+            // si el windowBackground es un color, ya que puede ser otra cosa, por ejemplo un drawable
+            color = a.data;
+        }
+        return color;
+    }
+
 }
