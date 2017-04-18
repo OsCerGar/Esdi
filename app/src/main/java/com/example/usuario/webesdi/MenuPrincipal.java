@@ -6,9 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.firebase.auth.FirebaseAuth;
 // Para no tener que crear varios menús, tenemos que añadir un control del tipo de cuenta logeada
 //  (Lo podemos hacer con un extra del intent) y esconder o mostrar los botones que toquen.
 
@@ -113,7 +110,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
     private void lanzarMensajes3(){
        // Intent intent = new Intent(MenuPrincipal.this,Mensajes.class);
-        Intent intent = new Intent(MenuPrincipal.this,tabs.class);
+        Intent intent = new Intent(MenuPrincipal.this,Mensajes.class);
         intent.putExtras(b);
         startActivity(intent);
     }
