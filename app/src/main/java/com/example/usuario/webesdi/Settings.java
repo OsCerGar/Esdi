@@ -12,7 +12,10 @@ import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Created by Silvan on 09/02/2017.
@@ -47,50 +50,41 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         switch (key){
             case "temaAplicacion":
-                ponTema(SP);
+                ponTema(sharedPreferences);
                 break;
             case "lenguaAplicacion":
-                ponLengua(sharedPreferences, key);
+                ponIdioma(sharedPreferences, key);
                 break;
         }
         finish();
         startActivity(getIntent());
     }
-    private void ponTema(SharedPreferences SP){
-        int version = android.os.Build.VERSION.SDK_INT;
-        SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean appTheme = SP.getBoolean("applicationTheme", true);
-        if (version >20) {
-            if (appTheme) {
-                this.setTheme(R.style.LightTheme);
-            } else {
-                this.setTheme(R.style.BlackTheme);
-            }
+    private void ponTema(SharedPreferences sharedPreferences){
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        boolean appTheme = SP.getBoolean("temaAplicacion", true);
+        if (appTheme){
+            this.setTheme(R.style.AppTheme);
         }
-        else{
-            if (appTheme) {
-                this.setTheme(R.style.OldLightTheme);
-            } else {
-                this.setTheme(R.style.OldBlackTheme);
-            }
+        else {
+            this.setTheme(R.style.AppThemeDark);
         }
     }
 
-    private void ponLengua(SharedPreferences sharedPreferences, String key){
+    private void ponIdioma(SharedPreferences sharedPreferences, String key){
         String valor = SP.getString(key, "1");
-        String lengua = "en";
+        String idioma = "en";
         switch (valor){
             case "1":
-                lengua = "en";
+                idioma = "en";
                 break;
             case "2":
-                lengua = "ca";
+                idioma = "ca";
                 break;
             case "3":
-                lengua = "es";
+                idioma = "es";
                 break;
         }
-        setLocale(lengua);
+        setLocale(idioma);
     }
     public void setLocale(String lang) {
         Locale myLocale = new Locale(lang);
@@ -102,9 +96,9 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
     }
 
 
-
     @Override
     public void onBackPressed() {
+        Bundle extras = getIntent().getExtras();
         Class<?> c = null;
         if (callingActivity != null) {
             try {
@@ -114,6 +108,7 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
                 e.printStackTrace();
             }
             Intent intent = new Intent(Settings.this, c);
+            intent.putExtras(extras);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
@@ -122,19 +117,18 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
         }
     }
 
-
     @Override
+    protected void onStart() {
+        ponTema(SP);
+        super.onStart();
+    }
+    /*@Override
     protected void onPause() {
         super.onPause();
         Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void onStart() {
-        ponTema(SP);
-        super.onStart();
-        Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show();
-    }
+
 
     @Override
     protected void onRestart() {
@@ -148,6 +142,6 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
         ponTema(SP);
         super.onResume();
         Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
 }
