@@ -35,8 +35,8 @@
     <string name="tituloEstadoImpr">Estado de las impresoras de Sabadell</string>
 
     <!-- Settings -->
-    <string name="confTemaTitulo">Usar el tema claro*: </string>
+    <string name="confTemaTitulo">Usar el tema claro: </string>
     <string name="confLenguaTitulo">Idioma:</string>
-    <string name="confLenguaDescr">Cambia la lengua de la aplicacion sin cambiar la del telefono*</string>
+    <string name="confLenguaDescr">Cambia la lengua de la aplicacion sin cambiar la del telefono</string>
 
 </resources>

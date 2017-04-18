@@ -34,9 +34,9 @@
     <string name="tituloEstadoImpr">Sabadell\'s printers status:</string>
 
     <!-- Configuracion -->
-    <string name="confTemaTitulo">Use the light theme*: </string>
+    <string name="confTemaTitulo">Use the light theme: </string>
     <string name="confLenguaTitulo">Displayed language:</string>
-    <string name="confLenguaDescr">Change the app\'s language without changing your phone\'s one*</string>
+    <string name="confLenguaDescr">Change the app\'s language without changing your phone\'s one</string>
 
 
 </resources>

@@ -35,8 +35,8 @@
     <string name="tituloEstadoImpr">Estat de les impressores de Sabadell</string>
 
     <!-- Settings -->
-    <string name="confTemaTitulo">Fer servir el tema clar*: </string>
+    <string name="confTemaTitulo">Fer servir el tema clar: </string>
     <string name="confLenguaTitulo">Idioma:</string>
-    <string name="confLenguaDescr">Canvia la llengua de l\'app sense canviar la del telèfon*</string>
+    <string name="confLenguaDescr">Canvia la llengua de l\'app sense canviar la del telèfon</string>
 
 </resources>
