@@ -42,7 +42,6 @@
                         android:layout_centerHorizontal="true" />
 
                     <ImageButton
-                        android:onClick="entraTexto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:srcCompat="@android:drawable/ic_menu_send"
@@ -64,21 +63,6 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
 
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spDestino"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="49dp" />
-
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spCorreo"
-                        android:layout_alignTop="@+id/spDestino"
-                        android:layout_alignLeft="@+id/txtEmail"
-                        android:layout_alignStart="@+id/txtEmail"
-                        android:spinnerMode="dialog" />
 
                 </LinearLayout>
 
@@ -102,7 +86,6 @@
                         android:layout_centerHorizontal="true" />
 
                     <ImageButton
-                        android:onClick="entraTexto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:srcCompat="@android:drawable/ic_menu_send"
@@ -120,25 +103,10 @@
                         android:maxLines = "25"
                         android:scrollbars = "vertical"
                         android:layout_marginTop="22dp"
-                        android:layout_below="@+id/txtEmail"
+                        android:layout_below="@+id/txtEmail2"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
 
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spDestino2"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="49dp" />
-
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spCorreo2"
-                        android:layout_alignTop="@+id/spDestino"
-                        android:layout_alignLeft="@+id/txtEmail"
-                        android:layout_alignStart="@+id/txtEmail"
-                        android:spinnerMode="dialog" />
                 </LinearLayout>
 
                 <LinearLayout android:id="@+id/tab3"
@@ -161,7 +129,6 @@
                         android:layout_centerHorizontal="true" />
 
                     <ImageButton
-                        android:onClick="entraTexto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:srcCompat="@android:drawable/ic_menu_send"
@@ -179,22 +146,14 @@
                         android:maxLines = "25"
                         android:scrollbars = "vertical"
                         android:layout_marginTop="22dp"
-                        android:layout_below="@+id/txtEmail"
+                        android:layout_below="@+id/txtEmail3"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
 
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/spDestino3"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="49dp" />
-
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:id="@+id/spCorreo3"
-                        android:layout_alignTop="@+id/spDestino"
                         android:layout_alignLeft="@+id/txtEmail"
                         android:layout_alignStart="@+id/txtEmail"
                         android:spinnerMode="dialog" />
