@@ -52,4 +52,8 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="PreferencesTheme">
+        <item name="android:background">#A4A4A4</item>
+    </style>
+
 </resources>
