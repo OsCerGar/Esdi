@@ -38,5 +38,10 @@
     <string name="confLenguaTitulo">Displayed language:</string>
     <string name="confLenguaDescr">Change the app\'s language without changing your phone\'s one</string>
 
+    <!-- Mensajes -->
+    <string name="sugerencias"> Suggestions </string>
+    <string name="incidencias"> Incidence</string>
+    <string name="consultas"> Queries </string>
+
 
 </resources>

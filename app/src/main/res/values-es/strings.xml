@@ -39,4 +39,9 @@
     <string name="confLenguaTitulo">Idioma:</string>
     <string name="confLenguaDescr">Cambia la lengua de la aplicacion sin cambiar la del telefono</string>
 
+    <!-- Mensajes -->
+    <string name="sugerencias"> Sugerencias </string>
+    <string name="incidencias"> Incidencias</string>
+    <string name="consultas"> Consultas </string>
+
 </resources>

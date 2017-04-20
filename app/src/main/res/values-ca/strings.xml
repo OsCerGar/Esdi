@@ -39,4 +39,9 @@
     <string name="confLenguaTitulo">Idioma:</string>
     <string name="confLenguaDescr">Canvia la llengua de l\'app sense canviar la del telèfon</string>
 
+    <!-- Mensajes -->
+    <string name="sugerencias"> Suggeriments </string>
+    <string name="incidencias"> Incidències</string>
+    <string name="consultas"> Consultes </string>
+
 </resources>

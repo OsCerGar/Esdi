@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -57,8 +58,9 @@ public class Mensajes extends BaseActivity {
     ImageButton enviar3;
 
     List<String> datos2;
-    //private DatabaseReference dbMensajes;
-    //private ValueEventListener eventListener;
+
+    int request_code = 1;
+
     private static final String TAGLOG = "firebase-db";
 
 
@@ -95,6 +97,8 @@ public class Mensajes extends BaseActivity {
         spCorreo = (Spinner) findViewById(R.id.spCorreo);
 
         correo = b.getString("email"); //inicialmente el correo es el del usuario logueado
+
+
 
         //bloque para dar valor a las pestañas
 
@@ -152,8 +156,15 @@ public class Mensajes extends BaseActivity {
                 break;
             case "Incidencia":
 
-                //// TODO: de momeneto esta hace lo mismo que sugerencia, hay que cambiarlo  para incidencias
+                //// TODO: de momento esta hace lo mismo que sugerencia, hay que cambiarlo  para
+                /// incidencias y añadirle un QR
 
+                Intent intent = new Intent(this, QRscanner.class);
+
+                startActivityForResult(intent, request_code);
+
+
+/*
                 //llama a muestratexto y dependiendo del rol muestra los mensajes
                 //si es master oculta el boton enviar y muestra todos los mensajes
 
@@ -164,6 +175,7 @@ public class Mensajes extends BaseActivity {
                     //si no es master puede enviar y muestra solo sus mensajes
                     muestraMensajes(b.getString("email").toString(), tabId);
                 }
+                */
                 break;
             case "Consulta":
                 //si es master llama a creaspinnercorreo para seleccionar la conversacion
@@ -203,6 +215,16 @@ public class Mensajes extends BaseActivity {
 
             }
         });
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        // TODO Auto-generated method stub
+        if ((requestCode == request_code) && (resultCode == RESULT_OK)){
+
+            Toast.makeText(this, intent.getStringExtra("resultado"), Toast.LENGTH_LONG).show();
+        }
     }
 
 
@@ -294,7 +316,7 @@ public class Mensajes extends BaseActivity {
 
                 texto = "";
                 for (DataSnapshot childDataSnapshot : nodoUsuario.getChildren()) {
-                    Log.d(TAGLOG, "----------------------- pasndo---------------");
+                  //  Log.d(TAGLOG, "----------------------- pasndo---------------");
 
                     //si el usuario logueado es master y selecciona "todos" en el spinner, muestra todos los mensajes, si no muestra solo
                     //los que coincide su correo (que le pasamos al llamar al procedimiento) con el del correo del mensaje de la DB
