@@ -65,16 +65,16 @@ public class BaseActivity extends AppCompatActivity {
 
     private void ponIdioma(){
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        String valor = SP.getString("lenguaAplicacion", "1");
+        int valor = SP.getInt("idiomaAplicacion", 1);
         String idioma = "en";
         switch (valor){
-            case "1":
+            case 0:
                 idioma = "en";
                 break;
-            case "2":
+            case 1:
                 idioma = "ca";
                 break;
-            case "3":
+            case 2:
                 idioma = "es";
                 break;
         }

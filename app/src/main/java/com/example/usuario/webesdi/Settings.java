@@ -10,6 +10,11 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.CompoundButton;
+import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -21,70 +26,83 @@ import java.util.Map;
  * Created by Silvan on 09/02/2017.
  */
 
-public class Settings extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class Settings extends BaseActivity  implements CompoundButton.OnCheckedChangeListener, Spinner.OnItemSelectedListener {
     private String callingActivity = "";
-    private SharedPreferences SP;
+    private SharedPreferences sp;
+    private Switch themeSwitch;
+    private Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-        SP = PreferenceManager.getDefaultSharedPreferences(this);
-        SP.registerOnSharedPreferenceChangeListener(this);
         super.onCreate(savedInstanceState);
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
+
+        setContentView(R.layout.activity_settings);
+
         if (callingActivity.isEmpty()){
             Intent i = getIntent();
             callingActivity =  i.getStringExtra("callingActivity");
         }
+        boolean appTheme = sp.getBoolean("temaAplicacion", true);
+        themeSwitch = (Switch) findViewById(R.id.themeSwitch);
+        themeSwitch.setChecked(appTheme);
+        if (themeSwitch != null) {
+            themeSwitch.setOnCheckedChangeListener(this);
+        }
+
+        int posi = sp.getInt("idiomaAplicacion", 1);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        spinner.setSelection(posi);
+        spinner.setOnItemSelectedListener(this);
     }
 
-    public static class MyPreferenceFragment extends PreferenceFragment
-    {
-        @Override
-        public void onCreate(final Bundle savedInstanceState)
-        {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.preferences);
+    // Para controlar el cambio de posicion del Switch
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        SharedPreferences.Editor editor = sp.edit();
+        if(isChecked) {
+            editor.putBoolean("temaAplicacion", true);
+        } else {
+            editor.putBoolean("temaAplicacion", false);
         }
-    }
-
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        switch (key){
-            case "temaAplicacion":
-                ponTema(sharedPreferences);
-                break;
-            case "lenguaAplicacion":
-                ponIdioma(sharedPreferences, key);
-                break;
-        }
+        editor.commit();
         finish();
         startActivity(getIntent());
     }
-    private void ponTema(SharedPreferences sharedPreferences){
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean appTheme = SP.getBoolean("temaAplicacion", true);
-        if (appTheme){
-            this.setTheme(R.style.AppTheme);
+
+    // Para controlar la seleccion de una opcion del Spinner
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        int guardado = sp.getInt("idiomaAplicacion", 1);
+
+        // parent.getItemAtPosition(position).toString(); por si se necesita mas adelante
+        String lang ;
+        switch (position){
+            case 1:
+                lang = "ca-ES";
+                break;
+            case 2:
+                lang = "es-ES";
+                break;
+            default:
+                lang = "en";
+                break;
         }
-        else {
-            this.setTheme(R.style.AppThemeDark);
+
+        if (guardado != position){
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putInt("idiomaAplicacion", position);
+            editor.commit();
+            this.setLocale(lang);
+            finish();
+            startActivity(getIntent());
         }
     }
 
-    private void ponIdioma(SharedPreferences sharedPreferences, String key){
-        String valor = SP.getString(key, "1");
-        String idioma = "en";
-        switch (valor){
-            case "1":
-                idioma = "en";
-                break;
-            case "2":
-                idioma = "ca";
-                break;
-            case "3":
-                idioma = "es";
-                break;
-        }
-        setLocale(idioma);
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+
     }
     public void setLocale(String lang) {
         Locale myLocale = new Locale(lang);
@@ -116,12 +134,4 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
             super.onBackPressed();
         }
     }
-
-    @Override
-    protected void onStart() {
-        ponTema(SP);
-        super.onStart();
-    }
-
-
 }
