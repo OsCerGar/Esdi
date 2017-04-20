@@ -9,7 +9,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 //implementing onclicklistener
 
-    public class QRscanner extends AppCompatActivity{
+    public class QRscanner extends BaseActivity{
 
 
     //qr code scanner object
