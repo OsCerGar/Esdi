@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity implements
     private String Email;
     private String rol = "";
     // direccion del archivo php en el servidor apache
-    private String URLserver = "http://172.1.30.20";
+    private String URLserver = "http://172.1.30.16";
 
 
     @Override
