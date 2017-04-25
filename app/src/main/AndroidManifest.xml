@@ -43,7 +43,7 @@
             android:required="true" />
 
         <!-- <activity android:name=".GoogleSignInActivity"></activity> -->
-        <activity android:name=".Mensajes"></activity>
+        <activity android:name=".Mensajes" />
     </application>
 
 </manifest>
