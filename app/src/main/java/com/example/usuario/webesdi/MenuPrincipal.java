@@ -2,7 +2,9 @@ package com.example.usuario.webesdi;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,7 +19,6 @@ public class MenuPrincipal extends BaseActivity {
     Button btnMensajes;
     Button btndispoAulas;
     Button btnIncidencias;
-    Button btnSettings;
     String email;
     String nombre;
     TextView txtEmail;
@@ -25,6 +26,26 @@ public class MenuPrincipal extends BaseActivity {
     Usuario usuario;
     Bundle b;
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.configuracion:
+                lanzarSettings();
+                return true;
+            case R.id.help:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +66,6 @@ public class MenuPrincipal extends BaseActivity {
         btnMensajes = (Button) findViewById(R.id.btnMensajes);
         btndispoAulas = (Button) findViewById(R.id.btndispoAulas);
         btnIncidencias = (Button) findViewById(R.id.btnIncidencias);
-        btnSettings = (Button) findViewById(R.id.btnSettings);
 
         txtEmail = (TextView)findViewById(R.id.txtEmail);
         txtTitulo = (TextView)findViewById(R.id.txtTitulo);
@@ -80,12 +100,6 @@ public class MenuPrincipal extends BaseActivity {
         btnIncidencias.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 lanzarIncidencias();
-
-            }
-        });
-        btnSettings.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
-                lanzarSettings();
 
             }
         });
