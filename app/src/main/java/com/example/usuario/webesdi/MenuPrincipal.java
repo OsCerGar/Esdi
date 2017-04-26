@@ -116,6 +116,7 @@ public class MenuPrincipal extends BaseActivity {
     }
     private void lanzarDispo(){
         Intent intent = new Intent(MenuPrincipal.this,DispoAulas.class);
+        intent.putExtras(b);
         startActivity(intent);
     }
 

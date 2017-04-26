@@ -91,6 +91,9 @@ public class DBmensajes {
                     }
                           Log.d(TAGLOG, "----------------------- pasando1---------------" + datos.size());
                     Mensajes.muestraMensajes(datos, miTab);
+                    //se debe llamar a muestramensajes desde aqui, ya que si se llama listamensajes desde Mensajes,
+                    //listamensajes devuelve un array vacio primero y despues ya entra en ondatachange para cargar los datos al
+                    //array
                 }
 
                 @Override

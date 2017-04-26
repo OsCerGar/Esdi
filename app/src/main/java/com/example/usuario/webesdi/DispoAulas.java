@@ -1,6 +1,7 @@
 package com.example.usuario.webesdi;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -30,11 +31,12 @@ public class DispoAulas extends BaseActivity {
 
     private DatePicker dp ;
     private TimePicker tp;
-    private String URLserver = "http://192.168.43.208";
+    private String URLserver;
     ImageView ivMapa,h1,h2,h3,h4,h5;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     Button btnSeleccionarH,btnSeleccionarD;
+    Bundle b;
 
 
     boolean dpseleccionado = false,tpseleccionado = false,paso1= false,paso2 = false;
@@ -50,6 +52,12 @@ public class DispoAulas extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dispo_aulas);
+
+        //recibe los datos de usuario a traves del bundle del intent
+        Intent Mainact = getIntent();
+        b = Mainact.getExtras();
+        URLserver = b.getString("URL");
+
         tp = (TimePicker) findViewById(R.id.timePicker);
         dp = (DatePicker) findViewById(R.id.datePicker);
         h1 = (ImageView)findViewById(R.id.h1);
