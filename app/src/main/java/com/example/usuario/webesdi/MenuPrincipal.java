@@ -23,7 +23,6 @@ public class MenuPrincipal extends BaseActivity {
     String nombre;
     TextView txtEmail;
     TextView txtTitulo;
-    Usuario usuario;
     Bundle b;
 
     @Override

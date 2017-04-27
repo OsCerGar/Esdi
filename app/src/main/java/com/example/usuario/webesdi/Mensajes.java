@@ -3,6 +3,7 @@ package com.example.usuario.webesdi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.content.res.Resources;
+import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,8 +40,12 @@ public class Mensajes extends BaseActivity {
     Spinner spCorreo;
 
     TextView txtEmail2;
-    static TextView txtChat2;
     EditText inChat2;
+    TextView lblEquipo;
+    TextView lblFecha;
+    TextView lblDescripcion;
+    private RecyclerView lstIncidencias;
+    FirebaseRecyclerAdapter mAdapter;
 
 
     TextView txtEmail3;
@@ -53,7 +59,7 @@ public class Mensajes extends BaseActivity {
     ImageButton enviar3;
 
     List<String> datosCorreos;
-  //  public static List<String> datosMensajes;
+    //  public static List<String> datosMensajes;
 
     int request_code = 1;
 
@@ -76,19 +82,18 @@ public class Mensajes extends BaseActivity {
         inChat = (EditText) findViewById(R.id.inChat);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
         txtChat = (TextView) findViewById(R.id.txtChat);
+        enviar = (ImageButton) findViewById(R.id.imageButton);
 
-
-        inChat2 = (EditText) findViewById(R.id.inChat2);
+        lblEquipo = (TextView) findViewById(R.id.lblEquipo);
+        lblFecha = (TextView) findViewById(R.id.lblFecha);
+        lblDescripcion = (TextView) findViewById(R.id.lbldescripcion);
+        inChat2 = (EditText) findViewById(R.id.inTitulo);
         txtEmail2 = (TextView) findViewById(R.id.txtEmail2);
-        txtChat2 = (TextView) findViewById(R.id.txtChat2);
-
+        enviar2 = (ImageButton) findViewById(R.id.imageButton2);
 
         inChat3 = (EditText) findViewById(R.id.inChat3);
         txtEmail3 = (TextView) findViewById(R.id.txtEmail3);
         txtChat3 = (TextView) findViewById(R.id.txtChat3);
-
-        enviar = (ImageButton) findViewById(R.id.imageButton);
-        enviar2 = (ImageButton) findViewById(R.id.imageButton2);
         enviar3 = (ImageButton) findViewById(R.id.imageButton3);
         spCorreo = (Spinner) findViewById(R.id.spCorreo);
 
@@ -143,12 +148,12 @@ public class Mensajes extends BaseActivity {
                 //si es master oculta el boton enviar y muestra todos los mensajes
                 if (b.getString("rol").equals(rolMaster)) {
                     enviar.setVisibility(View.GONE);
-                  //  muestraMensajes("todos", tabId);
+                    //  muestraMensajes("todos", tabId);
                     conn.listaMensajes("todos", tabId);
 
                 } else {
                     //si no es master permite enviar y muestra solo sus mensajes
-                   // muestraMensajes(b.getString("email").toString(), tabId);
+                    // muestraMensajes(b.getString("email").toString(), tabId);
                     conn.listaMensajes(b.getString("email").toString(), tabId);
                 }
                 break;
@@ -159,21 +164,9 @@ public class Mensajes extends BaseActivity {
 
                 Intent intent = new Intent(this, QRscanner.class);
 
-                startActivityForResult(intent, request_code);
+                //  startActivityForResult(intent, request_code);
 
 
-/*
-                //llama a muestratexto y dependiendo del rol muestra los mensajes
-                //si es master oculta el boton enviar y muestra todos los mensajes
-
-                if (b.getString("rol").equals(rolMaster)) {
-                    enviar2.setVisibility(View.GONE);
-                    muestraMensajes("todos", tabId);
-                } else {
-                    //si no es master puede enviar y muestra solo sus mensajes
-                    muestraMensajes(b.getString("email").toString(), tabId);
-                }
-                */
                 break;
             case "Consulta":
                 //si es master llama a creaspinnercorreo para seleccionar la conversacion
@@ -186,7 +179,7 @@ public class Mensajes extends BaseActivity {
                 } else {
                     spCorreo.setVisibility(View.GONE);
                     enviar3.setVisibility(View.VISIBLE);
-                   // muestraMensajes(b.getString("email").toString(), tabId);
+                    // muestraMensajes(b.getString("email").toString(), tabId);
                     conn.listaMensajes(b.getString("email").toString(), tabId);
                 }
 
@@ -340,7 +333,6 @@ public class Mensajes extends BaseActivity {
 
                 }
 
-
             }
 
             @Override
@@ -353,7 +345,7 @@ public class Mensajes extends BaseActivity {
         dbQuery.addValueEventListener(eventListener);
         */
 
-      //  DBmensajes conn = new DBmensajes(miTab);
+        //  DBmensajes conn = new DBmensajes(miTab);
         //datosMensajes = conn.listaMensajes(correo);
 
         //  Log.d(TAGLOG, "----------------------- pasando3---------------" + datos2.get(0));
@@ -371,8 +363,7 @@ public class Mensajes extends BaseActivity {
                 txtChat.setMovementMethod(new ScrollingMovementMethod());
                 break;
             case "Incidencia":
-                txtChat2.setText(texto);
-                txtChat2.setMovementMethod(new ScrollingMovementMethod());
+
                 break;
             case "Consulta":
                 for (String elemento : datosMensajes) {

@@ -42,6 +42,14 @@
     <string name="sugerencias"> Suggestions </string>
     <string name="incidencias"> Incidence</string>
     <string name="consultas"> Queries </string>
+    <string name="equipo"> Equipment </string>
+    <string name="titulo"> Title </string>
+    <string name="escanear"> Scan QR </string>
+    <string name="descripcion"> Description </string>
+    <string name="nuevo"> New </string>
+    <string name="finalizar"> End </string>
+    <string name="cancelar"> Cancel </string>
+
 
 
 </resources>
