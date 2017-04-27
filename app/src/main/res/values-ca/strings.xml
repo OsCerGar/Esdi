@@ -43,5 +43,13 @@
     <string name="sugerencias"> Suggeriments </string>
     <string name="incidencias"> Incidències</string>
     <string name="consultas"> Consultes </string>
+    <string name="equipo"> Equip </string>
+    <string name="titulo"> Títol </string>
+    <string name="escanear"> Escanejar QR </string>
+    <string name="descripcion"> Descripció </string>
+    <string name="nuevo"> Nou </string>
+    <string name="finalizar"> Finalitzar </string>
+    <string name="cancelar"> Cancel·lar </string>
+
 
 </resources>

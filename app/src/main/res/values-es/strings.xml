@@ -43,5 +43,12 @@
     <string name="sugerencias"> Sugerencias </string>
     <string name="incidencias"> Incidencias</string>
     <string name="consultas"> Consultas </string>
+    <string name="equipo"> Equipo </string>
+    <string name="titulo"> Título </string>
+    <string name="escanear"> Escanear QR </string>
+    <string name="descripcion"> Descripción </string>
+    <string name="nuevo"> Nuevo </string>
+    <string name="finalizar"> Finalizar </string>
+    <string name="cancelar"> Cancelar </string>
 
 </resources>

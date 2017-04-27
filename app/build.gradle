@@ -49,6 +49,8 @@ dependencies {
     compile 'com.google.firebase:firebase-database:10.2.0'
     compile 'com.google.firebase:firebase-auth:10.2.0'
     compile 'com.google.firebase:firebase-core:10.2.0'
+    //Librería de FirebaseUI (para Base de Datos)
+    compile 'com.firebaseui:firebase-ui-database:1.1.1'
     compile 'pub.devrel:easypermissions:0.2.1'
     compile 'com.journeyapps:zxing-android-embedded:3.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
