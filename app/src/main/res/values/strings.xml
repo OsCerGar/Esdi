@@ -25,7 +25,7 @@
     <string name="menuP_web">Web page</string>
     <string name="menuP_tutoriales">F.A.Q.</string>
     <string name="menuP_contacto">Contact</string>
-    <string name="menuP_aulas">Classroom availability</string>
+    <string name="menuP_aulas">Classroom \n availability</string>
     <string name="menuP_mensajes">Messages</string>
     <string name="menuP_incidencias">Incidences</string>
     <string name="menuP_settings">Settings</string>
