@@ -1,8 +1,11 @@
 package com.example.usuario.webesdi;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.content.res.Resources;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
@@ -13,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -43,9 +47,16 @@ public class Mensajes extends BaseActivity {
     Spinner spCorreo;
 
     TextView txtEmail2;
+    TextView txtChat2;
+    static TextView txtFecha;
+    static EditText inEquipo;
+    static EditText inTitulo;
+    static EditText inDescripcion;
     EditText inChat2;
-    private RecyclerView lstIncidencias;
-
+    private static RecyclerView lstIncidencias;
+    private Button btnNuevo;
+    private Button btnCerrar;
+    private Button btnCancelar;
 
 
     TextView txtEmail3;
@@ -71,6 +82,7 @@ public class Mensajes extends BaseActivity {
         inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -78,8 +90,8 @@ public class Mensajes extends BaseActivity {
             case R.id.configuracion:
                 Bundle extras = getIntent().getExtras();
                 String nombreActivity = this.getClass().getCanonicalName();
-                Intent intent = new Intent(Mensajes.this,Settings.class);
-                intent.putExtra("callingActivity", nombreActivity );
+                Intent intent = new Intent(Mensajes.this, Settings.class);
+                intent.putExtra("callingActivity", nombreActivity);
                 intent.putExtras(extras);
                 startActivity(intent);
                 return true;
@@ -90,6 +102,7 @@ public class Mensajes extends BaseActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,10 +122,20 @@ public class Mensajes extends BaseActivity {
         enviar = (ImageButton) findViewById(R.id.imageButton);
 
 
-        ArrayList<MensajesIncidencias> datos;
+        //   ArrayList<MensajesIncidencias> datos;
         inChat2 = (EditText) findViewById(R.id.inTitulo);
         txtEmail2 = (TextView) findViewById(R.id.txtEmail2);
+        txtChat2 = (TextView) findViewById(R.id.txtChat2);
         enviar2 = (ImageButton) findViewById(R.id.imageButton2);
+         txtFecha = (TextView) findViewById(R.id.txtFecha);
+        inEquipo = (EditText) findViewById(R.id.inEquipo);
+        inTitulo = (EditText) findViewById(R.id.inTitulo);
+        inDescripcion = (EditText) findViewById(R.id.inDescripcion);
+
+        //Inicialización RecyclerView
+        lstIncidencias = (RecyclerView) findViewById(R.id.lstIncidencias);
+        lstIncidencias.setHasFixedSize(true);
+
 
         inChat3 = (EditText) findViewById(R.id.inChat3);
         txtEmail3 = (TextView) findViewById(R.id.txtEmail3);
@@ -159,22 +182,6 @@ public class Mensajes extends BaseActivity {
         //fin de pestañas
 
 
-        //inicialización de la lista de datos de ejemplo
-        datos = new ArrayList<MensajesIncidencias>();
-        for(int i=0; i<50; i++)
-            datos.add(new MensajesIncidencias("Equipo " + i, "fecha " + i, "titulo " + i));
-
-        //Inicialización RecyclerView
-        lstIncidencias = (RecyclerView) findViewById(R.id.lstIncidencias);
-        lstIncidencias.setHasFixedSize(true);
-
-        final MensajesAdaptador adaptador = new MensajesAdaptador(datos);
-
-        lstIncidencias.setAdapter(adaptador);
-
-        lstIncidencias.setLayoutManager(
-                new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-
     }
 
     //metodo que recoge la pestaña seleccionada y muestra el arrayTexto segun toque
@@ -201,7 +208,7 @@ public class Mensajes extends BaseActivity {
 
                 //// TODO: de momento esta hace lo mismo que sugerencia, hay que cambiarlo  para
                 /// incidencias y añadirle un QR
-
+                conn.listaIncidencias(this);
                 Intent intent = new Intent(this, QRscanner.class);
 
                 //  startActivityForResult(intent, request_code);
@@ -250,6 +257,37 @@ public class Mensajes extends BaseActivity {
     }
 
 
+    public static void muestraIncidencias(final ArrayList<MensajesIncidencias> datos, Context ctx) {
+
+
+        Log.d(TAGLOG, "----------------------- pasando4---------------" + datos.size());
+        final MensajesAdaptador adaptador = new MensajesAdaptador(datos);
+
+        adaptador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MensajesIncidencias mi = datos.get(lstIncidencias.getChildPosition(v));
+                //todo desactivar la edicion de las casillas cuando se clique en una incidencia
+                inEquipo.setText(mi.getEquipo());
+                inTitulo.setText(mi.getTitulo());
+                txtFecha.setText(mi.getFecha());
+                inDescripcion.setText(mi.getDescripcion());
+                Log.i("DemoRecView", "Pulsado el elemento " + lstIncidencias.getChildPosition(v));
+
+            }
+        });
+
+        lstIncidencias.setAdapter(adaptador);
+
+        lstIncidencias.setLayoutManager(
+                new LinearLayoutManager(ctx,LinearLayoutManager.VERTICAL,false));
+        lstIncidencias.addItemDecoration(
+                new DividerItemDecoration(ctx,DividerItemDecoration.VERTICAL));
+        lstIncidencias.setItemAnimator(new DefaultItemAnimator());
+
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         // TODO Auto-generated method stub
@@ -265,41 +303,6 @@ public class Mensajes extends BaseActivity {
         //crea una lista dinamica y se carga con los elementos recibidos de la BD firebase
 
 
-        /*
-        datos2 = new ArrayList<String>();
-        //el primer dato del spiner sera siempre "todos"
-        datos2.add("todos");
-
-        //instancia la base de datos de firebase
-        DatabaseReference dbMensajes = FirebaseDatabase.getInstance().getReference().child(miTab);
-        Query dbQuery = dbMensajes.orderByKey();
-
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot nodoUsuario) {
-                //en cada bucle carga un nuevo elemento a la lista
-                for (DataSnapshot childDataSnapshot : nodoUsuario.getChildren()) {
-                    if (datos2.contains(childDataSnapshot.child("Correo").getValue().toString())) {
-                        //   Log.d(TAGLOG, "======= paso por aqui ==========   " + childDataSnapshot.child("Correo").getValue().toString());
-                        //si el correo ya se ha añadido antes al arraylist, no hace nada, así no se duplica
-
-                    } else {
-                        datos2.add(childDataSnapshot.child("Correo").getValue().toString());
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.e(TAGLOG, "Error!", databaseError.toException());
-            }
-        };
-
-
-        dbQuery.addValueEventListener(eventListener);
-
-*/
-
         DBmensajes conn = new DBmensajes(miTab);
         datosCorreos = conn.listaCorreos();
 
@@ -307,14 +310,14 @@ public class Mensajes extends BaseActivity {
         ArrayAdapter<String> adaptador2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datosCorreos);
         adaptador2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCorreo.setAdapter(adaptador2);
-        Log.d(TAGLOG, "----------------------- pasando6---------------" + datosCorreos.size());
+        // Log.d(TAGLOG, "----------------------- pasando6---------------" + datosCorreos.size());
         spCorreo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             //metodo del spinner cuando se selecciona algo
             public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
-                Log.d(TAGLOG, "----------------------- pasando7---------------" + datosCorreos.size());
+                //       Log.d(TAGLOG, "----------------------- pasando7---------------" + datosCorreos.size());
                 correo = parent.getItemAtPosition(position).toString();
                 txtEmail3.setText(miTab + " de " + correo);
-                Log.d(TAGLOG, "----------------------- pasando8---------------" + datosCorreos.size());
+                //     Log.d(TAGLOG, "----------------------- pasando8---------------" + datosCorreos.size());
                 switch (spCorreo.getSelectedItemPosition()) {
                     case 0:
                         //si se selecciona todos, oculta el boton enviar
@@ -345,45 +348,7 @@ public class Mensajes extends BaseActivity {
 
 
     public static void muestraMensajes(final ArrayList<String> datosMensajes, final String miTab) {
-/*
-        //instancia la base de datos de firebase
-        DatabaseReference dbMensajes = FirebaseDatabase.getInstance().getReference().child(miTab);
 
-        //hace una consulta para mostrar los mensajes ordenados por fecha
-        Query dbQuery = dbMensajes.orderByKey();
-
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot nodoUsuario) {
-
-                arrayTexto = "";
-                for (DataSnapshot childDataSnapshot : nodoUsuario.getChildren()) {
-                    //  Log.d(TAGLOG, "----------------------- pasndo---------------");
-
-                    //si el usuario logueado es master y selecciona "todos" en el spinner, muestra todos los mensajes, si no muestra solo
-                    //los que coincide su correo (que le pasamos al llamar al procedimiento) con el del correo del mensaje de la DB
-                    if (correo.equals("todos")) {
-                        arrayTexto = (arrayTexto + childDataSnapshot.child("Nombre").getValue() + ": "
-                                + childDataSnapshot.child("Mensaje").getValue() + "\n");
-
-                    } else if ((childDataSnapshot.child("Correo").getValue()).equals(correo)) {
-                        arrayTexto = (arrayTexto + childDataSnapshot.child("Nombre").getValue() + ": "
-                                + childDataSnapshot.child("Mensaje").getValue() + "\n");
-                    }
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAGLOG, "Error!", databaseError.toException());
-            }
-        };
-
-
-        dbQuery.addValueEventListener(eventListener);
-        */
 
         //  DBmensajes conn = new DBmensajes(miTab);
         //datosMensajes = conn.listaMensajes(correo);
@@ -456,7 +421,6 @@ public class Mensajes extends BaseActivity {
         dbEnviar.push().setValue(envio);
 
     }
-
 
 
 }

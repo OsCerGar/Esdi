@@ -8,22 +8,56 @@ public class MensajesIncidencias {
     String Equipo;
     String Fecha;
     String titulo;
+    String descripcion;
+    String correo;
 
-    public MensajesIncidencias(String equipo, String fecha, String descripcion) {
+
+
+    public MensajesIncidencias(String equipo, String fecha, String titulo, String descripcion, String correo) {
         Equipo = equipo;
         Fecha = fecha;
-        titulo = descripcion;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.correo = correo;
     }
 
     public String getEquipo() {
         return Equipo;
     }
 
+    public void setEquipo(String equipo) {
+        Equipo = equipo;
+    }
+
     public String getFecha() {
         return Fecha;
     }
 
+    public void setFecha(String fecha) {
+        Fecha = fecha;
+    }
+
     public String getTitulo() {
         return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 }
