@@ -50,6 +50,9 @@
     <string name="finalizar"> End </string>
     <string name="cancelar"> Cancel </string>
 
+    <!-- Dispoaulas -->
+    <string name="seleccionarhora"> Select \n hour </string>
+    <string name="seleccionardia"> Select \n day</string>
 
 
 </resources>

@@ -95,8 +95,8 @@
         android:id="@+id/btnSeleccionarD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seleccionar Dia"
-        android:layout_above="@+id/tvInfo"
+        android:text="@string/seleccionardia"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -113,10 +113,9 @@
         style="@style/Widget.AppCompat.Button.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SELECCIONAR HORA"
-        android:layout_below="@+id/ivMapa"
+        android:text="@string/seleccionarhora"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="8dp" />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

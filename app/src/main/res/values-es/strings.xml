@@ -51,4 +51,8 @@
     <string name="finalizar"> Finalizar </string>
     <string name="cancelar"> Cancelar </string>
 
+    <!-- Dispoaulas -->
+    <string name="seleccionarhora"> seleccionar \n hora </string>
+    <string name="seleccionardia"> seleccionar \n dia</string>
+
 </resources>

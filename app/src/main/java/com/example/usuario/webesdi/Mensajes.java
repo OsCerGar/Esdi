@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -65,7 +67,31 @@ public class Mensajes extends BaseActivity {
 
     private static final String TAGLOG = "firebase-db";
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.configuracion:
+                Bundle extras = getIntent().getExtras();
+                String nombreActivity = this.getClass().getCanonicalName();
+                Intent intent = new Intent(Mensajes.this,Settings.class);
+                intent.putExtra("callingActivity", nombreActivity );
+                intent.putExtras(extras);
+                startActivity(intent);
+                return true;
+            case R.id.help:
 
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -417,10 +443,6 @@ public class Mensajes extends BaseActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //   getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
+
 
 }
