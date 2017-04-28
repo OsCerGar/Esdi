@@ -3,6 +3,7 @@ package com.example.usuario.webesdi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.content.res.Resources;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -43,11 +44,8 @@ public class Mensajes extends BaseActivity {
 
     TextView txtEmail2;
     EditText inChat2;
-    TextView lblEquipo;
-    TextView lblFecha;
-    TextView lblDescripcion;
     private RecyclerView lstIncidencias;
-    FirebaseRecyclerAdapter mAdapter;
+
 
 
     TextView txtEmail3;
@@ -110,9 +108,8 @@ public class Mensajes extends BaseActivity {
         txtChat = (TextView) findViewById(R.id.txtChat);
         enviar = (ImageButton) findViewById(R.id.imageButton);
 
-        lblEquipo = (TextView) findViewById(R.id.lblEquipo);
-        lblFecha = (TextView) findViewById(R.id.lblFecha);
-        lblDescripcion = (TextView) findViewById(R.id.lbldescripcion);
+
+        ArrayList<MensajesIncidencias> datos;
         inChat2 = (EditText) findViewById(R.id.inTitulo);
         txtEmail2 = (TextView) findViewById(R.id.txtEmail2);
         enviar2 = (ImageButton) findViewById(R.id.imageButton2);
@@ -160,6 +157,23 @@ public class Mensajes extends BaseActivity {
             }
         });
         //fin de pestañas
+
+
+        //inicialización de la lista de datos de ejemplo
+        datos = new ArrayList<MensajesIncidencias>();
+        for(int i=0; i<50; i++)
+            datos.add(new MensajesIncidencias("Equipo " + i, "fecha " + i, "titulo " + i));
+
+        //Inicialización RecyclerView
+        lstIncidencias = (RecyclerView) findViewById(R.id.lstIncidencias);
+        lstIncidencias.setHasFixedSize(true);
+
+        final MensajesAdaptador adaptador = new MensajesAdaptador(datos);
+
+        lstIncidencias.setAdapter(adaptador);
+
+        lstIncidencias.setLayoutManager(
+                new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 
     }
 

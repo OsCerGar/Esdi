@@ -191,12 +191,16 @@
                         android:layout_toRightOf="@+id/btnCerrar"
                         android:layout_toEndOf="@+id/btnCerrar" />
 
-                    <ListView
+                    <android.support.v7.widget.RecyclerView
                         android:id="@+id/lstIncidencias"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/inDescripcion"
+                        android:layout_alignLeft="@+id/btnNuevo"
+                        android:layout_alignRight="@+id/inDescripcion"
+                        android:layout_alignStart="@+id/btnNuevo"
                         android:layout_below="@+id/imageButton2"
-                        android:layout_centerHorizontal="true" />
+                        android:layout_marginTop="14dp" />
 
                 </RelativeLayout>
 
