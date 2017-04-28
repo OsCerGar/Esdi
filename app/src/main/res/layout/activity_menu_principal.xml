@@ -11,78 +11,62 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.usuario.webesdi.MenuPrincipal">
 
-    <ScrollView
+    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/GridLayout1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:columnCount="2"
+        android:rowCount="6">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+        <TextView
+            android:id="@+id/txtEmail"
+            android:layout_gravity="fill"
+            android:layout_below="@id/Titulo" />
 
-            <TextView
-                android:layout_width="202dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/txtTitulo"
-                android:textAppearance="@android:style/TextAppearance.Widget" />
+        <TextView
+            android:id="@+id/txtTitulo"
+            android:layout_gravity="fill"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="@android:style/TextAppearance.Widget" />
 
-            <TextView android:id="@+id/txtEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/Titulo"/>
+        <Button
+            android:id="@+id/btnpaginaweb"
+            android:layout_gravity="fill"
+            android:text="@string/menuP_web"
+            android:drawableTop="@drawable/internet"/>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="233dp"
-                android:id="@+id/imageView3"
-                android:adjustViewBounds="true"
-                android:cropToPadding="false"
-                app:srcCompat="@drawable/edifici_esdi_planta" />
+        <Button
+            android:id="@+id/btnTutoriales"
+            android:layout_gravity="fill"
+            android:text="@string/menuP_tutoriales"
+            android:drawableTop="@drawable/grupo" />
 
-            <Button
-                android:text="@string/menuP_web"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnpaginaweb" />
+        <Button
+            android:id="@+id/btnContacto"
+            android:layout_gravity="fill"
+            android:text="@string/menuP_contacto"
+            android:drawableTop="@drawable/manos" />
 
-            <Button
-                android:text="@string/menuP_tutoriales"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnTutoriales" />
+        <Button
+            android:id="@+id/btndispoAulas"
+            android:layout_gravity="fill"
+            android:text="@string/menuP_aulas"
+            android:drawableTop="@drawable/monitor" />
 
-            <Button
-                android:text="@string/menuP_contacto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnContacto" />
+        <Button
+            android:id="@+id/btnMensajes"
+            android:layout_gravity="fill"
+            android:text="@string/menuP_mensajes"
+            android:drawableTop="@drawable/sobre" />
 
-            <Button
-                android:text="@string/menuP_aulas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btndispoAulas" />
+        <Button
+            android:id="@+id/btnIncidencias"
+            android:layout_gravity="fill"
+            android:text="@string/menuP_incidencias"
+            android:drawableTop="@drawable/cruz" />
 
-            <Button
-                android:text="@string/menuP_mensajes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnMensajes" />
 
-            <Button
-                android:text="@string/menuP_incidencias"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnIncidencias" />
-
-            <Button
-                android:text="@string/menuP_settings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnSettings" />
-        </LinearLayout>
-    </ScrollView>
+    </GridLayout>
 
 </RelativeLayout>

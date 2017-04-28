@@ -26,7 +26,7 @@
     <string name="menuP_web">Pàgina web</string>
     <string name="menuP_tutoriales">Tutorials</string>
     <string name="menuP_contacto">Contacte</string>
-    <string name="menuP_aulas">Disponibilitat aules</string>
+    <string name="menuP_aulas">Disponibilitat \n aules</string>
     <string name="menuP_mensajes">Missatges</string>
     <string name="menuP_incidencias">Incidències</string>
     <string name="menuP_settings">Configuració</string>
@@ -43,5 +43,16 @@
     <string name="sugerencias"> Suggeriments </string>
     <string name="incidencias"> Incidències</string>
     <string name="consultas"> Consultes </string>
+    <string name="equipo"> Equip </string>
+    <string name="titulo"> Títol </string>
+    <string name="escanear"> Escanejar QR </string>
+    <string name="descripcion"> Descripció </string>
+    <string name="nuevo"> Nou </string>
+    <string name="finalizar"> Finalitzar </string>
+    <string name="cancelar"> Cancel·lar </string>
+
+    <!-- Dispoaulas -->
+    <string name="seleccionarhora"> Seleccionar \n hora </string>
+    <string name="seleccionardia"> Seleccionar \n dia</string>
 
 </resources>

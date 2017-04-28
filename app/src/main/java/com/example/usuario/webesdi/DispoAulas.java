@@ -1,11 +1,16 @@
 package com.example.usuario.webesdi;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -24,19 +29,23 @@ import java.util.Calendar;
 
 public class DispoAulas extends BaseActivity {
 
-    private String URLserver = "http://192.168.43.208";
+
+    private DatePicker dp ;
+    private TimePicker tp;
+    private String URLserver;
     ImageView ivMapa,h1,h2,h3,h4,h5;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
-    boolean[] horarioh2;
-    boolean[] horarioh3;
-    boolean[] horarioh4;
-    boolean[] horarioh5;
+    Button btnSeleccionarH,btnSeleccionarD;
+    Bundle b;
+
+
+    boolean dpseleccionado = false,tpseleccionado = false,paso1= false,paso2 = false;
     // con el calendar puedo mirar datos del tiempo actual.
     //Todos los tiempo que nos interesan
 
     int diasemana,horas,minutos;
-        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         Calendar cal = Calendar.getInstance();
     String dia = "Finde";
 
@@ -45,27 +54,50 @@ public class DispoAulas extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dispo_aulas);
 
+        //recibe los datos de usuario a traves del bundle del intent
+        Intent Mainact = getIntent();
+        b = Mainact.getExtras();
+        URLserver = b.getString("URL");
+
+        tp = (TimePicker) findViewById(R.id.timePicker);
+        dp = (DatePicker) findViewById(R.id.datePicker);
         h1 = (ImageView)findViewById(R.id.h1);
         h2 = (ImageView)findViewById(R.id.h2);
         h3 = (ImageView)findViewById(R.id.h3);
         h4 = (ImageView)findViewById(R.id.h4);
         h5 = (ImageView)findViewById(R.id.h5);
+        btnSeleccionarH = (Button)findViewById(R.id.btnSeleccionarH);
+        btnSeleccionarD = (Button)findViewById(R.id.btnSeleccionarD);
 
         //informacion del momento actual usando la libreria Calendar
         diasemana = cal.get(Calendar.DAY_OF_WEEK);
         horas = cal.get(Calendar.HOUR_OF_DAY);
         minutos = cal.get(Calendar.MINUTE);
 
-        if (diasemana==1){
+
+        btnSeleccionarH.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                lanzarSeleccionH();
+
+            }
+        });
+        btnSeleccionarD.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                lanzarSeleccionD();
+
+            }
+        });
+
+        if (diasemana==2){
             dia = "Lunes";
 
-        } else if (diasemana==2) {
+        } else if (diasemana==3) {
             dia = "Martes";
-        }else if (diasemana==3) {
-            dia = "Miercoles";
         }else if (diasemana==4) {
-            dia = "Jueves";
+            dia = "Miercoles";
         }else if (diasemana==5) {
+            dia = "Jueves";
+        }else if (diasemana==6) {
             dia = "Viernes";
         }
 
@@ -75,14 +107,7 @@ public class DispoAulas extends BaseActivity {
         //este metodo comprovará la hora y cambiará el Recurso del ImageView por el que nos interese
         // comprobarhora mira que no sea por la noche, o mañana (fuera de horarios)
         if (comprobarhora()){
-            cambiarh1();
-            if(dia!="patata"){
-               // new AsyncSelect().execute(String.valueOf(cal),dia);
-                new AsyncSelect().execute("09:00","Lunes","h2" );
-                new AsyncSelect().execute("09:00","Lunes","h3" );
-                new AsyncSelect().execute("09:00","Lunes","h4" );
-                new AsyncSelect().execute("09:00","Lunes","h5" );
-            }
+            actualizar();
         }
 
 
@@ -124,6 +149,112 @@ public class DispoAulas extends BaseActivity {
         h5.setImageResource(R.drawable.edifici_esdi_h5verde);
 
     }
+    //los 2 metodos de seleccion ocultaran el mapa y hacen aparecer un picker.
+    private void lanzarSeleccionH(){
+
+        if (tpseleccionado == false) {
+            ivMapa.setVisibility(View.INVISIBLE);
+            h1.setVisibility(View.INVISIBLE);
+            h2.setVisibility(View.INVISIBLE);
+            h3.setVisibility(View.INVISIBLE);
+            h4.setVisibility(View.INVISIBLE);
+            h5.setVisibility(View.INVISIBLE);
+            tp.setVisibility(View.VISIBLE);
+            tpseleccionado = true;
+            btnSeleccionarD.setVisibility(View.GONE);
+            btnSeleccionarH.setText("Aceptar");
+        }else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                horas = tp.getHour();
+                minutos = tp.getMinute();
+            }
+
+            tp.setVisibility(View.INVISIBLE);
+            dp.setVisibility(View.INVISIBLE);
+            ivMapa.setVisibility(View.VISIBLE);
+            h1.setVisibility(View.VISIBLE);
+            h2.setVisibility(View.VISIBLE);
+            h3.setVisibility(View.VISIBLE);
+            h4.setVisibility(View.VISIBLE);
+            h5.setVisibility(View.VISIBLE);
+            tpseleccionado = false;
+
+            btnSeleccionarD.setVisibility(View.VISIBLE);
+            btnSeleccionarH.setText("Seleccionar Hora");
+            paso1=true;
+        }
+
+        if (paso1 == true && paso2 == true){
+            if (comprobarhora()){
+                actualizar();
+            }
+        }
+
+    }
+    private void lanzarSeleccionD(){
+        if (dpseleccionado == false){
+            ivMapa.setVisibility(View.INVISIBLE);
+            h1.setVisibility(View.INVISIBLE);
+            h2.setVisibility(View.INVISIBLE);
+            h3.setVisibility(View.INVISIBLE);
+            h4.setVisibility(View.INVISIBLE);
+            h5.setVisibility(View.INVISIBLE);
+            tp.setVisibility(View.INVISIBLE);
+            dp.setVisibility(View.VISIBLE);
+            dpseleccionado = true;
+            btnSeleccionarH.setVisibility(View.GONE);
+            btnSeleccionarD.setText("Aceptar");
+
+        }else {
+            cal.set(dp.getYear(),dp.getMonth(),dp.getDayOfMonth());
+            diasemana = cal.get(Calendar.DAY_OF_WEEK);
+
+            if (diasemana==2){
+                dia = "Lunes";
+
+            } else if (diasemana==3) {
+                dia = "Martes";
+            }else if (diasemana==4) {
+                dia = "Miercoles";
+            }else if (diasemana==5) {
+                dia = "Jueves";
+            }else if (diasemana==6) {
+                dia = "Viernes";
+            }
+            tp.setVisibility(View.INVISIBLE);
+            dp.setVisibility(View.INVISIBLE);
+            ivMapa.setVisibility(View.VISIBLE);
+            h1.setVisibility(View.VISIBLE);
+            h2.setVisibility(View.VISIBLE);
+            h3.setVisibility(View.VISIBLE);
+            h4.setVisibility(View.VISIBLE);
+            h5.setVisibility(View.VISIBLE);
+            paso2 = true;
+            dpseleccionado = false;
+
+            btnSeleccionarH.setVisibility(View.VISIBLE);
+            btnSeleccionarD.setText("Seleccionar Dia");
+        }
+        if (paso1 == true && paso2 == true){
+            if (comprobarhora()){
+                actualizar();
+            }
+        }
+
+
+    }
+    public void actualizar(){
+            cambiarh1();
+            if(dia!="Finde"){
+                // new AsyncSelect().execute(String.valueOf(cal),dia);
+                new AsyncSelect().execute(String.valueOf(horas),dia,"h2" );
+                new AsyncSelect().execute(String.valueOf(horas),dia,"h3" );
+                new AsyncSelect().execute(String.valueOf(horas),dia,"h4" );
+                new AsyncSelect().execute(String.valueOf(horas),dia,"h5" );
+            }
+
+    }
+
 
     private class AsyncSelect extends AsyncTask<String, String, String> {
         ProgressDialog pdLoading = new ProgressDialog(DispoAulas.this);

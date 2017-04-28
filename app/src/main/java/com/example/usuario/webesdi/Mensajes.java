@@ -1,15 +1,22 @@
 package com.example.usuario.webesdi;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.res.Resources;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -18,12 +25,9 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,18 +41,26 @@ public class Mensajes extends BaseActivity {
     String correo;
     String rolMaster = "administrador"; //nombre del rol con control total
     TextView txtEmail;
-    TextView txtChat;
+    static TextView txtChat;
     EditText inChat;
-    String texto;
+    public static String texto;
     Spinner spCorreo;
 
     TextView txtEmail2;
     TextView txtChat2;
+    static TextView txtFecha;
+    static EditText inEquipo;
+    static EditText inTitulo;
+    static EditText inDescripcion;
     EditText inChat2;
+    private static RecyclerView lstIncidencias;
+    private Button btnNuevo;
+    private Button btnCerrar;
+    private Button btnCancelar;
 
 
     TextView txtEmail3;
-    TextView txtChat3;
+    static TextView txtChat3;
     EditText inChat3;
 
 
@@ -57,12 +69,39 @@ public class Mensajes extends BaseActivity {
     ImageButton enviar2;
     ImageButton enviar3;
 
-    List<String> datos2;
+    List<String> datosCorreos;
+    //  public static List<String> datosMensajes;
 
     int request_code = 1;
 
     private static final String TAGLOG = "firebase-db";
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.configuracion:
+                Bundle extras = getIntent().getExtras();
+                String nombreActivity = this.getClass().getCanonicalName();
+                Intent intent = new Intent(Mensajes.this, Settings.class);
+                intent.putExtra("callingActivity", nombreActivity);
+                intent.putExtras(extras);
+                startActivity(intent);
+                return true;
+            case R.id.help:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,24 +119,31 @@ public class Mensajes extends BaseActivity {
         inChat = (EditText) findViewById(R.id.inChat);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
         txtChat = (TextView) findViewById(R.id.txtChat);
+        enviar = (ImageButton) findViewById(R.id.imageButton);
 
 
-        inChat2 = (EditText) findViewById(R.id.inChat2);
+        //   ArrayList<MensajesIncidencias> datos;
+        inChat2 = (EditText) findViewById(R.id.inTitulo);
         txtEmail2 = (TextView) findViewById(R.id.txtEmail2);
         txtChat2 = (TextView) findViewById(R.id.txtChat2);
+        enviar2 = (ImageButton) findViewById(R.id.imageButton2);
+         txtFecha = (TextView) findViewById(R.id.txtFecha);
+        inEquipo = (EditText) findViewById(R.id.inEquipo);
+        inTitulo = (EditText) findViewById(R.id.inTitulo);
+        inDescripcion = (EditText) findViewById(R.id.inDescripcion);
+
+        //Inicialización RecyclerView
+        lstIncidencias = (RecyclerView) findViewById(R.id.lstIncidencias);
+        lstIncidencias.setHasFixedSize(true);
 
 
         inChat3 = (EditText) findViewById(R.id.inChat3);
         txtEmail3 = (TextView) findViewById(R.id.txtEmail3);
         txtChat3 = (TextView) findViewById(R.id.txtChat3);
-
-        enviar = (ImageButton) findViewById(R.id.imageButton);
-        enviar2 = (ImageButton) findViewById(R.id.imageButton2);
         enviar3 = (ImageButton) findViewById(R.id.imageButton3);
         spCorreo = (Spinner) findViewById(R.id.spCorreo);
 
         correo = b.getString("email"); //inicialmente el correo es el del usuario logueado
-
 
 
         //bloque para dar valor a las pestañas
@@ -131,15 +177,16 @@ public class Mensajes extends BaseActivity {
             public void onTabChanged(final String tabId) {
 //cada vez que se selecciona una pestaña se llama al proceso para que muestre su contenido
                 cargaTexto(tabId);
-
             }
         });
         //fin de pestañas
 
+
     }
 
-    //metodo que recoge la pestaña seleccionada y muestra el texto segun toque
+    //metodo que recoge la pestaña seleccionada y muestra el arrayTexto segun toque
     public void cargaTexto(final String tabId) {
+        DBmensajes conn = new DBmensajes(tabId);
         //switch con el resultado de la posicion seleccionadan,
         switch (tabId) {
             case "Sugerencia":
@@ -148,34 +195,25 @@ public class Mensajes extends BaseActivity {
                 //si es master oculta el boton enviar y muestra todos los mensajes
                 if (b.getString("rol").equals(rolMaster)) {
                     enviar.setVisibility(View.GONE);
-                    muestraMensajes("todos", tabId);
+                    //  muestraMensajes("todos", tabId);
+                    conn.listaMensajes("todos", tabId);
+
                 } else {
                     //si no es master permite enviar y muestra solo sus mensajes
-                    muestraMensajes(b.getString("email").toString(), tabId);
+                    // muestraMensajes(b.getString("email").toString(), tabId);
+                    conn.listaMensajes(b.getString("email").toString(), tabId);
                 }
                 break;
             case "Incidencia":
 
                 //// TODO: de momento esta hace lo mismo que sugerencia, hay que cambiarlo  para
                 /// incidencias y añadirle un QR
-
+                conn.listaIncidencias(this);
                 Intent intent = new Intent(this, QRscanner.class);
 
-                startActivityForResult(intent, request_code);
+                //  startActivityForResult(intent, request_code);
 
 
-/*
-                //llama a muestratexto y dependiendo del rol muestra los mensajes
-                //si es master oculta el boton enviar y muestra todos los mensajes
-
-                if (b.getString("rol").equals(rolMaster)) {
-                    enviar2.setVisibility(View.GONE);
-                    muestraMensajes("todos", tabId);
-                } else {
-                    //si no es master puede enviar y muestra solo sus mensajes
-                    muestraMensajes(b.getString("email").toString(), tabId);
-                }
-                */
                 break;
             case "Consulta":
                 //si es master llama a creaspinnercorreo para seleccionar la conversacion
@@ -188,7 +226,8 @@ public class Mensajes extends BaseActivity {
                 } else {
                     spCorreo.setVisibility(View.GONE);
                     enviar3.setVisibility(View.VISIBLE);
-                    muestraMensajes(b.getString("email").toString(), tabId);
+                    // muestraMensajes(b.getString("email").toString(), tabId);
+                    conn.listaMensajes(b.getString("email").toString(), tabId);
                 }
 
                 break;
@@ -218,10 +257,41 @@ public class Mensajes extends BaseActivity {
     }
 
 
+    public static void muestraIncidencias(final ArrayList<MensajesIncidencias> datos, Context ctx) {
+
+
+        Log.d(TAGLOG, "----------------------- pasando4---------------" + datos.size());
+        final MensajesAdaptador adaptador = new MensajesAdaptador(datos);
+
+        adaptador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MensajesIncidencias mi = datos.get(lstIncidencias.getChildPosition(v));
+                //todo desactivar la edicion de las casillas cuando se clique en una incidencia
+                inEquipo.setText(mi.getEquipo());
+                inTitulo.setText(mi.getTitulo());
+                txtFecha.setText(mi.getFecha());
+                inDescripcion.setText(mi.getDescripcion());
+                Log.i("DemoRecView", "Pulsado el elemento " + lstIncidencias.getChildPosition(v));
+
+            }
+        });
+
+        lstIncidencias.setAdapter(adaptador);
+
+        lstIncidencias.setLayoutManager(
+                new LinearLayoutManager(ctx,LinearLayoutManager.VERTICAL,false));
+        lstIncidencias.addItemDecoration(
+                new DividerItemDecoration(ctx,DividerItemDecoration.VERTICAL));
+        lstIncidencias.setItemAnimator(new DefaultItemAnimator());
+
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         // TODO Auto-generated method stub
-        if ((requestCode == request_code) && (resultCode == RESULT_OK)){
+        if ((requestCode == request_code) && (resultCode == RESULT_OK)) {
 
             Toast.makeText(this, intent.getStringExtra("resultado"), Toast.LENGTH_LONG).show();
         }
@@ -232,50 +302,22 @@ public class Mensajes extends BaseActivity {
         //definición del spinner de conversacion
         //crea una lista dinamica y se carga con los elementos recibidos de la BD firebase
 
-        datos2 = new ArrayList<String>();
-        //el primer dato del spiner sera siempre "todos"
-        datos2.add("todos");
 
-        //instancia la base de datos de firebase
-        DatabaseReference dbMensajes = FirebaseDatabase.getInstance().getReference().child(miTab);
-        Query dbQuery = dbMensajes.orderByKey();
-
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot nodoUsuario) {
-                //en cada bucle carga un nuevo elemento a la lista
-                for (DataSnapshot childDataSnapshot : nodoUsuario.getChildren()) {
-                    if (datos2.contains(childDataSnapshot.child("Correo").getValue().toString())) {
-                        //   Log.d(TAGLOG, "======= paso por aqui ==========   " + childDataSnapshot.child("Correo").getValue().toString());
-                        //si el correo ya se ha añadido antes al arraylist, no hace nada, así no se duplica
-
-                    } else {
-                        datos2.add(childDataSnapshot.child("Correo").getValue().toString());
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.e(TAGLOG, "Error!", databaseError.toException());
-            }
-        };
-
-
-        dbQuery.addValueEventListener(eventListener);
-
+        DBmensajes conn = new DBmensajes(miTab);
+        datosCorreos = conn.listaCorreos();
 
         //creacion del adaptador del spinner de seleccion de conversaciones de consulta
-        ArrayAdapter<String> adaptador2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datos2);
+        ArrayAdapter<String> adaptador2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datosCorreos);
         adaptador2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCorreo.setAdapter(adaptador2);
+        // Log.d(TAGLOG, "----------------------- pasando6---------------" + datosCorreos.size());
         spCorreo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             //metodo del spinner cuando se selecciona algo
             public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
-
+                //       Log.d(TAGLOG, "----------------------- pasando7---------------" + datosCorreos.size());
                 correo = parent.getItemAtPosition(position).toString();
                 txtEmail3.setText(miTab + " de " + correo);
-
+                //     Log.d(TAGLOG, "----------------------- pasando8---------------" + datosCorreos.size());
                 switch (spCorreo.getSelectedItemPosition()) {
                     case 0:
                         //si se selecciona todos, oculta el boton enviar
@@ -288,9 +330,12 @@ public class Mensajes extends BaseActivity {
                         //   Toast.makeText(getApplicationContext(), "otros seleccionados "+spCorreo.getSelectedItemPosition(), Toast.LENGTH_LONG).show();
                         break;
                 }
-
+                Log.d(TAGLOG, "----------------------- pasando9---------------" + datosCorreos.size());
                 //llama a muestra mensaje con el correo seleccionado a mostrar o con "todos" si no se ha seleccionado ninguno
-                muestraMensajes(correo, miTab);
+                //muestraMensajes(correo, miTab);
+                DBmensajes conn = new DBmensajes(miTab);
+                conn.listaMensajes(correo, miTab);
+
             }
 
             //metodo del spinner cuando no se selecciona nada
@@ -302,62 +347,40 @@ public class Mensajes extends BaseActivity {
     }
 
 
-    public void muestraMensajes(final String correo, final String miTab) {
+    public static void muestraMensajes(final ArrayList<String> datosMensajes, final String miTab) {
 
-        //instancia la base de datos de firebase
-        DatabaseReference dbMensajes = FirebaseDatabase.getInstance().getReference().child(miTab);
 
-        //hace una consulta para mostrar los mensajes ordenados por fecha
-        Query dbQuery = dbMensajes.orderByKey();
+        //  DBmensajes conn = new DBmensajes(miTab);
+        //datosMensajes = conn.listaMensajes(correo);
 
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot nodoUsuario) {
+        //  Log.d(TAGLOG, "----------------------- pasando3---------------" + datos2.get(0));
+        //  texto=conn.texto;
+        String texto = "";
 
-                texto = "";
-                for (DataSnapshot childDataSnapshot : nodoUsuario.getChildren()) {
-                  //  Log.d(TAGLOG, "----------------------- pasndo---------------");
 
-                    //si el usuario logueado es master y selecciona "todos" en el spinner, muestra todos los mensajes, si no muestra solo
-                    //los que coincide su correo (que le pasamos al llamar al procedimiento) con el del correo del mensaje de la DB
-                    if (correo.equals("todos")) {
-                        texto = (texto + childDataSnapshot.child("Nombre").getValue() + ": "
-                                + childDataSnapshot.child("Mensaje").getValue() + "\n");
-
-                    } else if ((childDataSnapshot.child("Correo").getValue()).equals(correo)) {
-                        texto = (texto + childDataSnapshot.child("Nombre").getValue() + ": "
-                                + childDataSnapshot.child("Mensaje").getValue() + "\n");
-                    }
-
-                    switch (miTab) {
-                        case "Sugerencia":
-                            txtChat.setText(texto);
-                            txtChat.setMovementMethod(new ScrollingMovementMethod());
-                            break;
-                        case "Incidencia":
-                            txtChat2.setText(texto);
-                            txtChat2.setMovementMethod(new ScrollingMovementMethod());
-                            break;
-                        case "Consulta":
-                            txtChat3.setText(texto);
-                            txtChat3.setMovementMethod(new ScrollingMovementMethod());
-                            break;
-                        default:
-                            break;
-                    }
+        switch (miTab) {
+            case "Sugerencia":
+                for (String elemento : datosMensajes) {
+                    texto = (texto + elemento);
+                    //            Log.d(TAGLOG, "----------------------- pasando4---------------" + datos2.get(0));
                 }
-            }
+                txtChat.setText(texto);
+                txtChat.setMovementMethod(new ScrollingMovementMethod());
+                break;
+            case "Incidencia":
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAGLOG, "Error!", databaseError.toException());
-            }
-        };
-
-
-        dbQuery.addValueEventListener(eventListener);
-
-
+                break;
+            case "Consulta":
+                for (String elemento : datosMensajes) {
+                    texto = (texto + elemento);
+                    //        Log.d(TAGLOG, "----------------------- pasando5---------------" + datos2.get(0));
+                }
+                txtChat3.setText(texto);
+                txtChat3.setMovementMethod(new ScrollingMovementMethod());
+                break;
+            default:
+                break;
+        }
     }
 
 
@@ -375,17 +398,17 @@ public class Mensajes extends BaseActivity {
         switch (miTab) {
             case "Sugerencia":
                 envio.put("Mensaje", inChat.getText().toString());
-                //vacia la caja de entrada de texto
+                //vacia la caja de entrada de arrayTexto
                 inChat.setText("");
                 break;
             case "Incidencia":
                 envio.put("Mensaje", inChat2.getText().toString());
-                //vacia la caja de entrada de texto
+                //vacia la caja de entrada de arrayTexto
                 inChat2.setText("");
                 break;
             case "Consulta":
                 envio.put("Mensaje", inChat3.getText().toString());
-                //vacia la caja de entrada de texto
+                //vacia la caja de entrada de arrayTexto
                 inChat3.setText("");
                 break;
             default:
@@ -393,17 +416,11 @@ public class Mensajes extends BaseActivity {
         }
 
 
-        //sube el texto entrado a firebase, al nodo del usuario
+        //sube el arrayTexto entrado a firebase, al nodo del usuario
         //  dbMensajes.child(txtEmail.getText().toString()).push().setValue(inChat.getText().toString());
         dbEnviar.push().setValue(envio);
 
-
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //   getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
 
 }

@@ -26,7 +26,7 @@
     <string name="menuP_web">Página web</string>
     <string name="menuP_tutoriales">Tutoriales</string>
     <string name="menuP_contacto">Contacto</string>
-    <string name="menuP_aulas">Disponibilidad aulas</string>
+    <string name="menuP_aulas">Disponibilidad \n aulas</string>
     <string name="menuP_mensajes">Mensajes</string>
     <string name="menuP_incidencias">Incidencias</string>
     <string name="menuP_settings">Configuración</string>
@@ -43,5 +43,16 @@
     <string name="sugerencias"> Sugerencias </string>
     <string name="incidencias"> Incidencias</string>
     <string name="consultas"> Consultas </string>
+    <string name="equipo"> Equipo </string>
+    <string name="titulo"> Título </string>
+    <string name="escanear"> Escanear QR </string>
+    <string name="descripcion"> Descripción </string>
+    <string name="nuevo"> Nuevo </string>
+    <string name="finalizar"> Finalizar </string>
+    <string name="cancelar"> Cancelar </string>
+
+    <!-- Dispoaulas -->
+    <string name="seleccionarhora"> seleccionar \n hora </string>
+    <string name="seleccionardia"> seleccionar \n dia</string>
 
 </resources>
