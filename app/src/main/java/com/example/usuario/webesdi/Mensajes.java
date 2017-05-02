@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.content.res.Resources;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,22 +30,29 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.R.color.black;
 
 public class Mensajes extends BaseActivity {
 
 
     // String consulta;
     String correo;
-    String rolMaster = "administrador"; //nombre del rol con control total
+    private static String rolMaster = "administrador"; //nombre del rol con control total
     TextView txtEmail;
     static TextView txtChat;
     EditText inChat;
     public static String texto;
     Spinner spCorreo;
+    ImageButton enviar;
 
     TextView txtEmail2;
     TextView txtChat2;
@@ -54,20 +62,23 @@ public class Mensajes extends BaseActivity {
     static EditText inDescripcion;
     EditText inChat2;
     private static RecyclerView lstIncidencias;
-    private Button btnNuevo;
-    private Button btnCerrar;
-    private Button btnCancelar;
+    private static Button btnNuevo;
+    private static Button btnCerrar;
+    private static Button btnCancelar;
+    private static Button btnScan;
+    static ImageButton enviar2;
+
+
+    Calendar cal = Calendar.getInstance();
+    DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
 
 
     TextView txtEmail3;
     static TextView txtChat3;
     EditText inChat3;
-
-
-    Bundle b;
-    ImageButton enviar;
-    ImageButton enviar2;
     ImageButton enviar3;
+
+    static Bundle b;
 
     List<String> datosCorreos;
     //  public static List<String> datosMensajes;
@@ -76,32 +87,6 @@ public class Mensajes extends BaseActivity {
 
     private static final String TAGLOG = "firebase-db";
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.configuracion:
-                Bundle extras = getIntent().getExtras();
-                String nombreActivity = this.getClass().getCanonicalName();
-                Intent intent = new Intent(Mensajes.this, Settings.class);
-                intent.putExtra("callingActivity", nombreActivity);
-                intent.putExtras(extras);
-                startActivity(intent);
-                return true;
-            case R.id.help:
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,12 +110,52 @@ public class Mensajes extends BaseActivity {
         //   ArrayList<MensajesIncidencias> datos;
         inChat2 = (EditText) findViewById(R.id.inTitulo);
         txtEmail2 = (TextView) findViewById(R.id.txtEmail2);
-        txtChat2 = (TextView) findViewById(R.id.txtChat2);
-        enviar2 = (ImageButton) findViewById(R.id.imageButton2);
-         txtFecha = (TextView) findViewById(R.id.txtFecha);
+        // txtChat2 = (TextView) findViewById(R.id.txtChat2);
+        txtFecha = (TextView) findViewById(R.id.txtFecha);
+        txtFecha.setText(dateFormat.format( cal.getTime()));
         inEquipo = (EditText) findViewById(R.id.inEquipo);
         inTitulo = (EditText) findViewById(R.id.inTitulo);
         inDescripcion = (EditText) findViewById(R.id.inDescripcion);
+        enviar2 = (ImageButton) findViewById(R.id.imageButton2);
+        btnNuevo = (Button) findViewById(R.id.btnNuevo);
+        btnCerrar = (Button) findViewById(R.id.btnCerrar);
+        btnCancelar = (Button) findViewById(R.id.btnCancelar);
+        btnScan = (Button) findViewById(R.id.btnScan);
+        btnNuevo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                nuevo();
+
+            }
+        });
+        btnCerrar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finalizar();
+
+            }
+        });
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                cancelar();
+
+            }
+        });
+        btnScan.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+
+            }
+        });
+        enviar2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+
+            }
+        });
+
+        //inicialmente los botones, finalizar y nuevo estan ocultos, ya que no tienen uso
+        //   btnScan.setVisibility(View.GONE);
+        btnCerrar.setVisibility(View.GONE);
+        btnNuevo.setVisibility(View.GONE);
 
         //Inicialización RecyclerView
         lstIncidencias = (RecyclerView) findViewById(R.id.lstIncidencias);
@@ -149,24 +174,24 @@ public class Mensajes extends BaseActivity {
         //bloque para dar valor a las pestañas
 
 
-        Resources res = getResources();
+        // Resources res = getResources();
 
         TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
         tabs.setup();
 
         TabHost.TabSpec spec = tabs.newTabSpec("Sugerencia");
         spec.setContent(R.id.tab1);
-        spec.setIndicator("Sugerencias");
+        spec.setIndicator(getResources().getString(R.string.sugerencias));
         tabs.addTab(spec);
 
         spec = tabs.newTabSpec("Incidencia");
         spec.setContent(R.id.tab2);
-        spec.setIndicator("Incidencias");
+        spec.setIndicator(getResources().getString(R.string.incidencias));
         tabs.addTab(spec);
 
         spec = tabs.newTabSpec("Consulta");
         spec.setContent(R.id.tab3);
-        spec.setIndicator("Consultas");
+        spec.setIndicator(getResources().getString(R.string.consultas));
         tabs.addTab(spec);
 
         tabs.setCurrentTab(0);
@@ -182,6 +207,44 @@ public class Mensajes extends BaseActivity {
         //fin de pestañas
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    //para llamar al lector de QR
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.configuracion:
+                Bundle extras = getIntent().getExtras();
+                String nombreActivity = this.getClass().getCanonicalName();
+                Intent intent = new Intent(Mensajes.this, Settings.class);
+                intent.putExtra("callingActivity", nombreActivity);
+                intent.putExtras(extras);
+                startActivity(intent);
+                return true;
+            case R.id.help:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    //recibe el resultado de la llamada al lector de QR
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        // TODO Auto-generated method stub
+        if ((requestCode == request_code) && (resultCode == RESULT_OK)) {
+
+            Toast.makeText(this, intent.getStringExtra("resultado"), Toast.LENGTH_LONG).show();
+        }
     }
 
     //metodo que recoge la pestaña seleccionada y muestra el arrayTexto segun toque
@@ -242,18 +305,14 @@ public class Mensajes extends BaseActivity {
                 entraTexto(tabId);
             }
         });
-        enviar2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                entraTexto(tabId);
 
-            }
-        });
         enviar3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 entraTexto(tabId);
 
             }
         });
+
     }
 
 
@@ -261,18 +320,41 @@ public class Mensajes extends BaseActivity {
 
 
         Log.d(TAGLOG, "----------------------- pasando4---------------" + datos.size());
+
+        //instancia un objeto de la clase adaptador pasandole como parametro el array recibido con
+        //los datos recibidos de la BBDD de firebase
         final MensajesAdaptador adaptador = new MensajesAdaptador(datos);
+
 
         adaptador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MensajesIncidencias mi = datos.get(lstIncidencias.getChildPosition(v));
-                //todo desactivar la edicion de las casillas cuando se clique en una incidencia
+                btnScan.setVisibility(View.GONE);
+                btnCancelar.setVisibility(View.GONE);
+                enviar2.setVisibility(View.GONE);
+                btnNuevo.setVisibility(View.VISIBLE);
+                //si es un administrador se muestra el boton para finalizar incidencias
+                if (b.getString("rol").equals(rolMaster)) {
+                    btnCerrar.setVisibility(View.VISIBLE);
+                }
+                //   btnCerrar.setVisibility(View.GONE);
+
+                //cada vez que se hace click en un objeto del recyclerview, se instancia un objeto de la
+                //clase mensajesincidencias con los valores del array datos, en la misma posicion
+                //que la linea del recyclerview clickada y mediante los getters se cargan los edittext
+                //y se les quita la edicion.
+                MensajesIncidencias mi = datos.get(lstIncidencias.getChildAdapterPosition(v));
                 inEquipo.setText(mi.getEquipo());
+                inEquipo.setEnabled(false);
+                //inEquipo.setTextColor(black);
                 inTitulo.setText(mi.getTitulo());
-                txtFecha.setText(mi.getFecha());
+                inTitulo.setEnabled(false);
+                // inTitulo.setTextColor(999);
                 inDescripcion.setText(mi.getDescripcion());
-                Log.i("DemoRecView", "Pulsado el elemento " + lstIncidencias.getChildPosition(v));
+                inDescripcion.setEnabled(false);
+                // inDescripcion.setTextColor(000);
+                txtFecha.setText(mi.getFecha());
+                Log.i("DemoRecView", "Pulsado el elemento " + lstIncidencias.getChildAdapterPosition(v));
 
             }
         });
@@ -280,21 +362,11 @@ public class Mensajes extends BaseActivity {
         lstIncidencias.setAdapter(adaptador);
 
         lstIncidencias.setLayoutManager(
-                new LinearLayoutManager(ctx,LinearLayoutManager.VERTICAL,false));
+                new LinearLayoutManager(ctx, LinearLayoutManager.VERTICAL, false));
         lstIncidencias.addItemDecoration(
-                new DividerItemDecoration(ctx,DividerItemDecoration.VERTICAL));
+                new DividerItemDecoration(ctx, DividerItemDecoration.VERTICAL));
         lstIncidencias.setItemAnimator(new DefaultItemAnimator());
 
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        // TODO Auto-generated method stub
-        if ((requestCode == request_code) && (resultCode == RESULT_OK)) {
-
-            Toast.makeText(this, intent.getStringExtra("resultado"), Toast.LENGTH_LONG).show();
-        }
     }
 
 
@@ -419,6 +491,35 @@ public class Mensajes extends BaseActivity {
         //sube el arrayTexto entrado a firebase, al nodo del usuario
         //  dbMensajes.child(txtEmail.getText().toString()).push().setValue(inChat.getText().toString());
         dbEnviar.push().setValue(envio);
+
+    }
+
+    public void nuevo() {
+        inEquipo.setText(getResources().getString(R.string.equipo));
+        inEquipo.setEnabled(true);
+        inDescripcion.setText(getResources().getString(R.string.descripcion));
+        inDescripcion.setEnabled(true);
+        inTitulo.setText(getResources().getString(R.string.titulo));
+        inTitulo.setEnabled(true);
+        txtFecha.setText(dateFormat.format( cal.getTime()));
+
+
+
+        btnCerrar.setVisibility(View.GONE);
+        btnNuevo.setVisibility(View.GONE);
+        btnScan.setVisibility(View.VISIBLE);
+        btnCancelar.setVisibility(View.VISIBLE);
+        enviar2.setVisibility(View.VISIBLE);
+    }
+
+    public void finalizar() {
+    }
+
+    public void cancelar() {
+        inEquipo.setText(getResources().getString(R.string.equipo));
+        inDescripcion.setText(getResources().getString(R.string.descripcion));
+        inTitulo.setText(getResources().getString(R.string.titulo));
+        txtFecha.setText(dateFormat.format( cal.getTime()));
 
     }
 
