@@ -59,7 +59,7 @@ public class DBmensajes {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e(TAGLOG, "<------- Error DBmensajes listaCorreos -------->", databaseError.toException());
+           //     Log.e(TAGLOG, "<------- Error DBmensajes listaCorreos -------->", databaseError.toException());
             }
         };
 
@@ -93,7 +93,7 @@ public class DBmensajes {
                                 + childDataSnapshot.child("Mensaje").getValue() + "\n");
                     }
                 }
-                Log.d(TAGLOG, "----------------------- pasando1---------------" + datos.size());
+              //  Log.d(TAGLOG, "----------------------- pasando1---------------" + datos.size());
                 Mensajes.muestraMensajes(datos, miTab);
                 //se debe llamar a muestramensajes desde aqui, ya que si se llama listamensajes desde Mensajes,
                 //listamensajes devuelve un array vacio primero y despues ya entra en ondatachange para cargar los datos al
@@ -102,14 +102,14 @@ public class DBmensajes {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAGLOG, "<-------- Error DBmensajes listaMensajes ------>", databaseError.toException());
+             //   Log.d(TAGLOG, "<-------- Error DBmensajes listaMensajes ------>", databaseError.toException());
             }
 
         };
 
         dbQuery.addValueEventListener(eventListener);
 
-        Log.d(TAGLOG, "----------------------- pasando2---------------");
+      //  Log.d(TAGLOG, "----------------------- pasando2---------------");
 
     }
 
@@ -131,18 +131,20 @@ public class DBmensajes {
                     String titulo = (String) childDataSnapshot.child("Titulo").getValue();
                     String descripcion = (String) childDataSnapshot.child("Descripcion").getValue();
                     String correo = (String) childDataSnapshot.child("Correo").getValue();
-                    MensajesIncidencias mi = new MensajesIncidencias(equipo, fecha, titulo, descripcion, correo);
+                    String nodo = childDataSnapshot.getKey(); //inserta el nombre del nodo para luego poder buscarlo y borrarlo
+
+                    MensajesIncidencias mi = new MensajesIncidencias(equipo, fecha, titulo, descripcion, correo, nodo);
                     datos2.add(mi);
 
                 }
-                Log.d(TAGLOG, "----------------------- pasando3---------------" + datos2.size());
+
                 Mensajes.muestraIncidencias(datos2, ctx);
                 //se pasa como parametro el contexto que se recibe
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAGLOG, "<-------- Error DBmensajes listaMensajes ------>", databaseError.toException());
+              //  Log.d(TAGLOG, "<-------- Error DBmensajes listaMensajes ------>", databaseError.toException());
             }
 
         };
@@ -151,6 +153,12 @@ public class DBmensajes {
 
 //        Log.d(TAGLOG, "----------------------- pasando2---------------" + datos.size());
 
+    }
+
+    public void borrar(String nodo){
+
+        dbMensajes.child(nodo).removeValue();
+ Log.d(TAGLOG, "----------------------- nodooooo---------------" + nodo);
     }
 
 }

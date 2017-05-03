@@ -70,7 +70,7 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout android:id="@+id/tab2"
+                <LinearLayout android:id="@+id/tab2"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -82,127 +82,116 @@
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true" />
 
-                    <TextView
-                        android:id="@+id/txtChat2"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLines="25"
-                        android:scrollbars="vertical"
-                        android:layout_below="@+id/imageButton2"
-                        android:layout_marginTop="21dp" />
+                        android:orientation="horizontal">
 
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@android:drawable/ic_menu_send"
-                        android:id="@+id/imageButton2"
-                        android:layout_below="@+id/inDescripcion"
-                        android:layout_toRightOf="@+id/btnCancelar"
-                        android:layout_toEndOf="@+id/btnCancelar" />
 
-                    <EditText
-                        android:id="@+id/inEquipo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="@string/equipo"
-                        android:layout_marginTop="15dp"
-                        android:layout_below="@+id/txtEmail2"
-                        android:layout_alignLeft="@+id/inTitulo"
-                        android:layout_alignStart="@+id/inTitulo" />
+                        <EditText
+                            android:id="@+id/inEquipo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:text="@string/equipo" />
 
-                    <EditText
-                        android:id="@+id/inTitulo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="@string/titulo"
-                        android:layout_below="@+id/inEquipo"
-                        android:layout_alignLeft="@+id/inDescripcion"
-                        android:layout_alignStart="@+id/inDescripcion" />
+                        <Button
+                            android:id="@+id/btnScan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginStart="25dp"
+                            android:text="@string/escanear" />
 
-                    <TextView
-                        android:id="@+id/txtFecha"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="fecha"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginStart="25dp"
-                        android:layout_alignTop="@+id/inTitulo"
-                        android:layout_alignLeft="@+id/btnScan"
-                        android:layout_alignStart="@+id/btnScan" />
 
-                    <Button
-                        android:id="@+id/btnScan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/escanear"
-                        android:layout_alignBottom="@+id/inEquipo"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginRight="12dp"
-                        android:layout_marginEnd="12dp" />
+                    </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/inDescripcion"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="13dp"
-                        android:ems="10"
-                        android:inputType="textMultiLine"
-                        android:text="@string/descripcion"
-                        android:layout_below="@+id/inTitulo"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignRight="@+id/btnScan"
-                        android:layout_alignEnd="@+id/btnScan" />
+                        android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/btnNuevo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/nuevo"
-                        android:layout_alignTop="@+id/imageButton2"
-                        android:layout_alignLeft="@+id/inDescripcion"
-                        android:layout_alignStart="@+id/inDescripcion" />
+                        <EditText
+                            android:id="@+id/inTitulo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:text="@string/titulo" />
 
-                    <Button
-                        android:id="@+id/btnCerrar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/finalizar"
-                        android:layout_alignBaseline="@+id/btnNuevo"
-                        android:layout_alignBottom="@+id/btnNuevo"
-                        android:layout_toRightOf="@+id/btnNuevo"
-                        android:layout_toEndOf="@+id/btnNuevo" />
+                        <TextView
+                            android:id="@+id/txtFecha"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginStart="25dp"
+                            android:layout_weight="1"
+                            android:text="fecha" />
+                    </LinearLayout>
 
-                    <Button
-                        android:id="@+id/btnCancelar"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/cancelar"
-                        android:layout_alignBaseline="@+id/btnCerrar"
-                        android:layout_alignBottom="@+id/btnCerrar"
-                        android:layout_toRightOf="@+id/btnCerrar"
-                        android:layout_toEndOf="@+id/btnCerrar" />
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/inDescripcion"
+                            android:layout_width="276dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="textMultiLine"
+                            android:text="@string/descripcion" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@android:drawable/ic_menu_send" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnCancelar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/cancelar" />
+
+                        <Button
+                            android:id="@+id/btnCerrar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/finalizar" />
+
+                        <Button
+                            android:id="@+id/btnNuevo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/nuevo" />
+                    </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/lstIncidencias"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignEnd="@+id/inDescripcion"
-                        android:layout_alignLeft="@+id/btnNuevo"
-                        android:layout_alignRight="@+id/inDescripcion"
-                        android:layout_alignStart="@+id/btnNuevo"
-                        android:layout_below="@+id/imageButton2"
                         android:layout_marginTop="14dp" />
 
-                </RelativeLayout>
+                </LinearLayout>
 
                 <RelativeLayout android:id="@+id/tab3"
                     android:orientation="vertical"
