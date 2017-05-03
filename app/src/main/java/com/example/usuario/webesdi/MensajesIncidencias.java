@@ -10,15 +10,16 @@ public class MensajesIncidencias {
     String titulo;
     String descripcion;
     String correo;
+    String nodo;
 
 
-
-    public MensajesIncidencias(String equipo, String fecha, String titulo, String descripcion, String correo) {
+    public MensajesIncidencias(String equipo, String fecha, String titulo, String descripcion, String correo, String nodo) {
         Equipo = equipo;
         Fecha = fecha;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.correo = correo;
+        this.nodo = nodo;
     }
 
     public String getEquipo() {
@@ -59,5 +60,13 @@ public class MensajesIncidencias {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getNodo() {
+        return nodo;
+    }
+
+    public void setNodo(String nodo) {
+        this.nodo = nodo;
     }
 }

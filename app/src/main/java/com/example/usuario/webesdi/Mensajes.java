@@ -61,6 +61,7 @@ public class Mensajes extends BaseActivity {
     private static Button btnCancelar;
     private static Button btnScan;
     static ImageButton enviar2;
+    static MensajesIncidencias mi;
 
 
     Calendar cal = Calendar.getInstance();
@@ -121,12 +122,6 @@ public class Mensajes extends BaseActivity {
 
             }
         });
-        btnCerrar.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                finalizar();
-
-            }
-        });
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 cancelar();
@@ -135,9 +130,9 @@ public class Mensajes extends BaseActivity {
         });
         btnScan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-
+                escanear();
             }
+
         });
 
 
@@ -162,8 +157,6 @@ public class Mensajes extends BaseActivity {
 
         //bloque para dar valor a las pestañas
 
-
-        // Resources res = getResources();
 
         TabHost tabs = (TabHost) findViewById(android.R.id.tabhost);
         tabs.setup();
@@ -226,15 +219,7 @@ public class Mensajes extends BaseActivity {
         }
     }
 
-    //recibe el resultado de la llamada al lector de QR
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        // TODO Auto-generated method stub
-        if ((requestCode == request_code) && (resultCode == RESULT_OK)) {
 
-            Toast.makeText(this, intent.getStringExtra("resultado"), Toast.LENGTH_LONG).show();
-        }
-    }
 
     //metodo que recoge la pestaña seleccionada y muestra el arrayTexto segun toque
     public void cargaTexto(final String tabId) {
@@ -259,10 +244,6 @@ public class Mensajes extends BaseActivity {
             case "Incidencia":
 
                 conn.listaIncidencias(this);
-                Intent intent = new Intent(this, QRscanner.class);
-
-                //  startActivityForResult(intent, request_code);
-
 
                 break;
             case "Consulta":
@@ -305,13 +286,20 @@ public class Mensajes extends BaseActivity {
             }
         });
 
+        btnCerrar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finalizar(tabId);
+
+            }
+        });
+
     }
 
 
     public static void muestraIncidencias(final ArrayList<MensajesIncidencias> datos, Context ctx) {
 
 
-        Log.d(TAGLOG, "----------------------- pasando4---------------" + datos.size());
+      //  Log.d(TAGLOG, "----------------------- pasando4---------------" + datos.size());
 
         //instancia un objeto de la clase adaptador pasandole como parametro el array recibido con
         //los datos recibidos de la BBDD de firebase
@@ -329,13 +317,12 @@ public class Mensajes extends BaseActivity {
                 if (b.getString("rol").equals(rolMaster)) {
                     btnCerrar.setVisibility(View.VISIBLE);
                 }
-                //   btnCerrar.setVisibility(View.GONE);
 
                 //cada vez que se hace click en un objeto del recyclerview, se instancia un objeto de la
                 //clase mensajesincidencias con los valores del array datos, en la misma posicion
                 //que la linea del recyclerview clickada y mediante los getters se cargan los edittext
                 //y se les quita la edicion.
-                MensajesIncidencias mi = datos.get(lstIncidencias.getChildAdapterPosition(v));
+                mi = datos.get(lstIncidencias.getChildAdapterPosition(v));
                 inEquipo.setText(mi.getEquipo());
                 inEquipo.setEnabled(false);
                 //inEquipo.setTextColor(black);
@@ -347,7 +334,6 @@ public class Mensajes extends BaseActivity {
                 // inDescripcion.setTextColor(000);
                 txtFecha.setText(mi.getFecha());
                 Log.i("DemoRecView", "Pulsado el elemento " + lstIncidencias.getChildAdapterPosition(v));
-
             }
         });
 
@@ -413,12 +399,6 @@ public class Mensajes extends BaseActivity {
 
     public static void muestraMensajes(final ArrayList<String> datosMensajes, final String miTab) {
 
-
-        //  DBmensajes conn = new DBmensajes(miTab);
-        //datosMensajes = conn.listaMensajes(correo);
-
-        //  Log.d(TAGLOG, "----------------------- pasando3---------------" + datos2.get(0));
-        //  texto=conn.texto;
         String texto = "";
 
 
@@ -432,7 +412,7 @@ public class Mensajes extends BaseActivity {
                 txtChat.setMovementMethod(new ScrollingMovementMethod());
                 break;
             case "Incidencia":
-
+                //no hace naa aqui, las incidencias se muestran en otro metodo
                 break;
             case "Consulta":
                 for (String elemento : datosMensajes) {
@@ -472,7 +452,6 @@ public class Mensajes extends BaseActivity {
                 envio.put("Equipo", inEquipo.getText().toString());
                 envio.put("Fecha", txtFecha.getText().toString());
                 envio.put("Titulo", inTitulo.getText().toString());
-
                 break;
             case "Consulta":
                 envio.put("Correo", correo);
@@ -484,7 +463,6 @@ public class Mensajes extends BaseActivity {
             default:
                 break;
         }
-
 
         //sube el arrayTexto entrado a firebase, al nodo del usuario
         //  dbMensajes.child(txtEmail.getText().toString()).push().setValue(inChat.getText().toString());
@@ -508,8 +486,13 @@ public class Mensajes extends BaseActivity {
         enviar2.setVisibility(View.VISIBLE);
     }
 
-    public void finalizar() {
+    public void finalizar(String mytab) {
         //todo eliminar la incidencia seleccionada
+        //instancia la clase que crea una conexion con la base de datos y llama al metodo de borrar
+        //nodos pasandole como parametro el nodo almacenado mediante la clase mensajesincidencias
+        //segun la incidencia seleccionada en el metodo muestraincidencias
+        DBmensajes conn = new DBmensajes(mytab);
+        conn.borrar(mi.getNodo());
     }
 
     public void cancelar() {
@@ -517,8 +500,22 @@ public class Mensajes extends BaseActivity {
         inDescripcion.setText(getResources().getString(R.string.descripcion));
         inTitulo.setText(getResources().getString(R.string.titulo));
         txtFecha.setText(dateFormat.format( cal.getTime()));
-
     }
 
+    public void escanear(){
+        Intent intent = new Intent(this, QRscanner.class);
+        startActivityForResult(intent, request_code);
+    }
+
+    //recibe el resultado de la llamada al lector de QR
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        // TODO Auto-generated method stub
+        if ((requestCode == request_code) && (resultCode == RESULT_OK)) {
+
+           // Toast.makeText(this, intent.getStringExtra("resultado"), Toast.LENGTH_LONG).show();
+            inEquipo.setText(intent.getStringExtra("resultado"));
+        }
+    }
 
 }
