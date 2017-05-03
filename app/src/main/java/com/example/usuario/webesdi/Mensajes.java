@@ -3,8 +3,6 @@ package com.example.usuario.webesdi;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.content.res.Resources;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,18 +26,16 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static android.R.color.black;
 
 public class Mensajes extends BaseActivity {
 
@@ -50,12 +46,10 @@ public class Mensajes extends BaseActivity {
     TextView txtEmail;
     static TextView txtChat;
     EditText inChat;
-    public static String texto;
     Spinner spCorreo;
     ImageButton enviar;
 
     TextView txtEmail2;
-    TextView txtChat2;
     static TextView txtFecha;
     static EditText inEquipo;
     static EditText inTitulo;
@@ -70,7 +64,7 @@ public class Mensajes extends BaseActivity {
 
 
     Calendar cal = Calendar.getInstance();
-    DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 
     TextView txtEmail3;
@@ -145,12 +139,7 @@ public class Mensajes extends BaseActivity {
 
             }
         });
-        enviar2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-
-            }
-        });
 
         //inicialmente los botones, finalizar y nuevo estan ocultos, ya que no tienen uso
         //   btnScan.setVisibility(View.GONE);
@@ -269,8 +258,6 @@ public class Mensajes extends BaseActivity {
                 break;
             case "Incidencia":
 
-                //// TODO: de momento esta hace lo mismo que sugerencia, hay que cambiarlo  para
-                /// incidencias y añadirle un QR
                 conn.listaIncidencias(this);
                 Intent intent = new Intent(this, QRscanner.class);
 
@@ -305,7 +292,12 @@ public class Mensajes extends BaseActivity {
                 entraTexto(tabId);
             }
         });
+        enviar2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
+                entraTexto(tabId);
+            }
+        });
         enviar3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 entraTexto(tabId);
@@ -462,23 +454,29 @@ public class Mensajes extends BaseActivity {
         DatabaseReference dbEnviar = FirebaseDatabase.getInstance().getReference().child(miTab);
         //crea una lista con datos del usuario y el mensaje introducido
         Map<String, String> envio = new HashMap<>();
-        envio.put("Correo", correo);
-        envio.put("Nombre", b.getString("nombre"));
+
 
         //selecciona una de las 3 cajas de entrada (una por pestaña) segun la pestaña y pone el valor
         //en el array
         switch (miTab) {
             case "Sugerencia":
+                envio.put("Correo", correo);
+                envio.put("Nombre", b.getString("nombre"));
                 envio.put("Mensaje", inChat.getText().toString());
                 //vacia la caja de entrada de arrayTexto
                 inChat.setText("");
                 break;
             case "Incidencia":
-                envio.put("Mensaje", inChat2.getText().toString());
-                //vacia la caja de entrada de arrayTexto
-                inChat2.setText("");
+                envio.put("Correo", correo);
+                envio.put("Descripcion", inDescripcion.getText().toString());
+                envio.put("Equipo", inEquipo.getText().toString());
+                envio.put("Fecha", txtFecha.getText().toString());
+                envio.put("Titulo", inTitulo.getText().toString());
+
                 break;
             case "Consulta":
+                envio.put("Correo", correo);
+                envio.put("Nombre", b.getString("nombre"));
                 envio.put("Mensaje", inChat3.getText().toString());
                 //vacia la caja de entrada de arrayTexto
                 inChat3.setText("");
@@ -503,8 +501,6 @@ public class Mensajes extends BaseActivity {
         inTitulo.setEnabled(true);
         txtFecha.setText(dateFormat.format( cal.getTime()));
 
-
-
         btnCerrar.setVisibility(View.GONE);
         btnNuevo.setVisibility(View.GONE);
         btnScan.setVisibility(View.VISIBLE);
@@ -513,6 +509,7 @@ public class Mensajes extends BaseActivity {
     }
 
     public void finalizar() {
+        //todo eliminar la incidencia seleccionada
     }
 
     public void cancelar() {

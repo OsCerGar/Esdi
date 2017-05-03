@@ -73,7 +73,7 @@ public class MainActivity extends BaseActivity implements
     private String Email;
     private String rol = "";
     // direccion del archivo php en el servidor apache
-    private String URLserver = "http://172.1.30.20";
+    private String URLserver = "http://172.1.30.19";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,14 +107,14 @@ public class MainActivity extends BaseActivity implements
 
         btnEntrar = (Button) findViewById(R.id.btnEntrar);
 
-
+/*
 //todo eliminar esto cuando funcione
         Nombre = "nombre";
         Email = "email@falso.es";
         rol = "usuario";
         iniciarActivity();
         //todo eliminar hasta aqui
-
+*/
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
         mDetailTextView = (TextView) findViewById(R.id.detail);

@@ -14,9 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        card_view:cardCornerRadius="2dp"
-        card_view:cardUseCompatPadding="true">
+        android:foreground="?android:attr/selectableItemBackground">
+        <!--  card_view:cardUseCompatPadding="true">
+        card_view:cardCornerRadius="2dp" -->
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,7 +33,7 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:scaleType="centerCrop"
-                android:src="@drawable/cover" />
+                android:src="@drawable/cruz" />
 
             <TextView
                 android:id="@+id/tv_nombre"
