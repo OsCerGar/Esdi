@@ -17,54 +17,76 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnCount="2"
-        android:rowCount="6">
+        android:rowCount="7">
 
         <TextView
             android:id="@+id/txtEmail"
             android:layout_gravity="fill"
-            android:layout_below="@id/Titulo" />
+            android:layout_below="@id/Titulo"
+            android:layout_columnWeight="1"/>
 
         <TextView
             android:id="@+id/txtTitulo"
             android:layout_gravity="fill"
             android:layout_centerHorizontal="true"
-            android:textAppearance="@android:style/TextAppearance.Widget" />
+            android:textAppearance="@android:style/TextAppearance.Widget"
+            android:layout_columnWeight="1"/>
 
         <Button
             android:id="@+id/btnpaginaweb"
             android:layout_gravity="fill"
             android:text="@string/menuP_web"
-            android:drawableTop="@drawable/internet"/>
+            android:drawableTop="@drawable/internet"
+            android:layout_columnWeight="1"/>
 
         <Button
             android:id="@+id/btnTutoriales"
             android:layout_gravity="fill"
             android:text="@string/menuP_tutoriales"
-            android:drawableTop="@drawable/grupo" />
+            android:drawableTop="@drawable/grupo"
+            android:layout_columnWeight="1"/>
 
         <Button
             android:id="@+id/btnContacto"
             android:layout_gravity="fill"
             android:text="@string/menuP_contacto"
-            android:drawableTop="@drawable/manos" />
+            android:drawableTop="@drawable/manos"
+            android:layout_columnWeight="1"/>
 
         <Button
             android:id="@+id/btndispoAulas"
             android:layout_gravity="fill"
             android:text="@string/menuP_aulas"
-            android:drawableTop="@drawable/monitor" />
+            android:drawableTop="@drawable/monitor"
+            android:layout_columnWeight="1"/>
 
         <Button
             android:id="@+id/btnMensajes"
             android:layout_gravity="fill"
             android:text="@string/menuP_mensajes"
-            android:drawableTop="@drawable/sobre" />
+            android:drawableTop="@drawable/sobre"
+            android:layout_columnWeight="1"/>
 
         <Button
             android:id="@+id/btnIncidencias"
             android:layout_gravity="fill"
             android:text="@string/menuP_incidencias"
-            android:drawableTop="@drawable/cruz" />
+            android:drawableTop="@drawable/cruz"
+            android:layout_columnWeight="1"/>
+
+        <Button
+            android:id="@+id/btnEmpresas"
+            android:layout_gravity="fill"
+            android:text="Empresas Colaboradoras"
+            android:drawableTop="@drawable/cruz"
+            android:layout_columnWeight="1"/>
+
+        <Button
+            android:id="@+id/btnVacio"
+            android:layout_gravity="fill"
+            android:text="No estoy"
+            android:drawableTop="@drawable/cruz"
+            android:layout_columnWeight="1"/>
 
 
     </GridLayout>

@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.usuario.webesdi.empresas.Empresas;
 // Para no tener que crear varios menús, tenemos que añadir un control del tipo de cuenta logeada
 //  (Lo podemos hacer con un extra del intent) y esconder o mostrar los botones que toquen.
 
@@ -19,6 +21,8 @@ public class MenuPrincipal extends BaseActivity {
     Button btnMensajes;
     Button btndispoAulas;
     Button btnIncidencias;
+    Button btnEmpresas;
+    Button btnVacio;
     String email;
     String nombre;
     TextView txtEmail;
@@ -65,6 +69,8 @@ public class MenuPrincipal extends BaseActivity {
         btnMensajes = (Button) findViewById(R.id.btnMensajes);
         btndispoAulas = (Button) findViewById(R.id.btndispoAulas);
         btnIncidencias = (Button) findViewById(R.id.btnIncidencias);
+        btnEmpresas = (Button) findViewById(R.id.btnEmpresas);
+        btnVacio = (Button) findViewById(R.id.btnVacio);
 
         txtEmail = (TextView)findViewById(R.id.txtEmail);
         txtTitulo = (TextView)findViewById(R.id.txtTitulo);
@@ -102,6 +108,11 @@ public class MenuPrincipal extends BaseActivity {
 
             }
         });
+        btnEmpresas.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                lanzarEmpresas();
+            }
+        });
 
         //solo un administrador puede entrar a incidencias
         if (b.getString("rol").equalsIgnoreCase("administrador")){
@@ -109,6 +120,7 @@ public class MenuPrincipal extends BaseActivity {
         }else{
             btnIncidencias.setVisibility(View.GONE);
         }
+        btnVacio.setVisibility(View.GONE);
 
     }
     private void lanzarPaginaWeb(){
@@ -145,6 +157,12 @@ public class MenuPrincipal extends BaseActivity {
         Intent intent = new Intent(MenuPrincipal.this,Settings.class);
         intent.putExtra("callingActivity", nombreActivity );
         intent.putExtras(extras);
+        startActivity(intent);
+    }
+
+    private void lanzarEmpresas(){
+        Intent intent = new Intent(MenuPrincipal.this,Empresas.class);
+        intent.putExtras(b);
         startActivity(intent);
     }
 
