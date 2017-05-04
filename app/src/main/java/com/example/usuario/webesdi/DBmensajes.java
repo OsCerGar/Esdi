@@ -36,13 +36,16 @@ public class DBmensajes {
 
     public ArrayList<String> listaCorreos() {
 
+        datos = new ArrayList<String>();
+        //el primer dato del spiner sera siempre "todos"
+        datos.add("todos");
 
         Query dbQuery = dbMensajes.orderByKey();
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot nodoUsuario) {
-                datos = new ArrayList<String>();
-                //el primer dato del spiner sera siempre "todos"
+                //reinicia datos para no duplicar las entradas anteriores
+                datos.clear();
                 datos.add("todos");
                 //en cada bucle carga un nuevo elemento a la lista
                 for (DataSnapshot childDataSnapshot : nodoUsuario.getChildren()) {
