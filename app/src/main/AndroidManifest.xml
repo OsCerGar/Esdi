@@ -44,8 +44,6 @@
 
         <!-- <activity android:name=".GoogleSignInActivity"></activity> -->
         <activity android:name=".Mensajes" />
-        <activity android:name=".empresas.Empresas" />
-        <activity android:name=".activity_tutoriales"></activity>
     </application>
 
 </manifest>
