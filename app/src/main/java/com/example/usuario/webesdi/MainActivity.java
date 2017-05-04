@@ -107,14 +107,14 @@ public class MainActivity extends BaseActivity implements
 
         btnEntrar = (Button) findViewById(R.id.btnEntrar);
 
-
+/*
 //todo eliminar esto cuando funcione
         Nombre = "nombre";
         Email = "email@falso.es";
         rol = "usuario";
         iniciarActivity();
         //todo eliminar hasta aqui
-
+*/
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
         mDetailTextView = (TextView) findViewById(R.id.detail);
