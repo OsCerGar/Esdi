@@ -7,7 +7,7 @@
     <string name="acceso">Access:</string>
     <string name="desc_firebase_lockup">Firebase logo and name</string>
     <string name="sign_out">Sign Out</string>
-    <string name="disconnect">Disconnect</string> <!-- Seria mejor "log out" no? -->
+    <string name="disconnect">log out</string> <!-- Seria mejor "log out" no? -->
     <string name="log_in">Log In</string>
     <string name="google_status_fmt">Google User: %s</string>
     <string name="firebase_status_fmt">User: %s</string>
@@ -25,9 +25,10 @@
     <string name="menuP_web">Web page</string>
     <string name="menuP_tutoriales">F.A.Q.</string>
     <string name="menuP_contacto">Contact</string>
-    <string name="menuP_aulas">Classroom \n availability</string>
+    <string name="menuP_aulas">Classroom\navailability</string>
     <string name="menuP_mensajes">Messages</string>
     <string name="menuP_incidencias">Incidences</string>
+    <string name="menuP_empresas">Business\nPartners</string>
 
     <!-- Menu opciones -->
     <string name="menuP_settings">Settings</string>
@@ -54,8 +55,8 @@
     <string name="cancelar"> Cancel </string>
 
     <!-- Dispoaulas -->
-    <string name="seleccionarhora"> Select \n hour </string>
-    <string name="seleccionardia"> Select \n day</string>
+    <string name="seleccionarhora"> Select\nhour </string>
+    <string name="seleccionardia"> Select\nday</string>
 
 
 </resources>

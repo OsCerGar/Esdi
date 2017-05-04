@@ -81,8 +81,8 @@
                 android:id="@+id/btnEmpresas"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
-                android:drawableTop="@drawable/cruz"
-                android:text="Empresas \n Colaboradoras" />
+                android:drawableTop="@drawable/edificios"
+                android:text="@string/menuP_empresas" />
 
             <Button
                 android:id="@+id/btnVacio"
