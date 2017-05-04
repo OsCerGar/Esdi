@@ -73,7 +73,7 @@ public class MainActivity extends BaseActivity implements
     private String Email;
     private String rol = "";
     // direccion del archivo php en el servidor apache
-    private String URLserver = "http://172.1.30.19";
+    private String URLserver = "http://172.1.30.16";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -86,11 +86,11 @@ public class MainActivity extends BaseActivity implements
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.configuracion:
-                Bundle extras = getIntent().getExtras();
+               // Bundle extras = getIntent().getExtras();
                 String nombreActivity = this.getClass().getCanonicalName();
                 Intent intent = new Intent(MainActivity.this,Settings.class);
                 intent.putExtra("callingActivity", nombreActivity );
-                intent.putExtras(extras);
+              //  intent.putExtras(extras);
                 startActivity(intent);
                 return true;
             case R.id.help:
