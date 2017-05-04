@@ -93,11 +93,13 @@ public class Empresas extends BaseActivity {
         String nom = e.getName();
         String descr = e.getDescripcio();
         int logo = e.getPic();
+        String descrCom = e.getExplicacionCompleta();
 
         Intent intent = new Intent(Empresas.this,EmpresaExtend.class);
         intent.putExtra("nom", nom );
         intent.putExtra("descr", descr );
         intent.putExtra("logo", logo );
+        intent.putExtra("descrComp",descrCom );
         startActivity(intent);
     }
 }

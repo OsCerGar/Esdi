@@ -14,6 +14,7 @@ public class EmpresaExtend extends BaseActivity {
     private String nom;
     private String descr;
     private int numLogo;
+    private String fullDescr;
 
     private ImageView imgLogo;
     private TextView txtNom;
@@ -29,6 +30,7 @@ public class EmpresaExtend extends BaseActivity {
         nom = i.getStringExtra("nom");
         descr = i.getStringExtra("descr");
         numLogo = i.getIntExtra("logo", 0);
+        fullDescr = i.getStringExtra("descrCom");
 
         imgLogo = (ImageView) findViewById(R.id.logoEmpresaExt);
         txtNom = (TextView) findViewById(R.id.nombreEmpresaExt);
@@ -36,7 +38,7 @@ public class EmpresaExtend extends BaseActivity {
 
         imgLogo.setImageResource(numLogo);
         txtNom.setText(nom);
-        txtDescr.setText(descr);
+        txtDescr.setText(descr + "\n...\n" + fullDescr );
 
     }
 }

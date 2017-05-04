@@ -11,6 +11,7 @@ public class Empresa {
     private String descripcio;
     private int pic;
     private int rank;
+    private String explicacionCompleta;
 
     public Empresa(String name, String descripcio, int rank, int pic){
 
@@ -21,6 +22,14 @@ public class Empresa {
 
     }
 
+    public Empresa(String name, String descripcio, int rank, int pic, String fullDescr){
+
+        this.name = name;
+        this.descripcio = descripcio;
+        this.pic = pic;
+        this.rank = rank;
+        this.explicacionCompleta = fullDescr;
+    }
 
     public String getName() {
         return name;
@@ -51,6 +60,13 @@ public class Empresa {
 
     public void setRank(int rank) {
         this.rank = rank;
+    }
+    public String getExplicacionCompleta() {
+        return explicacionCompleta;
+    }
+
+    public void setExplicacionCompleta(String explicacionCompleta) {
+        this.explicacionCompleta = explicacionCompleta;
     }
 
 }
