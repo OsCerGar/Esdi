@@ -1,5 +1,7 @@
 package com.example.usuario.webesdi.empresas;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,7 +10,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.usuario.webesdi.BaseActivity;
+import com.example.usuario.webesdi.MenuPrincipal;
 import com.example.usuario.webesdi.R;
+import com.example.usuario.webesdi.Settings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +28,7 @@ public class Empresas extends BaseActivity {
     String[] names = {"Universitat", "ESDi", "Barcelona", "Sabadell", "Exemple", "Exemple",
             "Exemple", "Exemple", "Exemple", "Exemple", "Exemple", "Exemple", "Exemple", "Exemple", "Exemple"};
 
-    String[] singers = {"Estudiar", "Sabadell", "Exemple", "Exemple", "Exemple", "Exemple",
+    String[] descripcio = {"Estudiar", "Sabadell", "Exemple", "Exemple", "Exemple", "Exemple",
             "Exemple", "Exemple", "Exemple", "Exemple", "Exemple",
             "Exemple", "Exemple", "Exemple", "Exemple"};
 
@@ -65,7 +69,7 @@ public class Empresas extends BaseActivity {
 
         //adding data from arrays to songlist
         for (int i = 0; i < names.length; i++) {
-            Empresa empresa = new Empresa(names[i], singers[i], i + 1, pics[i]);
+            Empresa empresa = new Empresa(names[i], descripcio[i], i + 1, pics[i]);
             listaEmpreas.add(empresa);
         }
         //initializing adapter
@@ -78,8 +82,22 @@ public class Empresas extends BaseActivity {
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(Empresas.this, "Card at " + position + " is clicked", Toast.LENGTH_SHORT).show();
+                Empresa e = listaEmpreas.get(position);
+                expandir(e);
             }
         }));
+    }
+
+    public void expandir(Empresa e)
+    {
+        String nom = e.getName();
+        String descr = e.getDescripcio();
+        int logo = e.getPic();
+
+        Intent intent = new Intent(Empresas.this,EmpresaExtend.class);
+        intent.putExtra("nom", nom );
+        intent.putExtra("descr", descr );
+        intent.putExtra("logo", logo );
+        startActivity(intent);
     }
 }

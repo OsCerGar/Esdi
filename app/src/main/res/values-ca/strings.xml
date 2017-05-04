@@ -52,7 +52,7 @@
     <string name="descripcion"> Descripció </string>
     <string name="nuevo"> Nou </string>
     <string name="finalizar"> Finalitzar </string>
-    <strin3g name="cancelar"> Cancel·lar </strin3g>
+    <string name="cancelar"> Cancel·lar </string>
     <string name="menuP_empresas">Empreses\nColaboradoras</string>
 
     <!-- Dispoaulas -->

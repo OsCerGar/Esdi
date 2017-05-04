@@ -14,7 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground">
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
         <!--  card_view:cardUseCompatPadding="true">
         card_view:cardCornerRadius="2dp" -->
 

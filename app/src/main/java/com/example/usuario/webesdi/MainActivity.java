@@ -43,9 +43,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class MainActivity extends BaseActivity implements
+public class MainActivity extends BaseActivity /*implements{
         GoogleApiClient.OnConnectionFailedListener,
-        View.OnClickListener {
+        View.OnClickListener */{
 
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
@@ -107,14 +107,14 @@ public class MainActivity extends BaseActivity implements
 
         btnEntrar = (Button) findViewById(R.id.btnEntrar);
 
-/*
+
 //todo eliminar esto cuando funcione
         Nombre = "nombre";
         Email = "email@falso.es";
         rol = "usuario";
-        iniciarActivity();
+        iniciarActivity();}
         //todo eliminar hasta aqui
-*/
+/*
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
         mDetailTextView = (TextView) findViewById(R.id.detail);
@@ -135,7 +135,7 @@ public class MainActivity extends BaseActivity implements
         // [END config_signin]
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .enableAutoManage(this /* FragmentActivity , this /* OnConnectionFailedListener )
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
@@ -169,7 +169,7 @@ public class MainActivity extends BaseActivity implements
             }
         });
     }
-
+*/
 
     void iniciarActivity() {
 
@@ -185,7 +185,7 @@ public class MainActivity extends BaseActivity implements
 
         startActivity(intent);
     }
-
+/*
     // [START on_start_add_listener]
     @Override
     public void onStart() {
@@ -494,8 +494,8 @@ public class MainActivity extends BaseActivity implements
             txtAcceso.setText(rol);
 
         }
-
+*/
     }
 
-}
+
 
