@@ -58,6 +58,6 @@
     <!-- Dispoaulas -->
     <string name="seleccionarhora"> seleccionar hora </string>
     <string name="seleccionardia"> seleccionar dia</string>
-    <string name="descrMapa">El mapa muestra el estado actual de las aulas</string>
+    <string name="descrMapa">El mapa muestra la disponibilidad actual de las aulas</string>
 
 </resources>
