@@ -25,7 +25,7 @@ public class Empresas extends BaseActivity {
     private List<Empresa> listaEmpreas;
     private EmpresaAdapter adaptadorEmpresas;
 
-    String[] names = {"Universitat", "ESDi", "Barcelona", "Sabadell", "Exemple", "Exemple",
+    String[] nombres = {"Universitat", "ESDi", "Barcelona", "Sabadell", "Exemple", "Exemple",
             "Exemple", "Exemple", "Exemple", "Exemple", "Exemple", "Exemple", "Exemple", "Exemple", "Exemple"};
 
     String[] descripcio = {"Estudiar", "Sabadell", "Exemple", "Exemple", "Exemple", "Exemple",
@@ -68,8 +68,8 @@ public class Empresas extends BaseActivity {
         listaEmpreas = new ArrayList<>();
 
         //adding data from arrays to songlist
-        for (int i = 0; i < names.length; i++) {
-            Empresa empresa = new Empresa(names[i], descripcio[i], i + 1, pics[i]);
+        for (int i = 0; i < nombres.length; i++) {
+            Empresa empresa = new Empresa(nombres[i], descripcio[i], i + 1, pics[i]);
             listaEmpreas.add(empresa);
         }
         //initializing adapter
