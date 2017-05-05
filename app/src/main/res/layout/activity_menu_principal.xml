@@ -71,18 +71,18 @@
                 android:text="@string/menuP_mensajes" />
 
             <Button
+                android:id="@+id/btnEmpresas"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:drawableTop="@drawable/edificios"
+                android:text="@string/menuP_empresas" />
+
+            <Button
                 android:id="@+id/btnIncidencias"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
                 android:drawableTop="@drawable/cruz"
                 android:text="@string/menuP_incidencias" />
-
-            <Button
-                android:id="@+id/btnEmpresas"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-
-                android:text="@string/menuP_empresas" />
 
             <Button
                 android:id="@+id/btnVacio"
