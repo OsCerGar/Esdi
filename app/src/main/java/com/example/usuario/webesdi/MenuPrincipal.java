@@ -30,27 +30,6 @@ public class MenuPrincipal extends BaseActivity {
     Bundle b;
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.configuracion:
-                lanzarSettings();
-                return true;
-            case R.id.help:
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
@@ -125,6 +104,7 @@ public class MenuPrincipal extends BaseActivity {
     }
     private void lanzarPaginaWeb(){
         Intent intent = new Intent(MenuPrincipal.this,PaginaWeb.class);
+        intent.putExtras(b);
         startActivity(intent);
     }
     private void lanzarContacto(){
@@ -148,15 +128,6 @@ public class MenuPrincipal extends BaseActivity {
     private void lanzarIncidencias(){
         Intent intent = new Intent(MenuPrincipal.this,GLPI.class);
         intent.putExtras(b);
-        startActivity(intent);
-    }
-
-    private void lanzarSettings(){
-        Bundle extras = getIntent().getExtras();
-        String nombreActivity = this.getClass().getCanonicalName();
-        Intent intent = new Intent(MenuPrincipal.this,Settings.class);
-        intent.putExtra("callingActivity", nombreActivity );
-        intent.putExtras(extras);
         startActivity(intent);
     }
 

@@ -108,14 +108,14 @@ public class MainActivity extends BaseActivity implements
 
         btnEntrar = (Button) findViewById(R.id.btnEntrar);
 
-/*
+
 //todo descomentar esta parte para saltarse el login
         Nombre = "nombre";
         Email = "email@falso.es";
-        rol = "usuario";
+        rol = "administrador";
         iniciarActivity();
         //descomentar hasta aqui
-*/
+
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
         mDetailTextView = (TextView) findViewById(R.id.detail);

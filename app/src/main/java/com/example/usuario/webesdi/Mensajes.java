@@ -191,33 +191,7 @@ public class Mensajes extends BaseActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
 
-    //para llamar al lector de QR
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.configuracion:
-                Bundle extras = getIntent().getExtras();
-                String nombreActivity = this.getClass().getCanonicalName();
-                Intent intent = new Intent(Mensajes.this, Settings.class);
-                intent.putExtra("callingActivity", nombreActivity);
-                intent.putExtras(extras);
-                startActivity(intent);
-                return true;
-            case R.id.help:
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
 
 

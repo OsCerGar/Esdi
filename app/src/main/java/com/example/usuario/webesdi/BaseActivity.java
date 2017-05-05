@@ -1,6 +1,7 @@
 package com.example.usuario.webesdi;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -11,6 +12,9 @@ import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import java.util.Locale;
 
@@ -27,6 +31,35 @@ public class BaseActivity extends AppCompatActivity {
         this.ponIdioma();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.configuracion:
+                lanzarSettings();
+                return true;
+            case R.id.help:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void lanzarSettings(){
+        Bundle extras = getIntent().getExtras();
+        String nombreActivity = this.getClass().getCanonicalName();
+        Intent intent = new Intent(this,Settings.class);
+        intent.putExtra("callingActivity", nombreActivity );
+        intent.putExtras(extras);
+        startActivity(intent);
+    }
     @VisibleForTesting
     public ProgressDialog mProgressDialog;
 
