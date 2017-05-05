@@ -69,7 +69,7 @@ public class Empresas extends BaseActivity {
 
         //adding data from arrays to songlist
         for (int i = 0; i < nombres.length; i++) {
-            Empresa empresa = new Empresa(nombres[i], descripcio[i], i + 1, pics[i]);
+            Empresa empresa = new Empresa(nombres[i], descripcio[i], i + 1, pics[i], "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed porttitor ante. Nunc sed metus ac lectus faucibus facilisis. Proin suscipit leo vel eros efficitur varius. In faucibus porttitor nibh dictum pharetra. ");
             listaEmpreas.add(empresa);
         }
         //initializing adapter
