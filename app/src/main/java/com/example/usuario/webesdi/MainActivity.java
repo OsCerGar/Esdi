@@ -1,5 +1,6 @@
 package com.example.usuario.webesdi;
 
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -43,9 +44,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class MainActivity extends BaseActivity /*implements{
+public class MainActivity extends BaseActivity implements
         GoogleApiClient.OnConnectionFailedListener,
-        View.OnClickListener */{
+        View.OnClickListener {
 
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
@@ -56,7 +57,7 @@ public class MainActivity extends BaseActivity /*implements{
     private static final String TAGLOG = "firebase-db";
 
     // [START declare_auth]
-    private FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
     // [END declare_auth]
 
     // [START declare_auth_listener]
@@ -73,7 +74,7 @@ public class MainActivity extends BaseActivity /*implements{
     private String Email;
     private String rol = "";
     // direccion del archivo php en el servidor apache
-    private String URLserver = "http://172.1.30.16";
+    private String URLserver = "http://192.168.1.230";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,14 +108,14 @@ public class MainActivity extends BaseActivity /*implements{
 
         btnEntrar = (Button) findViewById(R.id.btnEntrar);
 
-
-//todo eliminar esto cuando funcione
+/*
+//todo descomentar esta parte para saltarse el login
         Nombre = "nombre";
         Email = "email@falso.es";
         rol = "usuario";
-        iniciarActivity();}
-        //todo eliminar hasta aqui
-/*
+        iniciarActivity();
+        //descomentar hasta aqui
+*/
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
         mDetailTextView = (TextView) findViewById(R.id.detail);
@@ -135,7 +136,7 @@ public class MainActivity extends BaseActivity /*implements{
         // [END config_signin]
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity , this /* OnConnectionFailedListener )
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
@@ -169,7 +170,7 @@ public class MainActivity extends BaseActivity /*implements{
             }
         });
     }
-*/
+
 
     void iniciarActivity() {
 
@@ -185,7 +186,7 @@ public class MainActivity extends BaseActivity /*implements{
 
         startActivity(intent);
     }
-/*
+
     // [START on_start_add_listener]
     @Override
     public void onStart() {
@@ -494,8 +495,8 @@ public class MainActivity extends BaseActivity /*implements{
             txtAcceso.setText(rol);
 
         }
-*/
+
     }
 
-
+}
 
