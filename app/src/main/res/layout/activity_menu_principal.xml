@@ -83,7 +83,7 @@
                 android:id="@+id/btnEmpresas"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
-
+                android:drawableTop="@drawable/fabrica"
                 android:text="@string/menuP_empresas" />
 
             <Button

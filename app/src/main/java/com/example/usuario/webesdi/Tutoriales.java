@@ -32,7 +32,7 @@ public class Tutoriales extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutoriales);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_tutoriales);
 
         //Use this setting to improve performance if you know that changes in
         //the content do not change the layout size of the RecyclerView

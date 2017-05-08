@@ -28,7 +28,7 @@ public class TutorialAdapter extends RecyclerView.Adapter<TutorialAdapter.ViewHo
             txtRank = (TextView)v.findViewById(R.id.tv_rank);
             txtName = (TextView) v.findViewById(R.id.tv_nombre);
             txtDescr = (TextView) v.findViewById(R.id.tv_descr);
-            //ivLogo = (ImageView) v.findViewById(R.id.iv_logo_empresa);
+            ivLogo = (ImageView) v.findViewById(R.id.iv_logo_tutorial);
         }
     }
 
@@ -49,7 +49,7 @@ public class TutorialAdapter extends RecyclerView.Adapter<TutorialAdapter.ViewHo
         holder.txtRank.setText(String.valueOf(tutorial.getRank()));
         holder.txtName.setText(tutorial.getName());
         holder.txtDescr.setText(tutorial.getDescripcio());
-        //holder.ivLogo.setImageResource(tutorial.getPic());
+        holder.ivLogo.setImageResource(tutorial.getPic());
     }
 
     public int getItemCount() {

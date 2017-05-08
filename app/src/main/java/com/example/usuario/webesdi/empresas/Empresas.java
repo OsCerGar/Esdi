@@ -22,7 +22,7 @@ public class Empresas extends BaseActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private List<Empresa> listaEmpreas;
+    private List<Empresa> listaEmpresa;
     private EmpresaAdapter adaptadorEmpresas;
 
     String[] nombres = {"Universitat", "ESDi", "Barcelona", "Sabadell", "Exemple", "Exemple",
@@ -53,7 +53,7 @@ public class Empresas extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empresas);
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_empresas);
 
         //Use this setting to improve performance if you know that changes in
         //the content do not change the layout size of the RecyclerView
@@ -65,15 +65,15 @@ public class Empresas extends BaseActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         //intializing an arraylist called songlist
-        listaEmpreas = new ArrayList<>();
+        listaEmpresa = new ArrayList<>();
 
         //adding data from arrays to songlist
         for (int i = 0; i < nombres.length; i++) {
             Empresa empresa = new Empresa(nombres[i], descripcio[i], i + 1, pics[i], "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed porttitor ante. Nunc sed metus ac lectus faucibus facilisis. Proin suscipit leo vel eros efficitur varius. In faucibus porttitor nibh dictum pharetra. ");
-            listaEmpreas.add(empresa);
+            listaEmpresa.add(empresa);
         }
         //initializing adapter
-        adaptadorEmpresas = new EmpresaAdapter(listaEmpreas);
+        adaptadorEmpresas = new EmpresaAdapter(listaEmpresa);
 
         //specifying an adapter to access data, create views and replace the content
         mRecyclerView.setAdapter(adaptadorEmpresas);
@@ -82,7 +82,7 @@ public class Empresas extends BaseActivity {
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Empresa e = listaEmpreas.get(position);
+                Empresa e = listaEmpresa.get(position);
                 expandir(e);
             }
         }));
