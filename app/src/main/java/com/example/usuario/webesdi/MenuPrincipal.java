@@ -22,6 +22,7 @@ public class MenuPrincipal extends BaseActivity {
     Button btndispoAulas;
     Button btnIncidencias;
     Button btnEmpresas;
+    Button btnTutoriales;
     Button btnVacio;
     String email;
     String nombre;
@@ -49,6 +50,7 @@ public class MenuPrincipal extends BaseActivity {
         btndispoAulas = (Button) findViewById(R.id.btndispoAulas);
         btnIncidencias = (Button) findViewById(R.id.btnIncidencias);
         btnEmpresas = (Button) findViewById(R.id.btnEmpresas);
+        btnTutoriales = (Button) findViewById(R.id.btnTutoriales);
         btnVacio = (Button) findViewById(R.id.btnVacio);
 
         txtEmail = (TextView)findViewById(R.id.txtEmail);
@@ -84,6 +86,12 @@ public class MenuPrincipal extends BaseActivity {
         btnIncidencias.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 lanzarIncidencias();
+
+            }
+        });
+        btnTutoriales.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                lanzarTutoriales();
 
             }
         });
@@ -133,6 +141,12 @@ public class MenuPrincipal extends BaseActivity {
 
     private void lanzarEmpresas(){
         Intent intent = new Intent(MenuPrincipal.this,Empresas.class);
+        intent.putExtras(b);
+        startActivity(intent);
+    }
+
+    private void lanzarTutoriales(){
+        Intent intent = new Intent(MenuPrincipal.this,Tutoriales.class);
         intent.putExtras(b);
         startActivity(intent);
     }

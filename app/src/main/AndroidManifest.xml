@@ -46,7 +46,8 @@
         <activity android:name=".Mensajes" />
         <activity android:name=".Tutoriales" />
         <activity android:name=".empresas.Empresas" />
-        <activity android:name=".empresas.EmpresaExtend"></activity>
+        <activity android:name=".empresas.EmpresaExtend" />
+        <activity android:name=".VistaPDF"></activity>
     </application>
 
 </manifest>
