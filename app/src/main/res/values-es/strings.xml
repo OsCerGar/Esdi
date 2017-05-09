@@ -6,7 +6,7 @@
     <string name="google_title_text">Iniciar sesión</string>
     <string name="signed_out">Desconectado</string>
     <string name="acceso">Acceso:</string>
-    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="desc_firebase_lockup">Nombre y logo de Firebase</string>
     <string name="sign_out">Salir</string>
     <string name="disconnect">Desconectar</string>
     <string name="log_in">Entrar</string>
@@ -20,7 +20,7 @@
     <string name="contacto_telefono">-625341986</string>
     <string name="contacto_correo">-informatica@esdi.edu.es</string>
     <string name="contacto_habla">Habla con nosotros</string>
-    <string name="contacto_chat">chat</string>
+    <string name="contacto_chat">Chat</string>
 
     <!-- menu principal -->
     <string name="menuP_web">Página web</string>
@@ -56,8 +56,8 @@
     <string name="cancelar"> Cancelar </string>
 
     <!-- Dispoaulas -->
-    <string name="seleccionarhora"> seleccionar hora </string>
-    <string name="seleccionardia"> seleccionar dia</string>
+    <string name="seleccionarhora"> Seleccionar hora </string>
+    <string name="seleccionardia"> Seleccionar dia</string>
     <string name="descrMapa">El mapa muestra la disponibilidad actual de las aulas</string>
 
     <!-- Tutoriales -->
