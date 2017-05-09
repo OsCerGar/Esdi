@@ -59,5 +59,8 @@
     <string name="seleccionardia"> Select day</string>
     <string name="descrMapa">The map shows the current availability of the classrooms</string>
 
+    <!-- Tutoriales -->
+    <string name="visualizaPdf">View PDF</string>
+
 
 </resources>
