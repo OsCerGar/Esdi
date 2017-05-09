@@ -1,11 +1,10 @@
-package com.example.usuario.webesdi.empresas;
+package com.example.usuario.webesdi;
 
 /**
- * Created by PracticasEsdi on 28/04/2017.
+ * Created by Becario2 on 05/05/2017.
  */
 
-public class Empresa {
-
+public class Tutorial {
 
     private String name;
     private String descripcio;
@@ -13,7 +12,7 @@ public class Empresa {
     private int rank;
     private String explicacionCompleta;
 
-    public Empresa(String name, String descripcio, int rank, int pic){
+    public Tutorial(String name, String descripcio, int rank, int pic){
 
         this.name = name;
         this.descripcio = descripcio;
@@ -22,7 +21,7 @@ public class Empresa {
 
     }
 
-    public Empresa(String name, String descripcio, int rank, int pic, String fullDescr){
+    public Tutorial(String name, String descripcio, int rank, int pic, String fullDescr){
 
         this.name = name;
         this.descripcio = descripcio;
@@ -68,5 +67,4 @@ public class Empresa {
     public void setExplicacionCompleta(String explicacionCompleta) {
         this.explicacionCompleta = explicacionCompleta;
     }
-
 }

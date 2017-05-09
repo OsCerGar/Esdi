@@ -29,6 +29,7 @@
     <string name="menuP_aulas">Disponibilidad \n aulas</string>
     <string name="menuP_mensajes">Mensajes</string>
     <string name="menuP_incidencias">Incidencias</string>
+    <string name="menuP_empresas">Empresas\nColaboradoras</string>
 
     <!-- Menu opciones -->
     <string name="menuP_settings">Configuración</string>
@@ -55,7 +56,8 @@
     <string name="cancelar"> Cancelar </string>
 
     <!-- Dispoaulas -->
-    <string name="seleccionarhora"> seleccionar \n hora </string>
-    <string name="seleccionardia"> seleccionar \n dia</string>
+    <string name="seleccionarhora"> seleccionar hora </string>
+    <string name="seleccionardia"> seleccionar dia</string>
+    <string name="descrMapa">El mapa muestra la disponibilidad actual de las aulas</string>
 
 </resources>

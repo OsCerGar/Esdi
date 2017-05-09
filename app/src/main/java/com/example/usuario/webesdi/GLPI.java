@@ -13,31 +13,7 @@ public class GLPI extends BaseActivity {
 
     private String URL;
     Bundle b;
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.configuracion:
-                Bundle extras = getIntent().getExtras();
-                String nombreActivity = this.getClass().getCanonicalName();
-                Intent intent = new Intent(GLPI.this,Settings.class);
-                intent.putExtra("callingActivity", nombreActivity );
-                intent.putExtras(extras);
-                startActivity(intent);
-                return true;
-            case R.id.help:
 
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +34,6 @@ public class GLPI extends BaseActivity {
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         myWebView.setWebViewClient(new WebViewClient());
-        myWebView.loadUrl(URL+"/glpi/front/helpdesk.public.php?create_ticket=1");
+        myWebView.loadUrl("http://ddt.esdi.es/cau");
     }
 }

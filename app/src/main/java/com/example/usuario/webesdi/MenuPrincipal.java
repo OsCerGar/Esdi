@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.usuario.webesdi.empresas.Empresas;
 // Para no tener que crear varios menús, tenemos que añadir un control del tipo de cuenta logeada
 //  (Lo podemos hacer con un extra del intent) y esconder o mostrar los botones que toquen.
 
@@ -19,33 +21,14 @@ public class MenuPrincipal extends BaseActivity {
     Button btnMensajes;
     Button btndispoAulas;
     Button btnIncidencias;
+    Button btnEmpresas;
     Button btnTutoriales;
+    Button btnVacio;
     String email;
     String nombre;
     TextView txtEmail;
     TextView txtTitulo;
     Bundle b;
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.configuracion:
-                lanzarSettings();
-                return true;
-            case R.id.help:
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +49,9 @@ public class MenuPrincipal extends BaseActivity {
         btnMensajes = (Button) findViewById(R.id.btnMensajes);
         btndispoAulas = (Button) findViewById(R.id.btndispoAulas);
         btnIncidencias = (Button) findViewById(R.id.btnIncidencias);
+        btnEmpresas = (Button) findViewById(R.id.btnEmpresas);
         btnTutoriales = (Button) findViewById(R.id.btnTutoriales);
+        btnVacio = (Button) findViewById(R.id.btnVacio);
 
         txtEmail = (TextView)findViewById(R.id.txtEmail);
         txtTitulo = (TextView)findViewById(R.id.txtTitulo);
@@ -110,6 +95,11 @@ public class MenuPrincipal extends BaseActivity {
 
             }
         });
+        btnEmpresas.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                lanzarEmpresas();
+            }
+        });
 
         //solo un administrador puede entrar a incidencias
         if (b.getString("rol").equalsIgnoreCase("administrador")){
@@ -117,10 +107,12 @@ public class MenuPrincipal extends BaseActivity {
         }else{
             btnIncidencias.setVisibility(View.GONE);
         }
+        btnVacio.setVisibility(View.GONE);
 
     }
     private void lanzarPaginaWeb(){
         Intent intent = new Intent(MenuPrincipal.this,PaginaWeb.class);
+        intent.putExtras(b);
         startActivity(intent);
     }
     private void lanzarContacto(){
@@ -147,17 +139,14 @@ public class MenuPrincipal extends BaseActivity {
         startActivity(intent);
     }
 
-    private void lanzarSettings(){
-        Bundle extras = getIntent().getExtras();
-        String nombreActivity = this.getClass().getCanonicalName();
-        Intent intent = new Intent(MenuPrincipal.this,Settings.class);
-        intent.putExtra("callingActivity", nombreActivity );
-        intent.putExtras(extras);
+    private void lanzarEmpresas(){
+        Intent intent = new Intent(MenuPrincipal.this,Empresas.class);
+        intent.putExtras(b);
         startActivity(intent);
     }
 
     private void lanzarTutoriales(){
-        Intent intent = new Intent(MenuPrincipal.this, activity_tutoriales.class);
+        Intent intent = new Intent(MenuPrincipal.this,Tutoriales.class);
         intent.putExtras(b);
         startActivity(intent);
     }

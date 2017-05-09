@@ -1,5 +1,6 @@
 package com.example.usuario.webesdi;
 
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -56,7 +57,7 @@ public class MainActivity extends BaseActivity implements
     private static final String TAGLOG = "firebase-db";
 
     // [START declare_auth]
-    private FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
     // [END declare_auth]
 
     // [START declare_auth_listener]
@@ -73,7 +74,7 @@ public class MainActivity extends BaseActivity implements
     private String Email;
     private String rol = "";
     // direccion del archivo php en el servidor apache
-    private String URLserver = "http://172.1.30.16";
+    private String URLserver = "http://192.168.1.230";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,14 +108,14 @@ public class MainActivity extends BaseActivity implements
 
         btnEntrar = (Button) findViewById(R.id.btnEntrar);
 
-/*
-//todo eliminar esto cuando funcione
-        Nombre = "nombre";
-        Email = "email@falso.es";
-        rol = "usuario";
+
+//todo descomentar esta parte para saltarse el login
+        Nombre = "Username";
+        Email = "username@example.es";
+        rol = "administrador";
         iniciarActivity();
-        //todo eliminar hasta aqui
-*/
+        //descomentar hasta aqui
+
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
         mDetailTextView = (TextView) findViewById(R.id.detail);
