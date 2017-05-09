@@ -13,4 +13,16 @@
         <item>3</item>
     </string-array>
     <!-- - - - - - - - - - - - - - - - - - - - - -->
+
+
+    <string-array name="descripcion">
+        <item>Dispositius per a la captura i el tractament d\'imatges</item>
+        <item>Impressores i ordinadors personals</item>
+        <item>Hosting i comunicacions</item>
+    </string-array>
+    <string-array name="descripcionCompleta">
+        <item>Sit</item>
+        <item>Amet</item>
+        <item>.</item>
+    </string-array>
 </resources>

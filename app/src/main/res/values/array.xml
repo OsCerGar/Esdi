@@ -12,4 +12,15 @@
         <item>3</item>
     </string-array>
     <!-- - - - - - - - - - - - - - - - - - - - - -->
+
+    <string-array name="descripcion">
+        <item>Image capture and processing devices</item>
+        <item>Printer and personal computers</item>
+        <item>Hosting and comunications</item>
+    </string-array>
+    <string-array name="descripcionCompleta">
+        <item>Sit</item>
+        <item>Amet</item>
+        <item>.</item>
+    </string-array>
 </resources>
