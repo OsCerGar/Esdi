@@ -14,14 +14,28 @@
     </string-array>
     <!-- - - - - - - - - - - - - - - - - - - - - -->
 
-    <string-array name="descripcion">
+    <!-- Strings para el apartado de empresas colaboradoras -->
+    <string-array name="descripcionEmpresa">
         <item>Dispositivos para captura y tratamineto de imagenes</item>
         <item>Impresoras y ordenadores personales</item>
         <item>Hosting y comunicaciones</item>
     </string-array>
-    <string-array name="descripcionCompleta">
+    <string-array name="descripcionCompletaEmpresa">
         <item>Sit</item>
         <item>Amet</item>
         <item>.</item>
     </string-array>
+
+    <!-- Strings para el apartado de tutoriales -->
+    <string-array name="descripcionTutoriales">
+        <item>Esto es el primer item del array de strings, situado en /res/values/array</item>
+        <item>Esto es el segundo item del array de strings, situado en /res/values/array</item>
+        <item>Esto es el tercer item del array de strings, situado en /res/values/array</item>
+    </string-array>
+    <string-array name="descripcionCompletaTutoriales">
+        <item>Lorem</item>
+        <item>Ipsum</item>
+        <item>.</item>
+    </string-array>
+
 </resources>

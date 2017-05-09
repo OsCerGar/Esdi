@@ -25,9 +25,9 @@ public class Empresas extends BaseActivity {
     private List<Empresa> listaEmpresa;
     private EmpresaAdapter adaptadorEmpresas;
 
-    String[] nombres = {"Canon", "HP", "Adam"};
+    private String[] nombres = {"Canon", "HP", "Adam"};
 
-    String[] descripcio;
+    private String[] descripcio;
 
     int[] pics = {
             R.drawable.logo_canon,
@@ -35,15 +35,15 @@ public class Empresas extends BaseActivity {
             R.drawable.logo_adam
            };
 
-    String[] fullDescr;
+    private String[] fullDescr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empresas);
 
-        descripcio =  getResources().getStringArray(R.array.descripcion);
-        fullDescr =  getResources().getStringArray(R.array.descripcionCompleta);
+        descripcio =  getResources().getStringArray(R.array.descripcionEmpresa);
+        fullDescr =  getResources().getStringArray(R.array.descripcionCompletaEmpresa);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_empresas);
 

@@ -21,9 +21,11 @@ public class Tutoriales extends BaseActivity {
     private List<Tutorial> listaTutoriales;
     private TutorialAdapter adaptadorTutorial;
 
-    String[] names = {"Universitat","Escuela"};
+    private String[] names = {"Universitat","Escuela"};
 
-    String[] descripcio = {"Estudiar","Empollar"};
+    private String[] descripcio;
+
+    private String[] fullDescr;
 
     int[] pics = {
             R.drawable.esdi,
@@ -33,6 +35,9 @@ public class Tutoriales extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutoriales);
+
+        descripcio =  getResources().getStringArray(R.array.descripcionTutoriales);
+        fullDescr =  getResources().getStringArray(R.array.descripcionCompletaTutoriales);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_tutoriales);
 
@@ -50,7 +55,7 @@ public class Tutoriales extends BaseActivity {
 
         //adding data from arrays to songlist
         for (int i = 0; i < names.length; i++) {
-            Tutorial tutorial = new Tutorial(names[i], descripcio[i], i + 1, pics[i],"Aqui hay muchos texto");
+            Tutorial tutorial = new Tutorial(names[i], descripcio[i], i + 1, pics[i],fullDescr[i]);
             listaTutoriales.add(tutorial);
         }
         //initializing adapter
