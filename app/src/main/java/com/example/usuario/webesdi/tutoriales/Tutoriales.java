@@ -1,17 +1,19 @@
-package com.example.usuario.webesdi;
+package com.example.usuario.webesdi.tutoriales;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import com.example.usuario.webesdi.empresas.EmpresaExtend;
+
+import com.example.usuario.webesdi.BaseActivity;
+import com.example.usuario.webesdi.R;
 import com.example.usuario.webesdi.empresas.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tutoriales extends BaseActivity{
+public class Tutoriales extends BaseActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -73,8 +75,8 @@ public class Tutoriales extends BaseActivity{
         String descr = e.getDescripcio();
         int logo = e.getPic();
         String descrCom = e.getExplicacionCompleta();
-
-        Intent intent = new Intent(Tutoriales.this,EmpresaExtend.class);
+        //Envio el contenido de el tutorial que he seleccionado.
+        Intent intent = new Intent(Tutoriales.this,TutorialExtend.class);
         intent.putExtra("nom", nom );
         intent.putExtra("descr", descr );
         intent.putExtra("logo", logo );

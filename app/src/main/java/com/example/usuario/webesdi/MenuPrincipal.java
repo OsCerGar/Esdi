@@ -2,14 +2,12 @@ package com.example.usuario.webesdi;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.usuario.webesdi.empresas.Empresas;
+import com.example.usuario.webesdi.tutoriales.Tutoriales;
 // Para no tener que crear varios menús, tenemos que añadir un control del tipo de cuenta logeada
 //  (Lo podemos hacer con un extra del intent) y esconder o mostrar los botones que toquen.
 

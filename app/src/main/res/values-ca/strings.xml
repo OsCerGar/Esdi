@@ -60,5 +60,7 @@
     <string name="seleccionardia"> Seleccionar dia</string>
     <string name="descrMapa">El mapa mostra la disponibilitat actual de les aules</string>
 
+    <!-- Tutoriales -->
+    <string name="visualizaPdf">Visualitzar PDF</string>
 
 </resources>
