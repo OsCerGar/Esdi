@@ -55,8 +55,9 @@
     <string name="cancelar"> Cancel </string>
 
     <!-- Dispoaulas -->
-    <string name="seleccionarhora"> Select\nhour </string>
-    <string name="seleccionardia"> Select\nday</string>
+    <string name="seleccionarhora"> Select hour </string>
+    <string name="seleccionardia"> Select day</string>
+    <string name="descrMapa">The map shows the current availability of the classrooms</string>
 
 
 </resources>

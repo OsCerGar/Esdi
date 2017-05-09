@@ -30,7 +30,7 @@ public class EmpresaExtend extends BaseActivity {
         nom = i.getStringExtra("nom");
         descr = i.getStringExtra("descr");
         numLogo = i.getIntExtra("logo", 0);
-        fullDescr = i.getStringExtra("descrCom");
+        fullDescr = i.getStringExtra("descrComp");
 
         imgLogo = (ImageView) findViewById(R.id.logoEmpresaExt);
         txtNom = (TextView) findViewById(R.id.nombreEmpresaExt);

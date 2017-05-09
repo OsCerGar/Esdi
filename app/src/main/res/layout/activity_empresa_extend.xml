@@ -17,7 +17,9 @@
         app:layout_constraintHorizontal_bias="0.545"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"/>
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/nombreEmpresaExt"
@@ -26,21 +28,25 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoEmpresaExt"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="30dp"
-        android:text="Nombre empresa"/>
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Nombre empresa" />
 
     <TextView
         android:id="@+id/descrEmpresaExt"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombreEmpresaExt"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="15dp"
-        android:text="Descripcion + datos"/>
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Descripcion + datos" />
 
 </android.support.constraint.ConstraintLayout>

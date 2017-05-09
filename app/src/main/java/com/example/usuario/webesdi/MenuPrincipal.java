@@ -22,33 +22,13 @@ public class MenuPrincipal extends BaseActivity {
     Button btndispoAulas;
     Button btnIncidencias;
     Button btnEmpresas;
+    Button btnTutoriales;
     Button btnVacio;
     String email;
     String nombre;
     TextView txtEmail;
     TextView txtTitulo;
     Bundle b;
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.configuracion:
-                lanzarSettings();
-                return true;
-            case R.id.help:
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +50,7 @@ public class MenuPrincipal extends BaseActivity {
         btndispoAulas = (Button) findViewById(R.id.btndispoAulas);
         btnIncidencias = (Button) findViewById(R.id.btnIncidencias);
         btnEmpresas = (Button) findViewById(R.id.btnEmpresas);
+        btnTutoriales = (Button) findViewById(R.id.btnTutoriales);
         btnVacio = (Button) findViewById(R.id.btnVacio);
 
         txtEmail = (TextView)findViewById(R.id.txtEmail);
@@ -108,6 +89,12 @@ public class MenuPrincipal extends BaseActivity {
 
             }
         });
+        btnTutoriales.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                lanzarTutoriales();
+
+            }
+        });
         btnEmpresas.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 lanzarEmpresas();
@@ -125,6 +112,7 @@ public class MenuPrincipal extends BaseActivity {
     }
     private void lanzarPaginaWeb(){
         Intent intent = new Intent(MenuPrincipal.this,PaginaWeb.class);
+        intent.putExtras(b);
         startActivity(intent);
     }
     private void lanzarContacto(){
@@ -151,17 +139,14 @@ public class MenuPrincipal extends BaseActivity {
         startActivity(intent);
     }
 
-    private void lanzarSettings(){
-        Bundle extras = getIntent().getExtras();
-        String nombreActivity = this.getClass().getCanonicalName();
-        Intent intent = new Intent(MenuPrincipal.this,Settings.class);
-        intent.putExtra("callingActivity", nombreActivity );
-        intent.putExtras(extras);
+    private void lanzarEmpresas(){
+        Intent intent = new Intent(MenuPrincipal.this,Empresas.class);
+        intent.putExtras(b);
         startActivity(intent);
     }
 
-    private void lanzarEmpresas(){
-        Intent intent = new Intent(MenuPrincipal.this,Empresas.class);
+    private void lanzarTutoriales(){
+        Intent intent = new Intent(MenuPrincipal.this,Tutoriales.class);
         intent.putExtras(b);
         startActivity(intent);
     }

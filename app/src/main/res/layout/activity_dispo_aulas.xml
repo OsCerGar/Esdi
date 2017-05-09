@@ -118,9 +118,9 @@
         android:id="@+id/tvInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="El mapa muestra el estado actual."
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/ivMapa" />
+        android:text="@string/descrMapa"
+        android:layout_above="@+id/btnSeleccionarD"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/btnSeleccionarH"

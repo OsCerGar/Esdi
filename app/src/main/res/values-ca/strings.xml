@@ -56,7 +56,9 @@
     <string name="menuP_empresas">Empreses\nColaboradoras</string>
 
     <!-- Dispoaulas -->
-    <string name="seleccionarhora"> Seleccionar\nhora </string>
-    <string name="seleccionardia"> Seleccionar\ndia</string>
+    <string name="seleccionarhora"> Seleccionar hora </string>
+    <string name="seleccionardia"> Seleccionar dia</string>
+    <string name="descrMapa">El mapa mostra la disponibilitat actual de les aules</string>
+
 
 </resources>
