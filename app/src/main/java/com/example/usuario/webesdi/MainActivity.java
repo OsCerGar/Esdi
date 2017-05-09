@@ -112,7 +112,7 @@ public class MainActivity extends BaseActivity implements
 //todo descomentar esta parte para saltarse el login
         Nombre = "Username";
         Email = "username@example.es";
-        rol = "administrador";
+        rol = "usuario";
         iniciarActivity();
         //descomentar hasta aqui
 

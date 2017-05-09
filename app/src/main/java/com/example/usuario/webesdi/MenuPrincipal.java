@@ -49,7 +49,7 @@ public class MenuPrincipal extends BaseActivity {
         btnIncidencias = (Button) findViewById(R.id.btnIncidencias);
         btnEmpresas = (Button) findViewById(R.id.btnEmpresas);
         btnTutoriales = (Button) findViewById(R.id.btnTutoriales);
-        btnVacio = (Button) findViewById(R.id.btnVacio);
+        //btnVacio = (Button) findViewById(R.id.btnVacio);
 
         txtEmail = (TextView)findViewById(R.id.txtEmail);
         txtTitulo = (TextView)findViewById(R.id.txtTitulo);
@@ -105,7 +105,7 @@ public class MenuPrincipal extends BaseActivity {
         }else{
             btnIncidencias.setVisibility(View.GONE);
         }
-        btnVacio.setVisibility(View.GONE);
+        //btnVacio.setVisibility(View.GONE);
 
     }
     private void lanzarPaginaWeb(){
