@@ -40,28 +40,28 @@
         android:id="@+id/h2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/edifici_esdi_h2rojo"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/btnSeleccionarD"
         android:layout_alignLeft="@+id/ivMapa"
-        android:layout_alignStart="@+id/ivMapa"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_above="@+id/btnSeleccionarD" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/ivMapa"
+        android:scaleType="fitXY"
+        android:src="@drawable/edifici_esdi_h2rojo" />
 
 
     <ImageView
         android:id="@+id/h3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btnSeleccionarD"
         android:layout_alignLeft="@+id/ivMapa"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/ivMapa"
         android:scaleType="fitXY"
-        android:src="@drawable/edifici_esdi_h3rojo"
-        android:layout_above="@+id/btnSeleccionarD" />
+        android:src="@drawable/edifici_esdi_h3rojo" />
 
 
     <ImageView
@@ -93,15 +93,15 @@
 
     <DatePicker
         android:id="@+id/datePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="invisible"
         android:layout_alignBottom="@+id/ivMapa" />
 
     <TimePicker
         android:id="@+id/timePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="invisible"
         android:layout_alignParentTop="true" />
 
