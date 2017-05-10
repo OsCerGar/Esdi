@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Ayuda extends AppCompatActivity {
+public class Ayuda extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
