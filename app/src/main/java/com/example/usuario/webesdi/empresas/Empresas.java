@@ -25,34 +25,26 @@ public class Empresas extends BaseActivity {
     private List<Empresa> listaEmpresa;
     private EmpresaAdapter adaptadorEmpresas;
 
-    String[] nombres = {"Universitat", "ESDi", "Barcelona", "Sabadell", "Exemple", "Exemple",
-            "Exemple", "Exemple", "Exemple", "Exemple", "Exemple", "Exemple", "Exemple", "Exemple", "Exemple"};
+    private String[] nombres = {"Canon", "HP", "Adam"};
 
-    String[] descripcio = {"Estudiar", "Sabadell", "Exemple", "Exemple", "Exemple", "Exemple",
-            "Exemple", "Exemple", "Exemple", "Exemple", "Exemple",
-            "Exemple", "Exemple", "Exemple", "Exemple"};
+    private String[] descripcio;
 
     int[] pics = {
-            R.drawable.esdi,
-            R.drawable.harvard,
-            R.drawable.android,
-            R.drawable.cs,
-            R.drawable.aboutus,
-            R.drawable.focus,
-            R.drawable.javaa,
-            R.drawable.uab,
-            R.drawable.tel,
-            R.drawable.unnamed,
-            R.drawable.upc,
-            R.drawable.aboutus,
-            R.drawable.android,
-            R.drawable.android,
-            R.drawable.android};
+            R.drawable.logo_canon,
+            R.drawable.logo_hp,
+            R.drawable.logo_adam
+           };
+
+    private String[] fullDescr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empresas);
+
+        descripcio =  getResources().getStringArray(R.array.descripcionEmpresa);
+        fullDescr =  getResources().getStringArray(R.array.descripcionCompletaEmpresa);
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_empresas);
 
         //Use this setting to improve performance if you know that changes in
@@ -69,7 +61,7 @@ public class Empresas extends BaseActivity {
 
         //adding data from arrays to songlist
         for (int i = 0; i < nombres.length; i++) {
-            Empresa empresa = new Empresa(nombres[i], descripcio[i], i + 1, pics[i], "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed porttitor ante. Nunc sed metus ac lectus faucibus facilisis. Proin suscipit leo vel eros efficitur varius. In faucibus porttitor nibh dictum pharetra. ");
+            Empresa empresa = new Empresa(nombres[i], descripcio[i], i + 1, pics[i],  fullDescr[i]);
             listaEmpresa.add(empresa);
         }
         //initializing adapter

@@ -1,9 +1,11 @@
 package com.example.usuario.webesdi.empresas;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +27,14 @@ public class EmpresaExtend extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empresa_extend);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int height = size.y;
+
+        imgLogo = (ImageView) findViewById(R.id.logoEmpresaExt);
+        imgLogo.setMaxHeight((height / 2));
 
         Intent i = getIntent();
         nom = i.getStringExtra("nom");
