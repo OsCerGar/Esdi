@@ -30,6 +30,12 @@
                 app:srcCompat="@color/white" />
 
             <TextView
+                android:id="@+id/nombreEmpresaExt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre empresa" />
+
+            <TextView
                 android:id="@+id/descrEmpresaExt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
