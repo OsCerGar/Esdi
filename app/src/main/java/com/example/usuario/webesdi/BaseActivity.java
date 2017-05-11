@@ -45,11 +45,17 @@ public class BaseActivity extends AppCompatActivity {
                 lanzarSettings();
                 return true;
             case R.id.help:
-
+                lanzaAyuda();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    private void lanzaAyuda(){
+        Bundle extras = getIntent().getExtras();
+        Intent intent = new Intent(this,Ayuda.class);
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 
     private void lanzarSettings(){

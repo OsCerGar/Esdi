@@ -49,7 +49,8 @@
         <activity android:name=".empresas.Empresas" />
         <activity android:name=".empresas.EmpresaExtend" />
         <activity android:name=".VistaPDF" />
-        <activity android:name=".tutoriales.TutorialExtend"></activity>
+        <activity android:name=".tutoriales.TutorialExtend" />
+        <activity android:name=".Ayuda"></activity>
     </application>
 
 </manifest>
