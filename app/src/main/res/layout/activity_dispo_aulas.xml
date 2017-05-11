@@ -1,135 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_dispo_aulas"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.usuario.webesdi.DispoAulas">
 
-    <ImageView
-        android:id="@+id/ivMapa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/edifici_esdi_planta"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/btnSeleccionarD" />
-
-    <ImageView
-        android:id="@+id/h1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/edifici_esdi_h1rojo"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/ivMapa"
-        android:layout_alignStart="@+id/ivMapa"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/btnSeleccionarD" />
-
-    <ImageView
-        android:id="@+id/h2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnSeleccionarD"
-        android:layout_alignLeft="@+id/ivMapa"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/ivMapa"
-        android:scaleType="fitXY"
-        android:src="@drawable/edifici_esdi_h2rojo" />
-
-
-    <ImageView
-        android:id="@+id/h3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnSeleccionarD"
-        android:layout_alignLeft="@+id/ivMapa"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/ivMapa"
-        android:scaleType="fitXY"
-        android:src="@drawable/edifici_esdi_h3rojo" />
-
-
-    <ImageView
-        android:id="@+id/h4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/edifici_esdi_h4rojo"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/ivMapa"
-        android:layout_alignStart="@+id/ivMapa"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/btnSeleccionarD" />
-
-
-    <ImageView
-        android:id="@+id/h5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/edifici_esdi_h5rojo"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/ivMapa"
-        android:layout_alignStart="@+id/ivMapa"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/btnSeleccionarD" />
-
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:layout_alignBottom="@+id/ivMapa" />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:layout_alignParentTop="true"
+android:layout_centerHorizontal="true" >
 
     <TimePicker
         android:id="@+id/timePicker"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:layout_alignParentTop="true" />
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="invisible" />
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="invisible" />
+
+    <ImageView
+    android:id="@+id/ivMapa"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:src="@drawable/edifici_esdi_planta" />
+
+<ImageView
+    android:id="@+id/h1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:src="@drawable/edifici_esdi_h1rojo" />
+
+<ImageView
+    android:id="@+id/h2"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:src="@drawable/edifici_esdi_h2rojo" />
+
+    <ImageView
+        android:id="@+id/h3"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/edifici_esdi_h3rojo" />
+    <ImageView
+        android:id="@+id/h4"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/edifici_esdi_h4rojo" />
+    <ImageView
+        android:id="@+id/h5"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/edifici_esdi_h5rojo" />
+
+    <Button
+        android:id="@+id/btnSeleccionarH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:layout_marginBottom="100dip"
+        android:text="@string/seleccionarhora" />
 
     <Button
         android:id="@+id/btnSeleccionarD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/seleccionardia"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:id="@+id/tvInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/descrMapa"
-        android:layout_above="@+id/btnSeleccionarD"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:id="@+id/btnSeleccionarH"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/seleccionarhora"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-</RelativeLayout>
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="100dip"
+        android:text="@string/seleccionardia" />
+</FrameLayout>
