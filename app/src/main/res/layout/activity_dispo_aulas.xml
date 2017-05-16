@@ -56,7 +56,6 @@ android:layout_centerHorizontal="true" >
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|left"
-        android:layout_marginBottom="100dip"
         android:text="@string/seleccionarhora" />
 
     <Button
@@ -64,6 +63,5 @@ android:layout_centerHorizontal="true" >
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
-        android:layout_marginBottom="100dip"
         android:text="@string/seleccionardia" />
 </FrameLayout>
