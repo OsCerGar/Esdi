@@ -1,29 +1,29 @@
 <resources>
     <!-- main activity -->
     <string name="app_name">ProyectoEsdi</string>
-    <string name="title_activity_disponibilidad">availabilty</string>
+    <string name="title_activity_disponibilidad">Availabilty</string>
     <string name="google_title_text">Google Sign In</string>
     <string name="signed_out">Signed Out</string>
     <string name="acceso">Access:</string>
     <string name="desc_firebase_lockup">Firebase logo and name</string>
     <string name="sign_out">Sign Out</string>
-    <string name="disconnect">log out</string> <!-- Seria mejor "log out" no? -->
+    <string name="disconnect">Log out</string> <!-- Seria mejor "log out" no? -->
     <string name="log_in">Log In</string>
-    <string name="google_status_fmt">Google User: %s</string>
+    <string name="google_status_fmt">Account: %s</string>
     <string name="firebase_status_fmt">User: %s</string>
     <string name="loading">Loading…</string>
 
     <!-- contacto -->
     <string name="contacto_titulo">I.T. Dept.</string>
-    <string name="contacto_subtitulo">Any doubts?</string>
-    <string name="contacto_telefono">-625341986</string>
+    <string name="contacto_subtitulo">Any question?</string>
+    <string name="contacto_telefono"> Call us 625341986</string>
     <string name="contacto_correo">-informatica@esdi.edu.es</string>
     <string name="contacto_habla">Speak with us</string>
-    <string name="contacto_chat">chat</string>
+    <string name="contacto_chat">Chat</string>
 
     <!-- menu principal -->
     <string name="menuP_web">Web page</string>
-    <string name="menuP_tutoriales">F.A.Q.</string>
+    <string name="menuP_tutoriales">Tutorials</string>
     <string name="menuP_contacto">Contact</string>
     <string name="menuP_aulas">Classroom\navailability</string>
     <string name="menuP_mensajes">Messages</string>
@@ -44,7 +44,7 @@
 
     <!-- Mensajes -->
     <string name="sugerencias"> Suggestions </string>
-    <string name="incidencias"> Incidence</string>
+    <string name="incidencias"> Incidences</string>
     <string name="consultas"> Queries </string>
     <string name="equipo"> Equipment </string>
     <string name="titulo"> Title </string>
@@ -58,6 +58,9 @@
     <string name="seleccionarhora"> Select hour </string>
     <string name="seleccionardia"> Select day</string>
     <string name="descrMapa">The map shows the current availability of the classrooms</string>
+
+    <!-- Tutoriales -->
+    <string name="visualizaPdf">View PDF</string>
 
 
 </resources>

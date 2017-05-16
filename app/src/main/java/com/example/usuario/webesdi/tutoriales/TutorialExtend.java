@@ -1,18 +1,19 @@
-package com.example.usuario.webesdi.empresas;
+package com.example.usuario.webesdi.tutoriales;
 
 import android.content.Intent;
-import android.graphics.Point;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Display;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.usuario.webesdi.BaseActivity;
 import com.example.usuario.webesdi.R;
+import com.example.usuario.webesdi.VistaPDF;
 
-public class EmpresaExtend extends BaseActivity {
+public class TutorialExtend extends BaseActivity {
+
     private String nom;
     private String descr;
     private int numLogo;
@@ -21,22 +22,14 @@ public class EmpresaExtend extends BaseActivity {
     private ImageView imgLogo;
     private TextView txtNom;
     private TextView txtDescr;
-
+    private Button btnPdf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_empresa_extend);
-
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int height = size.y;
-
-        imgLogo = (ImageView) findViewById(R.id.logoEmpresaExt);
-        imgLogo.setMaxHeight((height / 2));
-
+        setContentView(R.layout.activity_tutorial_extend);
         Intent i = getIntent();
+        //cargo los datos correctos.
         nom = i.getStringExtra("nom");
         descr = i.getStringExtra("descr");
         numLogo = i.getIntExtra("logo", 0);
@@ -45,10 +38,20 @@ public class EmpresaExtend extends BaseActivity {
         imgLogo = (ImageView) findViewById(R.id.logoEmpresaExt);
         txtNom = (TextView) findViewById(R.id.nombreEmpresaExt);
         txtDescr = (TextView) findViewById(R.id.descrEmpresaExt);
+        btnPdf = (Button) findViewById(R.id.visualizarPdf);
 
         imgLogo.setImageResource(numLogo);
         txtNom.setText(nom);
         txtDescr.setText(descr + "\n...\n" + fullDescr );
 
+        btnPdf.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                Intent intent = new Intent(TutorialExtend.this,VistaPDF.class);
+                //emvio el nom para distinguir entre pdfs
+                intent.putExtra("nombre",nom);
+                startActivity(intent);
+
+            }
+        });
     }
 }

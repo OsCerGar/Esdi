@@ -1,11 +1,12 @@
 package com.example.usuario.webesdi;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -22,6 +23,7 @@ public class Contacto extends BaseActivity implements OnMapReadyCallback {
 
     TextView txtEmail;
     Bundle b;
+    Button numero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +36,8 @@ public class Contacto extends BaseActivity implements OnMapReadyCallback {
 
         String nombre = b.getString("nombre");
         String email = b.getString("email");
-
-        txtEmail = (TextView)findViewById(R.id.txtEmail);
+        numero = (Button) findViewById(R.id.numero);
+        txtEmail = (TextView) findViewById(R.id.txtEmail);
         txtEmail.setText(email + " - " + nombre);
 
 
@@ -44,7 +46,24 @@ public class Contacto extends BaseActivity implements OnMapReadyCallback {
 
         mapFragment.getMapAsync(this);
 
-
+        numero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri num = Uri.parse("tel:625341986");
+                Intent i = new Intent(Intent.ACTION_CALL, num);
+                if (ActivityCompat.checkSelfPermission(Contacto.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivity(i);
+            }
+        });
     }
 
     @Override

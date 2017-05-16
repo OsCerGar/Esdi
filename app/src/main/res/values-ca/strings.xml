@@ -6,7 +6,7 @@
     <string name="google_title_text">Inici sessió</string>
     <string name="signed_out">Desconnectat</string>
     <string name="acceso">Accés:</string>
-    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="desc_firebase_lockup">Nom i logo del Firebase</string>
     <string name="sign_out">Sortir</string>
     <string name="disconnect">Desconnectar</string>
     <string name="log_in">Entrar</string>
@@ -17,7 +17,7 @@
     <!-- contacto -->
     <string name="contacto_titulo">DEPT. Informàtica</string>
     <string name="contacto_subtitulo">Tens dubtes?</string>
-    <string name="contacto_telefono">-625341986</string>
+    <string name="contacto_telefono">Truca\'ns 625341986</string>
     <string name="contacto_correo">-informatica@esdi.edu.es</string>
     <string name="contacto_habla">Parla amb nosaltres</string>
     <string name="contacto_chat">chat</string>
@@ -29,6 +29,8 @@
     <string name="menuP_aulas">Disponibilitat \n aules</string>
     <string name="menuP_mensajes">Missatges</string>
     <string name="menuP_incidencias">Incidències</string>
+    <string name="menuP_empresas">Empreses\nColaboradores</string>
+
 
     <!-- Menu opciones -->
     <string name="menuP_settings">Configuració</string>
@@ -53,12 +55,13 @@
     <string name="nuevo"> Nou </string>
     <string name="finalizar"> Finalitzar </string>
     <string name="cancelar"> Cancel·lar </string>
-    <string name="menuP_empresas">Empreses\nColaboradoras</string>
 
     <!-- Dispoaulas -->
     <string name="seleccionarhora"> Seleccionar hora </string>
     <string name="seleccionardia"> Seleccionar dia</string>
     <string name="descrMapa">El mapa mostra la disponibilitat actual de les aules</string>
 
+    <!-- Tutoriales -->
+    <string name="visualizaPdf">Visualitzar PDF</string>
 
 </resources>

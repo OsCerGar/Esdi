@@ -13,15 +13,16 @@
 
     <TextView
         android:id="@+id/txtEmail"
-        android:layout_below="@id/Titulo"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content" />
 
     <TextView
         android:id="@+id/txtTitulo"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txtEmail"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content" />
+
 
 
     <ScrollView
@@ -73,13 +74,6 @@
                 android:text="@string/menuP_mensajes" />
 
             <Button
-                android:id="@+id/btnIncidencias"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:drawableTop="@drawable/cruz"
-                android:text="@string/menuP_incidencias" />
-
-            <Button
                 android:id="@+id/btnEmpresas"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
@@ -87,13 +81,11 @@
                 android:text="@string/menuP_empresas" />
 
             <Button
-                android:id="@+id/btnVacio"
+                android:id="@+id/btnIncidencias"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
                 android:drawableTop="@drawable/cruz"
-                android:text="No estoy" />
-
-
+                android:text="@string/menuP_incidencias" />
         </GridLayout>
     </ScrollView>
 

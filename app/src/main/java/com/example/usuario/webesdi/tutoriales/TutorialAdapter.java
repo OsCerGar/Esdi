@@ -1,4 +1,4 @@
-package com.example.usuario.webesdi;
+package com.example.usuario.webesdi.tutoriales;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.usuario.webesdi.R;
 
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class TutorialAdapter extends RecyclerView.Adapter<TutorialAdapter.ViewHo
         public ImageView ivLogo;
         public ViewHolder(View v) {
             super(v);
-            txtRank = (TextView)v.findViewById(R.id.tv_rank);
+            txtRank = (TextView) v.findViewById(R.id.tv_rank);
             txtName = (TextView) v.findViewById(R.id.tv_nombre);
             txtDescr = (TextView) v.findViewById(R.id.tv_descr);
             ivLogo = (ImageView) v.findViewById(R.id.iv_logo_tutorial);

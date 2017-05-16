@@ -2,14 +2,12 @@ package com.example.usuario.webesdi;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.usuario.webesdi.empresas.Empresas;
+import com.example.usuario.webesdi.tutoriales.Tutoriales;
 // Para no tener que crear varios menús, tenemos que añadir un control del tipo de cuenta logeada
 //  (Lo podemos hacer con un extra del intent) y esconder o mostrar los botones que toquen.
 
@@ -51,7 +49,7 @@ public class MenuPrincipal extends BaseActivity {
         btnIncidencias = (Button) findViewById(R.id.btnIncidencias);
         btnEmpresas = (Button) findViewById(R.id.btnEmpresas);
         btnTutoriales = (Button) findViewById(R.id.btnTutoriales);
-        btnVacio = (Button) findViewById(R.id.btnVacio);
+        //btnVacio = (Button) findViewById(R.id.btnVacio);
 
         txtEmail = (TextView)findViewById(R.id.txtEmail);
         txtTitulo = (TextView)findViewById(R.id.txtTitulo);
@@ -107,7 +105,7 @@ public class MenuPrincipal extends BaseActivity {
         }else{
             btnIncidencias.setVisibility(View.GONE);
         }
-        btnVacio.setVisibility(View.GONE);
+        //btnVacio.setVisibility(View.GONE);
 
     }
     private void lanzarPaginaWeb(){

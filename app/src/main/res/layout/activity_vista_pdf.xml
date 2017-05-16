@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.usuario.webesdi.VistaPDF">
 
+    <com.github.barteksc.pdfviewer.PDFView
+        android:layout_width="304dp"
+        android:layout_height="437dp"
+        android:id="@+id/pdfView"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp" />
+
 </android.support.constraint.ConstraintLayout>
