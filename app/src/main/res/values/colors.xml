@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#a6a7bf</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#FF9317</color>
+    <color name="colorPrimaryDark">#C07725</color>
     <color name="colorAccent">#FF4081</color>
     <color name="grey_300">#E0E0E0</color>
     <color name="grey_100">#F5F5F5</color>
+    <color name="letrasEsdi">#01619B</color>
     <!--mensajes-->
     <color name="incids01">#F5F5F5</color>
 
