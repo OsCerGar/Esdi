@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -23,7 +24,7 @@ public class Contacto extends BaseActivity implements OnMapReadyCallback {
 
     TextView txtEmail;
     Bundle b;
-    Button numero;
+    ImageView numero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class Contacto extends BaseActivity implements OnMapReadyCallback {
 
         String nombre = b.getString("nombre");
         String email = b.getString("email");
-        numero = (Button) findViewById(R.id.numero);
+        numero = (ImageView) findViewById(R.id.numero);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
         txtEmail.setText(email + " - " + nombre);
 

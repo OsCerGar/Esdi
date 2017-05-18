@@ -39,11 +39,28 @@
             android:id="@+id/TienesDudas"
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Menu" />
 
-        <Button
-            android:text="@string/contacto_telefono"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/numero" />
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/numero"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                app:srcCompat="@drawable/telefono" />
+
+            <TextView
+                android:id="@+id/llamanos"
+                android:layout_width="156dp"
+                android:layout_height="match_parent"
+                android:gravity=""
+                android:text="@string/contacto_telefono"
+                android:layout_weight="0.56" />
+
+
+        </LinearLayout>
 
         <TextView
             android:text="@string/contacto_correo"
