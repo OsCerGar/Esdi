@@ -9,9 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,11 +19,9 @@ import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -116,6 +111,7 @@ public class Mensajes extends BaseActivity {
         btnCerrar = (Button) findViewById(R.id.btnCerrar);
         btnCancelar = (Button) findViewById(R.id.btnCancelar);
         btnScan = (Button) findViewById(R.id.btnScan);
+
         btnNuevo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 nuevo();
@@ -134,6 +130,7 @@ public class Mensajes extends BaseActivity {
             }
 
         });
+
 
 
         //inicialmente los botones, finalizar y nuevo estan ocultos, ya que no tienen uso
@@ -266,6 +263,8 @@ public class Mensajes extends BaseActivity {
 
             }
         });
+
+
 
     }
 
