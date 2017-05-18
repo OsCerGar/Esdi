@@ -3,7 +3,7 @@ package com.example.usuario.webesdi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.usuario.webesdi.empresas.Empresas;
@@ -14,18 +14,19 @@ import com.example.usuario.webesdi.tutoriales.Tutoriales;
 // como idea, podriamos substituir el mapa que tenemos ahora por noticias. Para que sea mas visual.
 
 public class MenuPrincipal extends BaseActivity {
-    Button btnpaginaweb;
-    Button btnContacto;
-    Button btnMensajes;
-    Button btndispoAulas;
-    Button btnIncidencias;
-    Button btnEmpresas;
-    Button btnTutoriales;
-    Button btnVacio;
+    ImageView btnpaginaweb;
+    ImageView btnContacto;
+    ImageView btnMensajes;
+    ImageView btndispoAulas;
+    ImageView btnIncidencias;
+    ImageView btnEmpresas;
+    ImageView btnTutoriales;
+    ImageView btnVacio;
     String email;
     String nombre;
     TextView txtEmail;
     TextView txtTitulo;
+    ImageView btnCancelar;
     Bundle b;
 
     @Override
@@ -40,16 +41,17 @@ public class MenuPrincipal extends BaseActivity {
         email = b.getString("email");
         nombre = b.getString("nombre");
 
-      //  email = Mainact.getStringExtra("email");
+        email = Mainact.getStringExtra("email");
 
-        btnpaginaweb = (Button) findViewById(R.id.btnpaginaweb);
-        btnContacto = (Button) findViewById(R.id.btnContacto);
-        btnMensajes = (Button) findViewById(R.id.btnMensajes);
-        btndispoAulas = (Button) findViewById(R.id.btndispoAulas);
-        btnIncidencias = (Button) findViewById(R.id.btnIncidencias);
-        btnEmpresas = (Button) findViewById(R.id.btnEmpresas);
-        btnTutoriales = (Button) findViewById(R.id.btnTutoriales);
+        btnpaginaweb = (ImageView) findViewById(R.id.btnpaginaweb);
+        btnContacto = (ImageView) findViewById(R.id.btnContacto);
+        btnMensajes = (ImageView) findViewById(R.id.btnMensajes);
+        btndispoAulas = (ImageView) findViewById(R.id.btndispoAulas);
+        btnIncidencias = (ImageView) findViewById(R.id.btnIncidencias);
+        btnEmpresas = (ImageView) findViewById(R.id.btnEmpresas);
+        btnTutoriales = (ImageView) findViewById(R.id.btnTutoriales);
         //btnVacio = (Button) findViewById(R.id.btnVacio);
+        //btnCancelar = (ImageView) findViewById(R.id.algo);
 
         txtEmail = (TextView)findViewById(R.id.txtEmail);
         txtTitulo = (TextView)findViewById(R.id.txtTitulo);
@@ -99,11 +101,17 @@ public class MenuPrincipal extends BaseActivity {
             }
         });
 
+        /*btnCancelar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                lanzarEmpresas();
+            }
+        });*/
+
         //solo un administrador puede entrar a incidencias
         if (b.getString("rol").equalsIgnoreCase("administrador")){
             btnIncidencias.setVisibility(View.VISIBLE);
         }else{
-            btnIncidencias.setVisibility(View.GONE);
+//            btnIncidencias.setVisibility(View.GONE);
         }
         //btnVacio.setVisibility(View.GONE);
 

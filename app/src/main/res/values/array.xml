@@ -28,13 +28,13 @@
 
     <!-- Strings para el apartado de tutoriales -->
     <string-array name="descripcionTutoriales">
-        <item>Esto es el primer item del array de strings, situado en /res/values/array</item>
-        <item>Esto es el segundo item del array de strings, situado en /res/values/array</item>
+        <item>ESDI tutorial</item>
+        <item>UAB tutorial</item>
         <item>Esto es el tercer item del array de strings, situado en /res/values/array</item>
     </string-array>
     <string-array name="descripcionCompletaTutoriales">
-        <item>Lorem</item>
-        <item>Ipsum</item>
+        <item>ESDI tutorial where you can find many information</item>
+        <item>UAB tutorial where you can find stuffs about the university</item>
         <item>.</item>
     </string-array>
 
