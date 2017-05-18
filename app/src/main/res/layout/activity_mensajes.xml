@@ -53,8 +53,8 @@
                         android:ems="10"
                         android:id="@+id/inChat"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="133dp"
-                        android:layout_width="wrap_content" />
+                        android:layout_width="wrap_content"
+                        android:background="@color/grey_100"/>
 
                     <ImageButton
                         android:layout_width="wrap_content"

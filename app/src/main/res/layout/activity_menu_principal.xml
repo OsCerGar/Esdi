@@ -44,7 +44,7 @@
                 app:layout_constraintLeft_toRightOf="@+id/btnpaginaweb"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
+                app:layout_constraintTop_toBottomOf="@+id/txtTitulo"/>
 
             <ImageView
                 android:id="@+id/btnpaginaweb"
