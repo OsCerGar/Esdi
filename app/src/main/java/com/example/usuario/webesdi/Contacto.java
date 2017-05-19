@@ -21,9 +21,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class Contacto extends BaseActivity implements OnMapReadyCallback {
 
     private GoogleMap mapa;
-    private  Button btnCorreo;
+    private ImageView btnCorreo;
 
-    TextView txtEmail;
     Bundle b;
     ImageView numero;
 
@@ -39,9 +38,8 @@ public class Contacto extends BaseActivity implements OnMapReadyCallback {
         String nombre = b.getString("nombre");
         final String email = b.getString("email");
         numero = (ImageView) findViewById(R.id.numero);
-        txtEmail = (TextView) findViewById(R.id.txtEmail);
-        btnCorreo = (Button) findViewById(R.id.btnCorreo);
-        txtEmail.setText(email + " - " + nombre);
+        btnCorreo = (ImageView) findViewById(R.id.btnCorreo);
+
 
 
         MapFragment mapFragment = (MapFragment) getFragmentManager()

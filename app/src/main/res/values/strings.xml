@@ -16,8 +16,9 @@
     <!-- contacto -->
     <string name="contacto_titulo">I.T. Dept.</string>
     <string name="contacto_subtitulo">Any question?</string>
-    <string name="contacto_telefono"> Call us 625341986</string>
-    <string name="contacto_correo">-informatica@esdi.edu.es</string>
+    <string name="contacto_telefono">Call us</string>
+    <string name="contacto_correo">Email us</string>
+    <string name="contacto_consultas">Ask us</string>
     <string name="contacto_habla">Speak with us</string>
     <string name="contacto_chat">Chat</string>
 
@@ -61,6 +62,5 @@
 
     <!-- Tutoriales -->
     <string name="visualizaPdf">View PDF</string>
-
 
 </resources>

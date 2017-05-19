@@ -17,8 +17,9 @@
     <!-- contacto -->
     <string name="contacto_titulo">DEPT. Informatica</string>
     <string name="contacto_subtitulo">Tienes dudas?</string>
-    <string name="contacto_telefono">Llamanos 625341986</string>
-    <string name="contacto_correo">-informatica@esdi.edu.es</string>
+    <string name="contacto_telefono">Llamanos</string>
+    <string name="contacto_correo">Correo</string>
+    <string name="contacto_consultas">Consulta</string>
     <string name="contacto_habla">Habla con nosotros</string>
     <string name="contacto_chat">Chat</string>
 
