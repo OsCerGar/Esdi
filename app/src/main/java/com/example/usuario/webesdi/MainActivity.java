@@ -167,7 +167,6 @@ public class MainActivity extends BaseActivity implements
 
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                iniciarActivity();
             }
         });
     }
@@ -218,6 +217,7 @@ public class MainActivity extends BaseActivity implements
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
+                iniciarActivity();
             } else {
                 // Google Sign In failed, update UI appropriately
                 // [START_EXCLUDE]
@@ -262,7 +262,6 @@ public class MainActivity extends BaseActivity implements
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
-        iniciarActivity();
     }
     // [END signin]
 
