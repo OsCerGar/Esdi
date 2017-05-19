@@ -108,13 +108,14 @@ public class MainActivity extends BaseActivity implements
 
         btnEntrar = (Button) findViewById(R.id.btnEntrar);
 
-
+/*
 //todo descomentar esta parte para saltarse el login
         Nombre = "Username";
         Email = "username@example.es";
         rol = "usuario";
         iniciarActivity();
         //descomentar hasta aqui
+        */
 
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
@@ -261,6 +262,7 @@ public class MainActivity extends BaseActivity implements
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
+        iniciarActivity();
     }
     // [END signin]
 
@@ -315,7 +317,6 @@ public class MainActivity extends BaseActivity implements
 
                 txtAcceso.setText(rol);
             }
-
 
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
