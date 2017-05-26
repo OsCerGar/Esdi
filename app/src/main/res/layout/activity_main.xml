@@ -74,7 +74,7 @@
             android:orientation="horizontal"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:visibility="gone"
+            android:visibility="visible"
             tools:visibility="visible">
 
             <Button
@@ -85,7 +85,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_weight="1"
                 android:text="@string/log_in"
-                android:theme="@style/ThemeOverlay.MyDarkButton"/>
+                android:theme="@style/ThemeOverlay.MyDarkButton" />
 
             <Button
                 android:id="@+id/sign_out_button"

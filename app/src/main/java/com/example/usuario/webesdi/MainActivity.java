@@ -74,7 +74,7 @@ public class MainActivity extends BaseActivity implements
     private String Email;
     private String rol = "";
     // direccion del archivo php en el servidor apache
-    private String URLserver = "http://192.168.1.230";
+    private String URLserver = "67.222.58.123";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -108,14 +108,14 @@ public class MainActivity extends BaseActivity implements
 
         btnEntrar = (Button) findViewById(R.id.btnEntrar);
 
-/*
+
 //todo descomentar esta parte para saltarse el login
         Nombre = "Username";
         Email = "username@example.es";
         rol = "usuario";
         iniciarActivity();
         //descomentar hasta aqui
-        */
+
 
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
@@ -378,7 +378,7 @@ public class MainActivity extends BaseActivity implements
             try {
 
 
-                url = new URL(URLserver+"/android_login/login.inc.php");
+                url = new URL(URLserver+"/ddt/sql/login.inc.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
