@@ -16,10 +16,10 @@
 
     <!-- contacto -->
     <string name="contacto_titulo">DEPT. Informàtica</string>
-    <string name="contacto_subtitulo">Tens dubtes?</string>
-    <string name="contacto_telefono">Truca\'ns</string>
+    <string name="contacto_subtitulo">Contacta amb nosaltres</string>
+    <string name="contacto_telefono">Telèfon</string>
     <string name="contacto_correo">Correu</string>
-    <string name="contacto_consultas">Consulta</string>
+    <string name="contacto_consultas">Missatgeria</string>
     <string name="contacto_habla">Parla amb nosaltres</string>
     <string name="contacto_chat">chat</string>
 
@@ -28,9 +28,11 @@
     <string name="menuP_tutoriales">Tutorials</string>
     <string name="menuP_contacto">Contacte</string>
     <string name="menuP_aulas">Disponibilitat \n aules</string>
+    <string name="menuP_aulasV2">Disponibilitat aules</string>
     <string name="menuP_mensajes">Missatges</string>
     <string name="menuP_incidencias">Incidències</string>
     <string name="menuP_empresas">Empreses\nColaboradores</string>
+    <string name="menuP_empresasV2">Empreses Colaboradores</string>
 
 
     <!-- Menu opciones -->
@@ -61,6 +63,7 @@
     <string name="seleccionarhora"> Seleccionar hora </string>
     <string name="seleccionardia"> Seleccionar dia</string>
     <string name="descrMapa">El mapa mostra la disponibilitat actual de les aules</string>
+    <string name="aceptar">Acceptar</string>
 
     <!-- Tutoriales -->
     <string name="visualizaPdf">Visualitzar PDF</string>

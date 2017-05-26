@@ -8,4 +8,6 @@
     <dimen name="icon_top_margin">24dp</dimen>
 
     <dimen name="cardCornerRadius">24dp</dimen>
+
+    <bool name="isTab">false</bool>
 </resources>
