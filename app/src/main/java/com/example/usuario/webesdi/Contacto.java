@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Button;
@@ -21,10 +22,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class Contacto extends BaseActivity implements OnMapReadyCallback {
 
     private GoogleMap mapa;
-    private ImageView btnCorreo;
+    private Button btnCorreo;
 
     Bundle b;
-    ImageView numero;
+    Button numero;
+    Button btnChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +39,9 @@ public class Contacto extends BaseActivity implements OnMapReadyCallback {
 
         String nombre = b.getString("nombre");
         final String email = b.getString("email");
-        numero = (ImageView) findViewById(R.id.numero);
-        btnCorreo = (ImageView) findViewById(R.id.btnCorreo);
-
+        numero = (Button) findViewById(R.id.botontlf);
+        btnCorreo = (Button) findViewById(R.id.botonchat);
+        btnChat = (Button) findViewById(R.id.botonmensajeria);
 
 
         MapFragment mapFragment = (MapFragment) getFragmentManager()
@@ -72,6 +74,13 @@ public class Contacto extends BaseActivity implements OnMapReadyCallback {
                 String[] cc = {  ""};
                 enviar(to, cc, "Asunto",
                         " ");
+
+            }
+        });
+
+        btnChat.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                lanzarMensajes();
 
             }
         });
@@ -113,7 +122,7 @@ public class Contacto extends BaseActivity implements OnMapReadyCallback {
                 .title("ESDI: Sabadell"));
     }
 
-    public void lanzarMensajes(View V){
+    public void lanzarMensajes(){
         Intent intent = new Intent(Contacto.this,Mensajes.class);
         intent.putExtras(b);
         startActivity(intent);

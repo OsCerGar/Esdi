@@ -278,7 +278,7 @@ public class DispoAulas extends BaseActivity {
             try {
 
 
-                url = new URL("http://67.222.58.123/ddt/sql/select.inc.php");
+                url = new URL(URLserver+"/ddt/sql/select.inc.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
