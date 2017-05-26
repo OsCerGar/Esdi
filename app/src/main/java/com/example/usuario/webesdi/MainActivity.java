@@ -74,7 +74,7 @@ public class MainActivity extends BaseActivity implements
     private String Email;
     private String rol = "";
     // direccion del archivo php en el servidor apache
-    private String URLserver = "67.222.58.123";
+    private String URLserver = "http://www.esdi-online.com/";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
