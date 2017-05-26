@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Button;
@@ -21,10 +22,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class Contacto extends BaseActivity implements OnMapReadyCallback {
 
     private GoogleMap mapa;
+    private Button btnCorreo;
 
-    TextView txtEmail;
     Bundle b;
-    ImageView numero;
+    Button numero;
+    Button btnChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +38,10 @@ public class Contacto extends BaseActivity implements OnMapReadyCallback {
         b = Mainact.getExtras();
 
         String nombre = b.getString("nombre");
-        String email = b.getString("email");
-        numero = (ImageView) findViewById(R.id.numero);
-        txtEmail = (TextView) findViewById(R.id.txtEmail);
-        txtEmail.setText(email + " - " + nombre);
+        final String email = b.getString("email");
+        numero = (Button) findViewById(R.id.botontlf);
+        btnCorreo = (Button) findViewById(R.id.botonchat);
+        btnChat = (Button) findViewById(R.id.botonmensajeria);
 
 
         MapFragment mapFragment = (MapFragment) getFragmentManager()
@@ -65,8 +67,38 @@ public class Contacto extends BaseActivity implements OnMapReadyCallback {
                 startActivity(i);
             }
         });
+        btnCorreo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Reemplazamos el email por algun otro real
+                String[] to = { "informatica@esdi.edu.es" };
+                String[] cc = {  ""};
+                enviar(to, cc, "Asunto",
+                        " ");
+
+            }
+        });
+
+        btnChat.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                lanzarMensajes();
+
+            }
+        });
     }
 
+    private void enviar(String[] to, String[] cc,
+                        String asunto, String mensaje) {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        //String[] to = direccionesEmail;
+        //String[] cc = copias;
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+        emailIntent.putExtra(Intent.EXTRA_CC, cc);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, asunto);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, mensaje);
+        emailIntent.setType("message/rfc822");
+        startActivity(Intent.createChooser(emailIntent, "Email "));
+    }
     @Override
     public void onMapReady(GoogleMap map) {
         mapa = map;
@@ -90,7 +122,7 @@ public class Contacto extends BaseActivity implements OnMapReadyCallback {
                 .title("ESDI: Sabadell"));
     }
 
-    public void lanzarMensajes(View V){
+    public void lanzarMensajes(){
         Intent intent = new Intent(Contacto.this,Mensajes.class);
         intent.putExtras(b);
         startActivity(intent);

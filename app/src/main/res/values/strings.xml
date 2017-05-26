@@ -15,9 +15,10 @@
 
     <!-- contacto -->
     <string name="contacto_titulo">I.T. Dept.</string>
-    <string name="contacto_subtitulo">Any question?</string>
-    <string name="contacto_telefono"> Call us 625341986</string>
-    <string name="contacto_correo">-informatica@esdi.edu.es</string>
+    <string name="contacto_subtitulo">Contact us by</string>
+    <string name="contacto_telefono">Phone</string>
+    <string name="contacto_correo">Email</string>
+    <string name="contacto_consultas">Messaging</string>
     <string name="contacto_habla">Speak with us</string>
     <string name="contacto_chat">Chat</string>
 
@@ -26,9 +27,11 @@
     <string name="menuP_tutoriales">Tutorials</string>
     <string name="menuP_contacto">Contact</string>
     <string name="menuP_aulas">Classroom\navailability</string>
+    <string name="menuP_aulasV2">Classroom availability</string>
     <string name="menuP_mensajes">Messages</string>
     <string name="menuP_incidencias">Incidences</string>
     <string name="menuP_empresas">Business\nPartners</string>
+    <string name="menuP_empresasV2">Business Partners</string>
 
     <!-- Menu opciones -->
     <string name="menuP_settings">Settings</string>
@@ -58,9 +61,9 @@
     <string name="seleccionarhora"> Select hour </string>
     <string name="seleccionardia"> Select day</string>
     <string name="descrMapa">The map shows the current availability of the classrooms</string>
+    <string name="aceptar">Accept</string>
 
     <!-- Tutoriales -->
     <string name="visualizaPdf">View PDF</string>
-
 
 </resources>

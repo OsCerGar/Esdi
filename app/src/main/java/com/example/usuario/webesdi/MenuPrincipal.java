@@ -1,9 +1,16 @@
 package com.example.usuario.webesdi;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
+import android.text.Layout;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.usuario.webesdi.empresas.Empresas;
@@ -29,10 +36,27 @@ public class MenuPrincipal extends BaseActivity {
     ImageView btnCancelar;
     Bundle b;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //pruebas de tablet
+
+
+
+
+        //fin pruebas tablet
         setContentView(R.layout.activity_menu_principal);
+
+
+        if(getResources().getBoolean(R.bool.isTab)) {
+
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+            Log.i("tag","pis");
+        }else{
+            Log.i("tag","caca");
+        }
 
         Intent Mainact = getIntent();
 
@@ -114,6 +138,8 @@ public class MenuPrincipal extends BaseActivity {
 //            btnIncidencias.setVisibility(View.GONE);
         }
         //btnVacio.setVisibility(View.GONE);
+
+
 
     }
     private void lanzarPaginaWeb(){

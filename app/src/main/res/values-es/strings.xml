@@ -16,9 +16,10 @@
 
     <!-- contacto -->
     <string name="contacto_titulo">DEPT. Informatica</string>
-    <string name="contacto_subtitulo">Tienes dudas?</string>
-    <string name="contacto_telefono">Llamanos 625341986</string>
-    <string name="contacto_correo">-informatica@esdi.edu.es</string>
+    <string name="contacto_subtitulo">Contacta con nosotros</string>
+    <string name="contacto_telefono">Teléfono</string>
+    <string name="contacto_correo">Correo</string>
+    <string name="contacto_consultas">Mensajería</string>
     <string name="contacto_habla">Habla con nosotros</string>
     <string name="contacto_chat">Chat</string>
 
@@ -27,9 +28,11 @@
     <string name="menuP_tutoriales">Tutoriales</string>
     <string name="menuP_contacto">Contacto</string>
     <string name="menuP_aulas">Disponibilidad \n aulas</string>
+    <string name="menuP_aulasV2">Disponibilidad aulas</string>
     <string name="menuP_mensajes">Mensajes</string>
     <string name="menuP_incidencias">Incidencias</string>
     <string name="menuP_empresas">Empresas\nColaboradoras</string>
+    <string name="menuP_empresasV2">Empreses Colaboradores</string>
 
     <!-- Menu opciones -->
     <string name="menuP_settings">Configuración</string>
@@ -59,6 +62,7 @@
     <string name="seleccionarhora"> Seleccionar hora </string>
     <string name="seleccionardia"> Seleccionar dia</string>
     <string name="descrMapa">El mapa muestra la disponibilidad actual de las aulas</string>
+    <string name="aceptar">Aceptar</string>
 
     <!-- Tutoriales -->
     <string name="visualizaPdf">Visualizar PDF</string>
