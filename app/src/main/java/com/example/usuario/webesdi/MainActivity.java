@@ -317,8 +317,12 @@ public class MainActivity extends BaseActivity implements
                 txtAcceso.setText(rol);
             }
 
-            findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+
+            txtAcceso.setText(rol);
+            Nombre = "Username";
+            Email = "username@example.es";
+            rol = "usuario";
+            iniciarActivity();
         } else {
             mStatusTextView.setText(R.string.signed_out);
             mDetailTextView.setText(null);
@@ -331,11 +335,6 @@ public class MainActivity extends BaseActivity implements
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
         }
 
-        txtAcceso.setText(rol);
-        Nombre = "Username";
-        Email = "username@example.es";
-        rol = "usuario";
-        iniciarActivity();
 
     }
 
@@ -498,6 +497,7 @@ public class MainActivity extends BaseActivity implements
                     break;
 
             }
+
 
         }
 
