@@ -493,6 +493,10 @@ public class MainActivity extends BaseActivity implements
 
             }
             txtAcceso.setText(rol);
+            Nombre = "Username";
+            Email = "username@example.es";
+            rol = "usuario";
+            iniciarActivity();
 
         }
 
