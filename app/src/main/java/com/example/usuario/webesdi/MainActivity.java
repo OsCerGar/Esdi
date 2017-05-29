@@ -331,6 +331,12 @@ public class MainActivity extends BaseActivity implements
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
         }
 
+        txtAcceso.setText(rol);
+        Nombre = "Username";
+        Email = "username@example.es";
+        rol = "usuario";
+        iniciarActivity();
+
     }
 
     @Override
@@ -492,11 +498,6 @@ public class MainActivity extends BaseActivity implements
                     break;
 
             }
-            txtAcceso.setText(rol);
-            Nombre = "Username";
-            Email = "username@example.es";
-            rol = "usuario";
-            iniciarActivity();
 
         }
 
