@@ -21,14 +21,14 @@ public class Tutoriales extends BaseActivity {
     private List<Tutorial> listaTutoriales;
     private TutorialAdapter adaptadorTutorial;
 
-    private String[] names = {"Universitat","Escuela"};
+    private String[] names = {"Impresora","Escuela"};
 
     private String[] descripcio;
 
     private String[] fullDescr;
 
     int[] pics = {
-            R.drawable.esdi,
+            R.drawable.impresora,
             R.drawable.uab};
 
     @Override

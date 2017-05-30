@@ -52,7 +52,7 @@ public class Contacto extends BaseActivity implements OnMapReadyCallback {
         numero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri num = Uri.parse("tel:625341986");
+                Uri num = Uri.parse("tel:937274819");
                 Intent i = new Intent(Intent.ACTION_CALL, num);
                 if (ActivityCompat.checkSelfPermission(Contacto.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling

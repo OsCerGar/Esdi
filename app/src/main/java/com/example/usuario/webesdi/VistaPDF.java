@@ -27,10 +27,12 @@ public class VistaPDF extends AppCompatActivity {
         Intent Mainact = getIntent();
         nom = Mainact.getStringExtra("nombre");
         //Distinguimos la variable dependiendo de que cardview vengamos
-        if(nom.equals("Universitat")){
+        if(nom.equals("impresora")){
             url="http://www.esdi.es/content/pdf/musica-y-nuevos-espacios-de-comunicacio--769-n--digital.pdf";
-        }else if (nom.equals("Escuela")){
-            url="http://www.esdi.es/content/pdf/i-guia.pdf";
+        }else if (nom.equals("ps")){
+            url="http://www.um.es/aulasenior/saavedrafajardo/apuntes/doc/Manual_photoshop.pdf";
+        }else if (nom.equals("gimp")){
+            url="http://dis.um.es/~jfernand/0506/smig/gimp.pdf";
         }
         //Funcion para cargar un pdf de internet y mostrarlo
         new urlPdf().execute(url);
