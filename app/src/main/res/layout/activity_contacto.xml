@@ -15,92 +15,111 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/TienesDudas"
-            android:layout_width="174dp"
-            android:layout_height="21dp"
-            android:gravity="center"
-            android:text="@string/contacto_subtitulo"
-            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Menu"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/Titulo"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:layout_editor_absoluteX="118dp" />
-
-        <TextView
-            android:id="@+id/Titulo"
-            android:layout_width="227dp"
-            android:layout_height="29dp"
-            android:gravity="center"
-            android:text="@string/contacto_titulo"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:layout_editor_absoluteX="14dp" />
-
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.MapFragment"
-            android:layout_width="335dp"
-            android:layout_height="316dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_marginLeft="0dp"
-            app:layout_constraintLeft_toLeftOf="parent" />
-
-        <Button
-            android:id="@+id/botontlf"
-            android:layout_width="95dp"
-            android:layout_height="75dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/botonpulsado"
-            android:drawablePadding="8dp"
-            android:drawableTop="@drawable/telefono"
-            android:paddingTop="5dp"
-            android:text="@string/contacto_telefono"
-            android:textColor="@color/letrasEsdi"
+            android:layout_marginTop="0dp"
+            android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TienesDudas" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/botonmensajeria"
-            android:layout_width="95dp"
-            android:layout_height="75dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/botonpulsado"
-            android:drawablePadding="8dp"
-            android:drawableTop="@drawable/chat"
-            android:paddingTop="5dp"
-            android:text="@string/contacto_chat"
-            android:textColor="@color/letrasEsdi"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TienesDudas" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="fill_parent"
+                android:layout_height="155dp">
 
-        <Button
-            android:id="@+id/botonchat"
-            android:layout_width="95dp"
-            android:layout_height="75dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/botonpulsado"
-            android:drawablePadding="8dp"
-            android:drawableTop="@drawable/arroba"
-            android:paddingTop="5dp"
-            android:text="@string/contacto_correo"
-            android:textColor="@color/letrasEsdi"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TienesDudas" />
+                <TextView
+                    android:id="@+id/TienesDudas"
+                    android:layout_width="174dp"
+                    android:layout_height="21dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="@string/contacto_subtitulo"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Menu"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Titulo" />
+
+                <TextView
+                    android:id="@+id/Titulo"
+                    android:layout_width="227dp"
+                    android:layout_height="29dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="@string/contacto_titulo"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/botontlf"
+                    android:layout_width="95dp"
+                    android:layout_height="75dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/botonpulsado"
+                    android:drawablePadding="8dp"
+                    android:drawableTop="@drawable/telefono"
+                    android:paddingTop="5dp"
+                    android:text="@string/contacto_telefono"
+                    android:textColor="@color/letrasEsdi"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TienesDudas" />
+
+                <Button
+                    android:id="@+id/botonmensajeria"
+                    android:layout_width="95dp"
+                    android:layout_height="75dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/botonpulsado"
+                    android:drawablePadding="8dp"
+                    android:drawableTop="@drawable/chat"
+                    android:paddingTop="5dp"
+                    android:text="@string/contacto_chat"
+                    android:textColor="@color/letrasEsdi"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TienesDudas" />
+
+                <Button
+                    android:id="@+id/botonchat"
+                    android:layout_width="95dp"
+                    android:layout_height="75dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/botonpulsado"
+                    android:drawablePadding="8dp"
+                    android:drawableTop="@drawable/arroba"
+                    android:paddingTop="5dp"
+                    android:text="@string/contacto_correo"
+                    android:textColor="@color/letrasEsdi"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TienesDudas" />
+            </android.support.constraint.ConstraintLayout>
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.MapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="-8dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+        </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
 

@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity
         btnSignIn = (SignInButton)findViewById(R.id.sign_in_button);
         btnSignOut = (Button)findViewById(R.id.sign_out_button);
         txtEmail = (TextView)findViewById(R.id.txtEmail);
+        iniciarActivity();
 
         //Google API Client
 
