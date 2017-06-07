@@ -62,7 +62,7 @@ android:layout_centerHorizontal="true" >
             android:id="@+id/btnSeleccionarD"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="60dp"
             android:layout_marginLeft="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -72,7 +72,7 @@ android:layout_centerHorizontal="true" >
             android:id="@+id/btnSeleccionarH"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="60dp"
             android:layout_marginLeft="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -80,15 +80,17 @@ android:layout_centerHorizontal="true" >
 
         <TextView
             android:id="@+id/txtDiaHora"
-            android:layout_width="103dp"
-            android:layout_height="19dp"
+            android:layout_width="104dp"
+            android:layout_height="39dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/seleccionardia"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginLeft="16dp"
+            android:text="@string/seleccionardia"
             android:textAlignment="center"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:textColor="@color/letrasEsdi"/>
+            android:textColor="@color/letrasEsdi"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
         <Button
             android:id="@+id/btnAceptar"
@@ -99,7 +101,7 @@ android:layout_centerHorizontal="true" >
             android:layout_marginLeft="19dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="50dp" />
+            android:layout_marginBottom="60dp" />
 
     </android.support.constraint.ConstraintLayout>
 

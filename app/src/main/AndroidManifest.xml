@@ -10,9 +10,9 @@
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
+        android:screenOrientation="sensor"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:screenOrientation="sensor" >
+        android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,7 @@
         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
         <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
         <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-        <uses-permission android:name="android.permission.CALL_PHONE"/>
+        <uses-permission android:name="android.permission.CALL_PHONE" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -53,7 +53,8 @@
         <activity android:name=".empresas.EmpresaExtend" />
         <activity android:name=".VistaPDF" />
         <activity android:name=".tutoriales.TutorialExtend" />
-        <activity android:name=".Ayuda"></activity>
+        <activity android:name=".Ayuda" />
+        <activity android:name=".tutoriaV2"></activity>
     </application>
 
 </manifest>

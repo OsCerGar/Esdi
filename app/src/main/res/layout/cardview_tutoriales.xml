@@ -42,13 +42,13 @@
                 android:id="@+id/tv_nombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/iv_logo_tutorial"
                 android:gravity="center"
                 android:text="Pillow Talk"
                 android:textAllCaps="true"
-                android:layout_below="@id/iv_logo_tutorial"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"

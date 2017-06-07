@@ -2,7 +2,6 @@ package com.example.usuario.webesdi;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -258,8 +257,7 @@ public class DispoAulas extends BaseActivity {
             //funcion que devuelve un string al metodo postexecute
             try {
 
-
-                url = new URL(URLserver+"/android_login/select.inc.php");
+                url = new URL("http://67.222.58.123/ddt/sql/select.inc.php");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -365,19 +363,15 @@ public class DispoAulas extends BaseActivity {
                     break;
                 case "h2":
                     cambiarh2();
-                    Toast.makeText(DispoAulas.this, "h2", Toast.LENGTH_LONG).show();
                     break;
                 case "h3":
                     cambiarh3();
-                    Toast.makeText(DispoAulas.this, "h3", Toast.LENGTH_LONG).show();
                     break;
                 case "h4":
                     cambiarh4();
-                    Toast.makeText(DispoAulas.this,"h4", Toast.LENGTH_LONG).show();
                     break;
                 case "h5":
                     cambiarh5();
-                    Toast.makeText(DispoAulas.this, "h5", Toast.LENGTH_LONG).show();
                     break;
                 /*
                 case "usuario":
@@ -391,7 +385,6 @@ public class DispoAulas extends BaseActivity {
                 default:
                     //  Log.d(TAGLOG, "======= usuario ==========   " + result);
                     // txtAcceso.setText("Acceso: " + result);
-                    Toast.makeText(DispoAulas.this, "Default", Toast.LENGTH_LONG).show();
                     break;
 
             }

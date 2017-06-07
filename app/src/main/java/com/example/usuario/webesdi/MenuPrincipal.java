@@ -178,7 +178,7 @@ public class MenuPrincipal extends BaseActivity {
     }
 
     private void lanzarTutoriales(){
-        Intent intent = new Intent(MenuPrincipal.this,Tutoriales.class);
+        Intent intent = new Intent(MenuPrincipal.this,tutoriaV2.class);
         intent.putExtras(b);
         startActivity(intent);
     }
