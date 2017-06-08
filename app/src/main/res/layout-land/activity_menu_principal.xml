@@ -36,13 +36,12 @@
                 android:layout_width="129dp"
                 android:layout_height="129dp"
                 app:srcCompat="@drawable/grupo"
-                android:layout_marginRight="0dp"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/btnpaginaweb"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
-                app:layout_constraintHorizontal_bias="0.235" />
+                app:layout_constraintRight_toLeftOf="@+id/btnContacto"
+                android:layout_marginRight="8dp" />
 
             <ImageView
                 android:id="@+id/btnpaginaweb"
@@ -60,14 +59,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="9dp"
                 android:text="@string/menuP_web"
                 android:textColor="#707070"
-                android:textSize="24sp"
+                android:textSize="22sp"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintLeft_toLeftOf="@+id/btnpaginaweb"
                 app:layout_constraintRight_toRightOf="@+id/btnpaginaweb"
-                app:layout_constraintTop_toBottomOf="@+id/btnpaginaweb"
-                app:layout_constraintHorizontal_bias="1.0" />
+                app:layout_constraintTop_toBottomOf="@+id/btnpaginaweb" />
 
             <ImageView
                 android:id="@+id/btnContacto"
@@ -88,7 +87,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/menuP_tutoriales"
                 android:textColor="#707070"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 app:layout_constraintLeft_toLeftOf="@+id/btnTutoriales"
                 app:layout_constraintRight_toRightOf="@+id/btnTutoriales"
                 app:layout_constraintTop_toBottomOf="@+id/btnTutoriales" />
@@ -99,13 +98,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginTop="9dp"
                 android:text="@string/menuP_contacto"
                 android:textColor="#707070"
-                android:textSize="24sp"
-                app:layout_constraintHorizontal_bias="0.571"
+                android:textSize="22sp"
+                app:layout_constraintHorizontal_bias="0.513"
                 app:layout_constraintLeft_toLeftOf="@+id/btnContacto"
                 app:layout_constraintRight_toRightOf="@+id/btnContacto"
-                android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/btnContacto" />
 
             <TextView
@@ -113,10 +112,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="9dp"
                 android:text="@string/menuP_aulas"
-                android:textSize="24sp"
+                android:textAlignment="center"
+                android:textSize="22sp"
                 app:layout_constraintLeft_toLeftOf="@+id/btndispoAulas"
+                app:layout_constraintRight_toRightOf="@+id/btndispoAulas"
                 app:layout_constraintTop_toBottomOf="@+id/btndispoAulas" />
 
             <ImageView
@@ -124,23 +126,25 @@
                 android:layout_width="129dp"
                 android:layout_height="129dp"
                 app:srcCompat="@drawable/sobre"
-                android:layout_marginLeft="232dp"
-                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/btndispoAulas"
-                android:layout_marginTop="-13dp" />
+                android:layout_marginTop="0dp"
+                app:layout_constraintRight_toLeftOf="@+id/btnEmpresas"
+                android:layout_marginRight="8dp"
+                app:layout_constraintLeft_toRightOf="@+id/btndispoAulas"
+                android:layout_marginLeft="8dp" />
 
             <TextView
                 android:id="@+id/textMensajes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/menuP_mensajes"
-                android:textSize="24sp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/btnMensajes"
                 android:layout_marginLeft="8dp"
-                app:layout_constraintLeft_toLeftOf="@+id/btnMensajes"
                 android:layout_marginRight="8dp"
-                app:layout_constraintRight_toRightOf="@+id/btnMensajes" />
+                android:layout_marginTop="9dp"
+                android:text="@string/menuP_mensajes"
+                android:textSize="22sp"
+                app:layout_constraintLeft_toLeftOf="@+id/btnMensajes"
+                app:layout_constraintRight_toRightOf="@+id/btnMensajes"
+                app:layout_constraintTop_toBottomOf="@+id/btnMensajes" />
 
             <ImageView
                 android:id="@+id/btnEmpresas"
@@ -152,8 +156,8 @@
                 app:layout_constraintLeft_toRightOf="@+id/btnContacto"
                 app:layout_constraintRight_toRightOf="parent"
                 app:srcCompat="@drawable/fabrica"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/textContacto" />
+                app:layout_constraintTop_toTopOf="@+id/btnMensajes"
+                android:layout_marginTop="0dp" />
 
             <TextView
                 android:id="@+id/textEmpresas"
@@ -161,12 +165,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginTop="9dp"
                 android:text="@string/menuP_empresas"
-                android:textSize="24sp"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                app:layout_constraintHorizontal_bias="0.565"
                 app:layout_constraintLeft_toLeftOf="@+id/btnEmpresas"
                 app:layout_constraintRight_toRightOf="@+id/btnEmpresas"
-                app:layout_constraintHorizontal_bias="0.555"
-                android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/btnEmpresas" />
 
             <ImageView
@@ -185,12 +190,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="9dp"
                 android:text="@string/menuP_incidencias"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 app:layout_constraintLeft_toLeftOf="@+id/btnIncidencias"
                 app:layout_constraintRight_toRightOf="@+id/btnIncidencias"
-                app:layout_constraintTop_toBottomOf="@+id/btnIncidencias" />
+                app:layout_constraintTop_toBottomOf="@+id/btnIncidencias"
+                app:layout_constraintHorizontal_bias="0.625" />
 
             <TextView
                 android:id="@+id/txtEmail"

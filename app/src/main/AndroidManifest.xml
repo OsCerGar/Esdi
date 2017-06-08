@@ -54,7 +54,7 @@
         <activity android:name=".VistaPDF" />
         <activity android:name=".tutoriales.TutorialExtend" />
         <activity android:name=".Ayuda" />
-        <activity android:name=".tutoriaV2"></activity>
+        <activity android:name=".tutoriaV2" />
     </application>
 
 </manifest>

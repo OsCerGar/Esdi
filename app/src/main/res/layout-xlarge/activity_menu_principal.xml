@@ -66,10 +66,9 @@
             android:layout_height="225dp"
             app:srcCompat="@drawable/manos"
             app:layout_constraintRight_toLeftOf="@+id/btndispoAulas"
-            android:layout_marginRight="116dp"
+            android:layout_marginRight="117dp"
             app:layout_constraintTop_toTopOf="@+id/btnTutoriales"
-            android:layout_marginTop="2dp"
-            android:layout_marginLeft="116dp" />
+            android:layout_marginTop="2dp" />
 
         <TextView
             android:id="@+id/textTutorial"
@@ -113,7 +112,8 @@
             android:textSize="36sp"
             app:layout_constraintLeft_toLeftOf="@+id/btndispoAulas"
             app:layout_constraintRight_toRightOf="@+id/btndispoAulas"
-            app:layout_constraintTop_toBottomOf="@+id/btndispoAulas" />
+            app:layout_constraintTop_toBottomOf="@+id/btndispoAulas"
+            app:layout_constraintHorizontal_bias="0.5" />
 
         <ImageView
             android:id="@+id/btnMensajes"
