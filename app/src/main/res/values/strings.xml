@@ -65,8 +65,20 @@
 
     <!-- Tutoriales -->
     <string name="visualizaPdf">View PDF</string>
+
     <!-- Servicios -->
     <string name="menuSimpresores">Printers</string>
-    <string name="menuSwifi">Wifi</string>
+    <string name="menuSwifi">Wi-Fi</string>
+
+    <!--TITULOS-->
+    <string name="titMenuP">Main Menu</string>
+    <string name="titContacto">Contact</string>
+    <string name="titWeb">Web Page</string>
+    <string name="titMensajes">Messages</string>
+    <string name="titDispoA">Classroom Availability</string>
+    <string name="titGLPI">GLPI</string>
+    <string name="titEmpresas">Business Partners</string>
+    <string name="titTutorial">Tutorials</string>
+    <string name="titServicios">Services</string>
 
 </resources>

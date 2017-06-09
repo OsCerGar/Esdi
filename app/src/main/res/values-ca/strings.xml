@@ -33,6 +33,7 @@
     <string name="menuP_incidencias">Incidències</string>
     <string name="menuP_empresas">Empreses\nColaboradores</string>
     <string name="menuP_empresasV2">Empreses Colaboradores</string>
+    <string name="menuP_estadoServicios">Serveis</string>
 
 
     <!-- Menu opciones -->
@@ -67,5 +68,20 @@
 
     <!-- Tutoriales -->
     <string name="visualizaPdf">Visualitzar PDF</string>
+
+    <!-- Servicios -->
+    <string name="menuSimpresores">Impressores</string>
+    <string name="menuSwifi">Wi-Fi</string>
+
+    <!--TITULOS-->
+    <string name="titMenuP">Menu Principal</string>
+    <string name="titContacto">Contacte</string>
+    <string name="titWeb">Pàgina Web</string>
+    <string name="titMensajes">Missatges</string>
+    <string name="titDispoA">Disponibilitat aules</string>
+    <string name="titGLPI">GLPI</string>
+    <string name="titEmpresas">Empreses Colaboradores</string>
+    <string name="titTutorial">Tutorials</string>
+    <string name="titServicios">Serveis</string>
 
 </resources>

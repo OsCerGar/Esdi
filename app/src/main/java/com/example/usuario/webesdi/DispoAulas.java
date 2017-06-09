@@ -57,6 +57,7 @@ public class DispoAulas extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dispo_aulas);
 
+        setTitle(getResources().getText(R.string.titDispoA));
         //recibe los datos de usuario a traves del bundle del intent
         Intent Mainact = getIntent();
         b = Mainact.getExtras();

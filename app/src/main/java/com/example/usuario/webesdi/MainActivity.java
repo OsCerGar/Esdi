@@ -24,7 +24,7 @@ import com.google.android.gms.common.api.Status;
 
 public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener {
-    private String[] emailpartido, administradores = {"ocerezo@esdi.edu.es","egutierred@esdi.edu.es"};
+
     private SignInButton btnSignIn;
     private Button btnSignOut;
     private TextView txtEmail;
@@ -42,7 +42,9 @@ public class MainActivity extends AppCompatActivity
         btnSignIn = (SignInButton)findViewById(R.id.sign_in_button);
         btnSignOut = (Button)findViewById(R.id.sign_out_button);
         txtEmail = (TextView)findViewById(R.id.txtEmail);
-
+        Email="asd@esdi.esdu.es";
+        Nombre="pepe";
+        iniciarActivity();
         //Google API Client
 
         GoogleSignInOptions gso =
@@ -111,7 +113,6 @@ public class MainActivity extends AppCompatActivity
         if (result.isSuccess()) {
             //Usuario logueado --> Mostramos sus datos
             GoogleSignInAccount acct = result.getSignInAccount();
-
             Email = acct.getEmail();
             Nombre = acct.getDisplayName();
             updateUI(true);
@@ -167,7 +168,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
     void iniciarActivity() {
-        comprobarRol();
         Bundle b = new Bundle();
         b.putString("email", Email);
         b.putString("nombre", Nombre);
@@ -179,20 +179,6 @@ public class MainActivity extends AppCompatActivity
         intent.putExtras(b);
 
         startActivity(intent);
-    }
-    void comprobarRol(){
-      emailpartido = Email.split("@")  ;
-        if (emailpartido[1]=="esdi.edu.es"){
-            rol = "Alumno";
-        }else {
-            rol = "Invitado";
-        }
-
-        for ( String actual: administradores) {
-            if(Email == actual){
-                rol = "Administrador";
-            }
-        }
     }
 }
 

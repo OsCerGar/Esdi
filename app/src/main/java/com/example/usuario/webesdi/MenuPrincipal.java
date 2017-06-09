@@ -19,6 +19,7 @@ public class MenuPrincipal extends BaseActivity {
     ImageView btnIncidencias;
     ImageView btnEmpresas;
     ImageView btnTutoriales;
+    ImageView btnServicios;
     ImageView btnVacio;
     String email;
     String nombre;
@@ -39,8 +40,7 @@ public class MenuPrincipal extends BaseActivity {
 
         //fin pruebas tablet
         setContentView(R.layout.activity_menu_principal);
-
-
+        setTitle(getResources().getText(R.string.titMenuP));
         if(getResources().getBoolean(R.bool.isTab)) {
 
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
@@ -65,6 +65,7 @@ public class MenuPrincipal extends BaseActivity {
         btnIncidencias = (ImageView) findViewById(R.id.btnIncidencias);
         btnEmpresas = (ImageView) findViewById(R.id.btnEmpresas);
         btnTutoriales = (ImageView) findViewById(R.id.btnTutoriales);
+        btnServicios = (ImageView) findViewById(R.id.btnServicios);
         //btnVacio = (Button) findViewById(R.id.btnVacio);
         //btnCancelar = (ImageView) findViewById(R.id.algo);
 
@@ -113,6 +114,11 @@ public class MenuPrincipal extends BaseActivity {
         btnEmpresas.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 lanzarEmpresas();
+            }
+        });
+        btnServicios.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                lanzarServicios();
             }
         });
 
@@ -170,6 +176,12 @@ public class MenuPrincipal extends BaseActivity {
 
     private void lanzarTutoriales(){
         Intent intent = new Intent(MenuPrincipal.this,tutoriaV2.class);
+        intent.putExtras(b);
+        startActivity(intent);
+    }
+
+    private void lanzarServicios(){
+        Intent intent = new Intent(MenuPrincipal.this,EstadoServicios.class);
         intent.putExtras(b);
         startActivity(intent);
     }

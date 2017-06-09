@@ -19,6 +19,7 @@ public class GLPI extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_glpi);
 
+        setTitle(getResources().getText(R.string.titGLPI));
         int color = this.obtenFondo();
 
         Intent Mainact = getIntent();

@@ -33,6 +33,7 @@ public class Contacto extends BaseActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacto);
 
+        setTitle(getResources().getText(R.string.titContacto));
         //recibe los datos de usuario a traves del bundle del intent
         Intent Mainact = getIntent();
         b = Mainact.getExtras();
