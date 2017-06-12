@@ -33,6 +33,7 @@
     <string name="menuP_empresas">Business\nPartners</string>
     <string name="menuP_empresasV2">Business Partners</string>
     <string name="menuP_estadoServicios">Services</string>
+    <string name="menuP_cafeteria">Coffe Shop</string>
     <!-- Menu opciones -->
     <string name="menuP_settings">Settings</string>
     <string name="help">Help</string>
