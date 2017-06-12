@@ -5,6 +5,7 @@
     android:id="@+id/activity_menu_principal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context="com.example.usuario.webesdi.MenuPrincipal"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
