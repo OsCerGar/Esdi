@@ -34,6 +34,7 @@
     <string name="menuP_empresas">Empresas\nColaboradoras</string>
     <string name="menuP_empresasV2">Empreses Colaboradores</string>
     <string name="menuP_estadoServicios">Servicios</string>
+    <string name="menuP_cafeteria">Cafetería</string>
 
     <!-- Menu opciones -->
     <string name="menuP_settings">Configuración</string>
