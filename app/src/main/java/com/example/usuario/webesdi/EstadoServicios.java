@@ -1,39 +1,20 @@
 package com.example.usuario.webesdi;
 
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.Inet4Address;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.net.InetAddress;
-import java.util.TimeZone;
-
-
-/**
- * Created by User on 10/05/2017.
- */
 
 public class EstadoServicios extends AppCompatActivity {
     ImageView btnimpresoras;
@@ -42,7 +23,6 @@ public class EstadoServicios extends AppCompatActivity {
     ImageView btngooglegmail;
     ImageView btngooglecalendar;
     ImageView btncantina;
-    boolean dispo;
     int diasemana,horas;
     Calendar cal = Calendar.getInstance();
 
@@ -66,6 +46,9 @@ public class EstadoServicios extends AppCompatActivity {
         new disponibilitatcantina().execute();
         new disponibilitatcalendar().execute();
 
+
+
+
     }
 
     private class disponibilitatwifi extends AsyncTask<Void, Void, Boolean>{
@@ -73,20 +56,30 @@ public class EstadoServicios extends AppCompatActivity {
         @Override
 
         protected Boolean doInBackground(Void... params) {
-            if(isReachable("192.160.50.222",80,1000)== true){
-            a = true;}else{
-                a = false;
+
+            estrobalawifi();
+            return false;
             }
-            return a;
-            }
+
+
 
         @Override
         protected void onPostExecute(Boolean color) {
             if ( color == true) {
                 btnwifi.setImageResource(R.drawable.wifi_verd);
+                btnwifi.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v)  {
+                        Toast.makeText(getBaseContext(), "La Wifi esta disponible on estas situat" , Toast.LENGTH_SHORT ).show();
+                    }
+                });
 
             } else {
                 btnwifi.setImageResource(R.drawable.wifi_vermell);
+                btnwifi.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v)  {
+                        Toast.makeText(getBaseContext(), "La Wifi no esta disponible on estas situat" , Toast.LENGTH_SHORT ).show();
+                    }
+                });
             }
 
         }
@@ -132,21 +125,41 @@ public class EstadoServicios extends AppCompatActivity {
     }
             private class disponibilitatimpresora extends AsyncTask<Void, Void, Boolean>{
             Boolean a;
+                String funciona1 = "", funciona2="",funciona3="";
             @Override
 
             protected Boolean doInBackground(Void... params) {
 
-                    if (isReachable("192.160.50.222", 80, 1000) == true) {
+                    if (isReachable("192.160.50.220", 80, 1000) == true && isReachable("192.160.50.221", 80, 1000) == true && isReachable("192.160.50.222", 80, 1000) == true ) {
                         a = true;
                     } else {
                         a = false;
                     }
 
-                    return false;
+                if (isReachable("108.177.96.147", 80, 1000) == true) {
+                    funciona1 = "funciona";
+                } else {
+                    funciona1 = "no funciona";
+                }
+
+                if (isReachable("192.160.50.221", 80, 1000) == true) {
+                    funciona2 = "funciona";
+                } else {
+                    funciona2 = "no funciona";
+                }
+
+                if (isReachable("192.160.50.222", 80, 1000) == true) {
+                    funciona3 = "funciona";
+                } else {
+                    funciona3 = "no funciona";
+                }
+
+                return false;
 
             }
             @Override
             protected void onPostExecute(Boolean color) {
+
                 if ( color == true) {
                     btnimpresoras.setImageResource(R.drawable.impresora_verda);
                     btnimpresoras.setOnClickListener(new View.OnClickListener() {
@@ -154,17 +167,18 @@ public class EstadoServicios extends AppCompatActivity {
                             Toast.makeText(getBaseContext(), "Les impresores estan operatives" , Toast.LENGTH_SHORT ).show();
                         }
                     });
-                } else {
+                }
                     btnimpresoras.setImageResource(R.drawable.impresora_vermell);
+
                     btnimpresoras.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v)  {
-                            Toast.makeText(getBaseContext(), "La impresora no esta operativa" , Toast.LENGTH_SHORT ).show();
+                            Toast.makeText(getBaseContext(), "La impresora de la primera clase:"+ funciona1 +"\n"+"La impresora de la segona clase:"+ funciona2 +"\n"+"La impresora de la tercera clase:"+ funciona3, Toast.LENGTH_SHORT ).show();
                         }
                     });
                 }
 
             }
-        }
+
         private class disponibilitatcantina extends AsyncTask<Void, Void, Boolean>{
             Boolean a;
             @Override
@@ -281,6 +295,22 @@ public class EstadoServicios extends AppCompatActivity {
         }
     }
 
+    public boolean estrobalawifi(){
+        boolean a = false;
+        WifiManager wifiManager = (WifiManager) this.getSystemService(this.WIFI_SERVICE);
+        final List<ScanResult> results = wifiManager.getScanResults();
+        if (results != null) {
+            for (int i = 0; i < results.size(); i++) {
+                String ssid = results.get(i).SSID;
+                if (ssid.startsWith("ESDiWIFI")) {
+                    a = true;}
+                else {
+                    a = false;
+                }
+            }
+        }
+        return a;
+    }
 
 }
 
