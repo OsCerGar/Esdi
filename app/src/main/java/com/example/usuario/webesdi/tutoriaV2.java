@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class tutoriaV2 extends AppCompatActivity {
+public class tutoriaV2 extends BaseActivity {
 
     private ImageView impresora,ps,gimp;
 
@@ -15,6 +15,7 @@ public class tutoriaV2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutoria_v2);
 
+        setTitle(getResources().getText(R.string.titTutorial));
         impresora = (ImageView) findViewById(R.id.imgImpresora);
         ps = (ImageView) findViewById(R.id.imgPS);
         gimp = (ImageView) findViewById(R.id.imgGimp);

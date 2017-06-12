@@ -42,6 +42,7 @@ public class Empresas extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empresas);
 
+        setTitle(getResources().getText(R.string.titEmpresas));
         descripcio =  getResources().getStringArray(R.array.descripcionEmpresa);
         fullDescr =  getResources().getStringArray(R.array.descripcionCompletaEmpresa);
 

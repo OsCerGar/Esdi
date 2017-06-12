@@ -82,7 +82,7 @@ public class Mensajes extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mensajes);
-
+        setTitle(getResources().getText(R.string.titMensajes));
 
         //recibe los datos de usuario a traves del bundle del intent
         Intent Mainact = getIntent();

@@ -1,24 +1,15 @@
 package com.example.usuario.webesdi;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.usuario.webesdi.empresas.Empresas;
-import com.example.usuario.webesdi.tutoriales.Tutoriales;
-// Para no tener que crear varios menús, tenemos que añadir un control del tipo de cuenta logeada
-//  (Lo podemos hacer con un extra del intent) y esconder o mostrar los botones que toquen.
 
-// como idea, podriamos substituir el mapa que tenemos ahora por noticias. Para que sea mas visual.
 
 public class MenuPrincipal extends BaseActivity {
     ImageView btnpaginaweb;
@@ -27,8 +18,8 @@ public class MenuPrincipal extends BaseActivity {
     ImageView btndispoAulas;
     ImageView btnIncidencias;
     ImageView btnEmpresas;
-    ImageView btnestadoServicios;
     ImageView btnTutoriales;
+    ImageView btnServicios;
     ImageView btnVacio;
     String email;
     String nombre;
@@ -49,8 +40,7 @@ public class MenuPrincipal extends BaseActivity {
 
         //fin pruebas tablet
         setContentView(R.layout.activity_menu_principal);
-
-
+        setTitle(getResources().getText(R.string.titMenuP));
         if(getResources().getBoolean(R.bool.isTab)) {
 
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
@@ -75,7 +65,7 @@ public class MenuPrincipal extends BaseActivity {
         btnIncidencias = (ImageView) findViewById(R.id.btnIncidencias);
         btnEmpresas = (ImageView) findViewById(R.id.btnEmpresas);
         btnTutoriales = (ImageView) findViewById(R.id.btnTutoriales);
-        btnestadoServicios = (ImageView) findViewById(R.id.btnestadoServicios);
+        btnServicios = (ImageView) findViewById(R.id.btnServicios);
         //btnVacio = (Button) findViewById(R.id.btnVacio);
         //btnCancelar = (ImageView) findViewById(R.id.algo);
 
@@ -126,10 +116,9 @@ public class MenuPrincipal extends BaseActivity {
                 lanzarEmpresas();
             }
         });
-        btnestadoServicios.setOnClickListener(new View.OnClickListener() {
+        btnServicios.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                lanzarEstadoServicios();
-
+                lanzarServicios();
             }
         });
 
@@ -140,7 +129,7 @@ public class MenuPrincipal extends BaseActivity {
         });*/
 
         //solo un administrador puede entrar a incidencias
-        if (b.getString("rol").equalsIgnoreCase("administrador")){
+        if (b.getString("rol").equalsIgnoreCase("Administrador")){
             btnIncidencias.setVisibility(View.VISIBLE);
         }else{
 //            btnIncidencias.setVisibility(View.GONE);
@@ -190,9 +179,11 @@ public class MenuPrincipal extends BaseActivity {
         intent.putExtras(b);
         startActivity(intent);
     }
-    private void lanzarEstadoServicios(){
+
+    private void lanzarServicios(){
         Intent intent = new Intent(MenuPrincipal.this,EstadoServicios.class);
         intent.putExtras(b);
         startActivity(intent);
     }
+
 }

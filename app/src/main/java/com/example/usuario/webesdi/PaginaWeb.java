@@ -14,7 +14,7 @@ public class PaginaWeb extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagina_web);
-
+        setTitle(getResources().getText(R.string.titWeb));
         int color = this.obtenFondo();
 
         //trabaja con el webView del xml, simplemente le hace cargar una URL dentro de la app.

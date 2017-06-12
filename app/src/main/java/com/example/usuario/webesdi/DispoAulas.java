@@ -37,9 +37,10 @@ public class DispoAulas extends BaseActivity {
     ImageView ivMapa,h1,h2,h3,h4,h5;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
-    ImageView btnSeleccionarH,btnSeleccionarD;
+    ImageView btnSeleccionarD;
+    Button btnSeleccionarH;
     Bundle b;
-    TextView txtDiaHora;
+
     Button btnAceptar;
 
     boolean dpseleccionado = false,tpseleccionado = false,paso1= false,paso2 = false;
@@ -55,6 +56,7 @@ public class DispoAulas extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dispo_aulas);
 
+        setTitle(getResources().getText(R.string.titDispoA));
         //recibe los datos de usuario a traves del bundle del intent
         Intent Mainact = getIntent();
         b = Mainact.getExtras();
@@ -67,10 +69,9 @@ public class DispoAulas extends BaseActivity {
         h3 = (ImageView)findViewById(R.id.h3);
         h4 = (ImageView)findViewById(R.id.h4);
         h5 = (ImageView)findViewById(R.id.h5);
-        btnSeleccionarH = (ImageView) findViewById(R.id.btnSeleccionarH);
+        btnSeleccionarH = (Button) findViewById(R.id.btnSeleccionarH);
         btnSeleccionarD = (ImageView) findViewById(R.id.btnSeleccionarD);
         btnAceptar = (Button) findViewById(R.id.btnAceptar);
-        txtDiaHora = (TextView) findViewById(R.id.txtDiaHora);
 
         //informacion del momento actual usando la libreria Calendar
         diasemana = cal.get(Calendar.DAY_OF_WEEK);
@@ -168,7 +169,6 @@ public class DispoAulas extends BaseActivity {
         btnSeleccionarD.setVisibility(View.INVISIBLE);
         btnSeleccionarH.setVisibility(View.INVISIBLE);
         btnAceptar.setVisibility(View.VISIBLE);
-        txtDiaHora.setText(R.string.aceptar);
 
         cal.set(dp.getYear(),dp.getMonth(),dp.getDayOfMonth());
         diasemana = cal.get(Calendar.DAY_OF_WEEK);
@@ -199,7 +199,6 @@ public class DispoAulas extends BaseActivity {
             dp.setVisibility(View.VISIBLE);
             btnSeleccionarH.setVisibility(View.VISIBLE);
             btnSeleccionarD.setVisibility(View.GONE);
-            txtDiaHora.setText(R.string.seleccionarhora);
 
     }
 
@@ -213,7 +212,6 @@ public class DispoAulas extends BaseActivity {
         tp.setVisibility(View.INVISIBLE);
         btnSeleccionarD.setVisibility(View.VISIBLE);
         btnAceptar.setVisibility(View.INVISIBLE);
-        txtDiaHora.setText(R.string.seleccionardia);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             horas = tp.getHour();

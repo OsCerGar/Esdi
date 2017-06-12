@@ -13,7 +13,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class VistaPDF extends AppCompatActivity {
+public class VistaPDF extends BaseActivity {
 
     PDFView pdfView;
     private String nom;
@@ -23,6 +23,8 @@ public class VistaPDF extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vista_pdf);
+
+        setTitle("PDF");
         //Recogemos la variable
         Intent Mainact = getIntent();
         nom = Mainact.getStringExtra("nombre");

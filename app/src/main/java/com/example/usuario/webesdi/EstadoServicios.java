@@ -48,9 +48,10 @@ public class EstadoServicios extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estado_servicios);
+
+        setTitle(getResources().getText(R.string.titServicios));
         btnimpresoras  = (ImageView) findViewById(R.id.btnimpresoras);
         btnwifi = (ImageView) findViewById(R.id.btnwifi);
         btngoogledocs = (ImageView) findViewById(R.id.btnGoogleDocs);
