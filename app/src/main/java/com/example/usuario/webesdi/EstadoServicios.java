@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
@@ -37,12 +38,13 @@ import java.util.TimeZone;
 public class EstadoServicios extends AppCompatActivity {
     ImageView btnimpresoras;
     ImageView btnwifi;
-    ImageView btngoogleapps;
+    ImageView btngoogledocs;
+    ImageView btngooglegmail;
+    ImageView btngooglecalendar;
     ImageView btncantina;
     boolean dispo;
-    int diasemana,horas,minutos;
+    int diasemana,horas;
     Calendar cal = Calendar.getInstance();
-    String dia = "Finde";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,35 +53,18 @@ public class EstadoServicios extends AppCompatActivity {
         setContentView(R.layout.activity_estado_servicios);
         btnimpresoras  = (ImageView) findViewById(R.id.btnimpresoras);
         btnwifi = (ImageView) findViewById(R.id.btnwifi);
-        btngoogleapps = (ImageView) findViewById(R.id.btnGoogleApps);
+        btngoogledocs = (ImageView) findViewById(R.id.btnGoogleDocs);
         btncantina = (ImageView) findViewById(R.id.btncantina);
+        btngooglegmail = (ImageView) findViewById(R.id.btnGoogleGmail);
+        btngooglecalendar = (ImageView) findViewById(R.id.btnGoogleCalendar);
 
         new disponibilitatwifi().execute();
-        new disponibilitatgooleapps().execute();
+        new disponibilitatdocs().execute();
+        new disponibilitatgmail().execute();
         new disponibilitatimpresora().execute();
         new disponibilitatcantina().execute();
+        new disponibilitatcalendar().execute();
 
-
-        btnimpresoras.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-            }
-        });
-
-        btnwifi.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            }
-        });
-
-        btngoogleapps.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            }
-        });
-
-        btncantina.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            }
-        });
     }
 
     private class disponibilitatwifi extends AsyncTask<Void, Void, Boolean>{
@@ -87,16 +72,10 @@ public class EstadoServicios extends AppCompatActivity {
         @Override
 
         protected Boolean doInBackground(Void... params) {
-            try {
-                Inet4Address address;
-                address = (Inet4Address) InetAddress.getByName("173.194.69.105");
-
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(isReachable("192.160.50.222",80,1000)== true){
+            a = true;}else{
+                a = false;
             }
-            a = true;
             return a;
             }
 
@@ -104,23 +83,24 @@ public class EstadoServicios extends AppCompatActivity {
         protected void onPostExecute(Boolean color) {
             if ( color == true) {
                 btnwifi.setImageResource(R.drawable.wifi_verd);
+
             } else {
                 btnwifi.setImageResource(R.drawable.wifi_vermell);
             }
 
         }
     }
-    private class disponibilitatgooleapps extends AsyncTask<Void, Void, Boolean> {
+    private class disponibilitatdocs extends AsyncTask<Void, Void, Boolean> {
         Boolean a;
 
         @Override
 
         protected Boolean doInBackground(Void... params) {
-           if(isReachable("192.160.50.222",80,1000)== true){
+           if(isReachable("docs.esdi.edu.es",80,1000)== true){
                a = true;
            }
            else{
-                   a = false;
+               a = false;
                }
                return a;
            }
@@ -132,9 +112,19 @@ public class EstadoServicios extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean color) {
             if (color == true) {
-                btngoogleapps.setImageResource(R.drawable.googleapps_verd);
+                btngoogledocs.setImageResource(R.drawable.docs_verd);
+                btngoogledocs.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v)  {
+                        Toast.makeText(getBaseContext(), "Google docs funciona correctament" , Toast.LENGTH_SHORT ).show();
+                    }
+                });
             } else {
-                btngoogleapps.setImageResource(R.drawable.googleapps_vermell);
+                btngoogledocs.setImageResource(R.drawable.docs_vermell);
+                btngoogledocs.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v)  {
+                        Toast.makeText(getBaseContext(), "Google docs no esta operatiu " , Toast.LENGTH_SHORT ).show();
+                    }
+                });
             }
 
         }
@@ -144,26 +134,32 @@ public class EstadoServicios extends AppCompatActivity {
             @Override
 
             protected Boolean doInBackground(Void... params) {
-                try {
-                    if (InetAddress.getByName("173.194.69.105").isReachable(1000) == true) {
+
+                    if (isReachable("192.160.50.222", 80, 1000) == true) {
                         a = true;
-                    }else{
+                    } else {
                         a = false;
                     }
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return false;
-            }
 
+                    return false;
+
+            }
             @Override
             protected void onPostExecute(Boolean color) {
                 if ( color == true) {
                     btnimpresoras.setImageResource(R.drawable.impresora_verda);
+                    btnimpresoras.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v)  {
+                            Toast.makeText(getBaseContext(), "Les impresores estan operatives" , Toast.LENGTH_SHORT ).show();
+                        }
+                    });
                 } else {
                     btnimpresoras.setImageResource(R.drawable.impresora_vermell);
+                    btnimpresoras.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v)  {
+                            Toast.makeText(getBaseContext(), "La impresora no esta operativa" , Toast.LENGTH_SHORT ).show();
+                        }
+                    });
                 }
 
             }
@@ -175,9 +171,9 @@ public class EstadoServicios extends AppCompatActivity {
             protected Boolean doInBackground(Void... params) {
                 diasemana = cal.get(Calendar.DAY_OF_WEEK);
                 horas = cal.get(Calendar.HOUR_OF_DAY);
-                minutos = cal.get(Calendar.MINUTE);
                 if ((diasemana==2 || diasemana==3 || diasemana==4 || diasemana==5 || diasemana==6) && (horas>=8 || horas<19)){
                         a = true;
+
                     }else{
                     a = false;
                 }
@@ -188,15 +184,92 @@ public class EstadoServicios extends AppCompatActivity {
             protected void onPostExecute(Boolean color) {
                 if ( color == true) {
                     btncantina.setImageResource(R.drawable.cantina_verd);
+                    btncantina.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v)  {
+                            Toast.makeText(getBaseContext(), "La cantina esta oberta" , Toast.LENGTH_SHORT ).show();
+                        }
+                    });
                 } else {
                     btncantina.setImageResource(R.drawable.cantina_vermell);
+                    btncantina.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v)  {
+                            Toast.makeText(getBaseContext(), "La cantina esta tancada" , Toast.LENGTH_SHORT ).show();
+                        }
+                    });
                 }
 
             }
         }
+    private class disponibilitatgmail extends AsyncTask<Void, Void, Boolean>{
+        Boolean a;
+        @Override
+
+        protected Boolean doInBackground(Void... params) {
+
+
+            if (isReachable("mail.esdi.edu.es", 80, 1000) == true) {
+                a = true;
+            } else {
+                a = false;
+            }
+            return a;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean color) {
+            if ( color == true) {
+                btngooglegmail.setImageResource(R.drawable.gmail_verd);
+                btngooglegmail.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v)  {
+                        Toast.makeText(getBaseContext(), "El gmail funciona correctament" , Toast.LENGTH_SHORT ).show();
+                    }
+                });
+            } else {
+                btngooglegmail.setImageResource(R.drawable.gmail_vermell);
+                btngooglegmail.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v)  {
+                        Toast.makeText(getBaseContext(), "El gmail no esta operatiu" , Toast.LENGTH_SHORT ).show();
+                    }
+                });
+            }
+
+        }
+    }
+    private class disponibilitatcalendar extends AsyncTask<Void, Void, Boolean>{
+        Boolean a;
+        @Override
+
+        protected Boolean doInBackground(Void... params) {
+            if (isReachable("calendar.esdi.edu.es", 80, 1000) == true) {
+                a = true;
+            } else {
+                a = false;
+            }
+            return a;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean color) {
+            if ( color == true) {
+                btngooglecalendar.setImageResource(R.drawable.calendari_verd);
+                btngooglecalendar.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v)  {
+                        Toast.makeText(getBaseContext(), "El Google Calendar funciona correctament" , Toast.LENGTH_SHORT ).show();
+                    }
+                });
+            } else {
+                btngooglecalendar.setImageResource(R.drawable.calendari_vermell);
+                btngooglecalendar.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v)  {
+                        Toast.makeText(getBaseContext(), "El Google Calendar no esta operatiu" , Toast.LENGTH_SHORT ).show();
+                    }
+                });
+            }
+
+        }
+    }
+
     private static boolean isReachable(String addr, int openPort, int timeOutMillis) {
-        // Any Open port on other machine
-        // openPort =  22 - ssh, 80 or 443 - webserver, 25 - mailserver etc.
         try {
             try (Socket soc = new Socket()) {
                 soc.connect(new InetSocketAddress(addr, openPort), timeOutMillis);
