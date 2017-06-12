@@ -1,5 +1,6 @@
 package com.example.usuario.webesdi;
 
+import android.content.Context;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -56,9 +57,19 @@ public class EstadoServicios extends AppCompatActivity {
         @Override
 
         protected Boolean doInBackground(Void... params) {
-
-            estrobalawifi();
-            return false;
+            WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            final List<ScanResult> results = wifi.getScanResults();
+            if (results != null) {
+                for (int i = 0; i < results.size(); i++) {
+                    String ssid = results.get(i).SSID;
+                    if (ssid.startsWith("ESDiWIFI")) {
+                        a = true;}
+                    else {
+                        a = false;
+                    }
+                }
+            }
+            return a;
             }
 
 
@@ -293,23 +304,6 @@ public class EstadoServicios extends AppCompatActivity {
         } catch (IOException ex) {
             return false;
         }
-    }
-
-    public boolean estrobalawifi(){
-        boolean a = false;
-        WifiManager wifiManager = (WifiManager) this.getSystemService(this.WIFI_SERVICE);
-        final List<ScanResult> results = wifiManager.getScanResults();
-        if (results != null) {
-            for (int i = 0; i < results.size(); i++) {
-                String ssid = results.get(i).SSID;
-                if (ssid.startsWith("ESDiWIFI")) {
-                    a = true;}
-                else {
-                    a = false;
-                }
-            }
-        }
-        return a;
     }
 
 }
