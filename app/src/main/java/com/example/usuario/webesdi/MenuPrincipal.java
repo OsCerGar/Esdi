@@ -27,6 +27,7 @@ public class MenuPrincipal extends BaseActivity {
     ImageView btndispoAulas;
     ImageView btnIncidencias;
     ImageView btnEmpresas;
+    ImageView btnestadoServicios;
     ImageView btnTutoriales;
     ImageView btnVacio;
     String email;
@@ -74,6 +75,7 @@ public class MenuPrincipal extends BaseActivity {
         btnIncidencias = (ImageView) findViewById(R.id.btnIncidencias);
         btnEmpresas = (ImageView) findViewById(R.id.btnEmpresas);
         btnTutoriales = (ImageView) findViewById(R.id.btnTutoriales);
+        btnestadoServicios = (ImageView) findViewById(R.id.btnestadoServicios);
         //btnVacio = (Button) findViewById(R.id.btnVacio);
         //btnCancelar = (ImageView) findViewById(R.id.algo);
 
@@ -122,6 +124,12 @@ public class MenuPrincipal extends BaseActivity {
         btnEmpresas.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 lanzarEmpresas();
+            }
+        });
+        btnestadoServicios.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                lanzarEstadoServicios();
+
             }
         });
 
@@ -182,5 +190,9 @@ public class MenuPrincipal extends BaseActivity {
         intent.putExtras(b);
         startActivity(intent);
     }
-
+    private void lanzarEstadoServicios(){
+        Intent intent = new Intent(MenuPrincipal.this,EstadoServicios.class);
+        intent.putExtras(b);
+        startActivity(intent);
+    }
 }

@@ -47,7 +47,6 @@ public class DispoAulas extends BaseActivity {
     //Todos los tiempo que nos interesan
 
     int diasemana,horas,minutos;
-        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         Calendar cal = Calendar.getInstance();
     String dia = "Finde";
 
