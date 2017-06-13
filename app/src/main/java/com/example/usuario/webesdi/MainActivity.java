@@ -18,7 +18,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
@@ -32,7 +31,6 @@ public class MainActivity extends AppCompatActivity
 
     private GoogleApiClient apiClient;
     private static final int RC_SIGN_IN = 1001;
-
     private ProgressDialog progressDialog;
 
     @Override
@@ -42,11 +40,14 @@ public class MainActivity extends AppCompatActivity
         btnSignIn = (SignInButton)findViewById(R.id.sign_in_button);
         btnSignOut = (Button)findViewById(R.id.sign_out_button);
         txtEmail = (TextView)findViewById(R.id.txtEmail);
+
+
+             /*
         Email="asd@esdi.esdu.es";
         Nombre="pepe";
         iniciarActivity();
         //Google API Client
-
+            */
         GoogleSignInOptions gso =
                 new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                         .requestEmail()
@@ -87,7 +88,6 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-
         updateUI(false);
     }
 
@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity
             GoogleSignInAccount acct = result.getSignInAccount();
             Email = acct.getEmail();
             Nombre = acct.getDisplayName();
+
             updateUI(true);
         } else {
             //Usuario no logueado --> Lo mostramos como "Desconectado"
@@ -124,49 +125,16 @@ public class MainActivity extends AppCompatActivity
 
     private void updateUI(boolean signedIn) {
         if (signedIn) {
-            iniciarActivity();
+
+                iniciarActivity();
         } else {
 
             btnSignIn.setVisibility(View.VISIBLE);
-            btnSignOut.setVisibility(View.GONE);
+            btnSignOut.setVisibility(View.VISIBLE);
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
-        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(apiClient);
-        if (opr.isDone()) {
-            GoogleSignInResult result = opr.get();
-            handleSignInResult(result);
-        } else {
-            showProgressDialog();
-            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @Override
-                public void onResult(GoogleSignInResult googleSignInResult) {
-                    hideProgressDialog();
-                    handleSignInResult(googleSignInResult);
-                }
-            });
-        }
-    }
-
-    private void showProgressDialog() {
-        if (progressDialog == null) {
-            progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Silent SignI-In");
-            progressDialog.setIndeterminate(true);
-        }
-
-        progressDialog.show();
-    }
-
-    private void hideProgressDialog() {
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.hide();
-        }
-    }
     void iniciarActivity() {
         Bundle b = new Bundle();
         b.putString("email", Email);

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.VisibleForTesting;
@@ -44,16 +43,16 @@ public class BaseActivity extends AppCompatActivity {
             case R.id.configuracion:
                 lanzarSettings();
                 return true;
-            case R.id.help:
-                lanzaAyuda();
+            case R.id.desconection:
+                lanzaDesconexion();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-    private void lanzaAyuda(){
+    private void lanzaDesconexion(){
         Bundle extras = getIntent().getExtras();
-        Intent intent = new Intent(this,Ayuda.class);
+        Intent intent = new Intent(this,MainActivity.class);
         intent.putExtras(extras);
         startActivity(intent);
     }
