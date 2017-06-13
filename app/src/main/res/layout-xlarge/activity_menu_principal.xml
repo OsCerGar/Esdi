@@ -18,28 +18,32 @@
 
         <ImageView
             android:id="@+id/btndispoAulas"
-            android:layout_width="225dp"
-            android:layout_height="225dp"
-            app:srcCompat="@drawable/monitor"
-            android:layout_marginRight="16dp"
-            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
+            android:layout_marginTop="-12dp"
             app:layout_constraintTop_toTopOf="@+id/btnContacto"
-            android:layout_marginTop="0dp" />
+            app:srcCompat="@drawable/monitor"
+            app:layout_constraintRight_toLeftOf="@+id/btnMensajes"
+            android:layout_marginRight="8dp"
+            app:layout_constraintLeft_toRightOf="@+id/btnContacto"
+            android:layout_marginLeft="8dp" />
 
         <ImageView
             android:id="@+id/btnTutoriales"
-            android:layout_width="225dp"
-            android:layout_height="225dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
             android:layout_marginTop="12dp"
             app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
             app:srcCompat="@drawable/grupo"
             app:layout_constraintLeft_toRightOf="@+id/btnpaginaweb"
-            android:layout_marginLeft="115dp" />
+            android:layout_marginLeft="8dp"
+            app:layout_constraintRight_toLeftOf="@+id/btnContacto"
+            android:layout_marginRight="8dp" />
 
         <ImageView
             android:id="@+id/btnpaginaweb"
-            android:layout_width="225dp"
-            android:layout_height="225dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -63,13 +67,13 @@
 
         <ImageView
             android:id="@+id/btnContacto"
-            android:layout_width="225dp"
-            android:layout_height="225dp"
-            app:srcCompat="@drawable/manos"
-            app:layout_constraintRight_toLeftOf="@+id/btndispoAulas"
-            android:layout_marginRight="117dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
+            android:layout_marginTop="-70dp"
             app:layout_constraintTop_toTopOf="@+id/btnTutoriales"
-            android:layout_marginTop="2dp" />
+            app:srcCompat="@drawable/manos"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
             android:id="@+id/textTutorial"
@@ -86,45 +90,29 @@
             app:layout_constraintTop_toBottomOf="@+id/btnTutoriales" />
 
         <TextView
-            android:id="@+id/textContacto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="29dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/menuP_contacto"
-            android:textColor="#707070"
-            android:textSize="36sp"
-            app:layout_constraintBottom_toTopOf="@+id/btnMensajes"
-            app:layout_constraintHorizontal_bias="0.491"
-            app:layout_constraintLeft_toLeftOf="@+id/btnContacto"
-            app:layout_constraintRight_toRightOf="@+id/btnContacto"
-            app:layout_constraintTop_toBottomOf="@+id/btnContacto" />
-
-        <TextView
             android:id="@+id/textAluas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/menuP_aulasV2"
+            android:text="@string/menuP_aulas"
+            android:textAlignment="center"
             android:textSize="36sp"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="@+id/btndispoAulas"
             app:layout_constraintRight_toRightOf="@+id/btndispoAulas"
-            app:layout_constraintTop_toBottomOf="@+id/btndispoAulas"
-            app:layout_constraintHorizontal_bias="0.5" />
+            app:layout_constraintTop_toBottomOf="@+id/btndispoAulas" />
 
         <ImageView
             android:id="@+id/btnMensajes"
-            android:layout_width="225dp"
-            android:layout_height="225dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
             app:srcCompat="@drawable/sobre"
-            android:layout_marginLeft="16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/textWeb" />
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btndispoAulas"
+            android:layout_marginTop="0dp" />
 
         <TextView
             android:id="@+id/textMensajes"
@@ -141,19 +129,18 @@
 
         <TextView
             android:id="@+id/textEmpresas"
-            android:layout_width="292dp"
-            android:layout_height="65dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginTop="8dp"
-            android:text="@string/menuP_empresasV2"
-            android:textAlignment="center"
+            android:text="@string/menuP_empresas"
             android:textSize="36sp"
+            app:layout_constraintHorizontal_bias="0.488"
             app:layout_constraintLeft_toLeftOf="@+id/btnEmpresas"
             app:layout_constraintRight_toRightOf="@+id/btnEmpresas"
             app:layout_constraintTop_toBottomOf="@+id/btnEmpresas"
-            tools:layout_editor_absoluteY="611dp"
-            app:layout_constraintHorizontal_bias="0.488" />
+            tools:layout_editor_absoluteY="611dp" />
 
         <TextView
             android:id="@+id/textView3"
@@ -186,30 +173,33 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textSize="18sp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/txtEmail"
-            android:layout_marginLeft="16dp"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            android:layout_marginLeft="1155dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp" />
 
         <ImageView
             android:id="@+id/btnEmpresas"
-            android:layout_width="225dp"
-            android:layout_height="225dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
             app:srcCompat="@drawable/fabrica"
-            app:layout_constraintLeft_toRightOf="@+id/btnMensajes"
-            android:layout_marginLeft="115dp"
-            app:layout_constraintTop_toTopOf="@+id/btnMensajes"
-            android:layout_marginTop="0dp" />
+            android:layout_marginLeft="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="64dp"
+            app:layout_constraintTop_toBottomOf="@+id/textWeb" />
 
         <ImageView
             android:id="@+id/btnIncidencias"
-            android:layout_width="225dp"
-            android:layout_height="225dp"
-            app:srcCompat="@drawable/cruz"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
+            android:layout_marginTop="-68dp"
             app:layout_constraintTop_toTopOf="@+id/btnEmpresas"
-            android:layout_marginTop="0dp"
-            android:layout_marginRight="16dp"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:srcCompat="@drawable/cruz"
+            app:layout_constraintLeft_toRightOf="@+id/btnCafe"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            app:layout_constraintRight_toRightOf="@+id/btndispoAulas"
+            app:layout_constraintHorizontal_bias="1.0" />
 
         <TextView
             android:id="@+id/textView2"
@@ -224,26 +214,68 @@
 
         <ImageView
             android:id="@+id/btnServicios"
-            android:layout_width="225dp"
-            android:layout_height="225dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
             android:layout_marginTop="0dp"
             app:layout_constraintTop_toTopOf="@+id/btnIncidencias"
             app:srcCompat="@drawable/servicio"
-            app:layout_constraintRight_toLeftOf="@+id/btnIncidencias"
-            android:layout_marginRight="117dp" />
+            app:layout_constraintLeft_toRightOf="@+id/btnEmpresas"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintRight_toLeftOf="@+id/btnCafe"
+            android:layout_marginRight="8dp" />
 
         <TextView
             android:id="@+id/txtServeis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="9dp"
             android:text="@string/menuP_estadoServicios"
-            android:textSize="22sp"
-            app:layout_constraintTop_toBottomOf="@+id/btnIncidencias"
-            android:layout_marginRight="8dp"
+            android:textSize="36sp"
+            app:layout_constraintLeft_toLeftOf="@+id/btnServicios"
             app:layout_constraintRight_toRightOf="@+id/btnServicios"
+            app:layout_constraintTop_toBottomOf="@+id/btnIncidencias" />
+
+        <TextView
+            android:id="@+id/textContacto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="29dp"
             android:layout_marginLeft="8dp"
-            app:layout_constraintLeft_toLeftOf="@+id/btnServicios" />
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/menuP_contacto"
+            android:textColor="#707070"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnMensajes"
+            app:layout_constraintLeft_toLeftOf="@+id/btnContacto"
+            app:layout_constraintRight_toRightOf="@+id/btnContacto"
+            app:layout_constraintTop_toBottomOf="@+id/btnContacto"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/btnCafe"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
+            android:layout_marginTop="1dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnServicios"
+            app:srcCompat="@drawable/cafeteria" />
+
+        <TextView
+            android:id="@+id/txtCafe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/menuP_cafeteria"
+            android:textSize="36sp"
+            app:layout_constraintLeft_toLeftOf="@+id/btnCafe"
+            app:layout_constraintRight_toRightOf="@+id/btnCafe"
+            app:layout_constraintTop_toBottomOf="@+id/btnCafe" />
 
     </android.support.constraint.ConstraintLayout>
 </RelativeLayout>

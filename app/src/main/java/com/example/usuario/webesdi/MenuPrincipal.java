@@ -19,13 +19,9 @@ public class MenuPrincipal extends BaseActivity {
     ImageView btnIncidencias;
     ImageView btnEmpresas;
     ImageView btnTutoriales;
-    ImageView btnVacio;
     ImageView btnServicios;
     String email;
     String nombre;
-    TextView txtEmail;
-    TextView txtTitulo;
-    ImageView btnCancelar;
     Bundle b;
 
 
@@ -40,8 +36,7 @@ public class MenuPrincipal extends BaseActivity {
 
         //fin pruebas tablet
         setContentView(R.layout.activity_menu_principal);
-
-
+        setTitle(getResources().getText(R.string.titMenuP));
         if(getResources().getBoolean(R.bool.isTab)) {
 
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
@@ -67,13 +62,8 @@ public class MenuPrincipal extends BaseActivity {
         btnEmpresas = (ImageView) findViewById(R.id.btnEmpresas);
         btnTutoriales = (ImageView) findViewById(R.id.btnTutoriales);
         btnServicios = (ImageView) findViewById(R.id.btnServicios);
+        //btnVacio = (Button) findViewById(R.id.btnVacio);
         //btnCancelar = (ImageView) findViewById(R.id.algo);
-
-        txtEmail = (TextView)findViewById(R.id.txtEmail);
-        txtTitulo = (TextView)findViewById(R.id.txtTitulo);
-        txtEmail.setText(email + " - " + nombre);
-
-        txtTitulo.setText(b.getString("rol"));
 
         btnpaginaweb.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
@@ -179,6 +169,7 @@ public class MenuPrincipal extends BaseActivity {
         intent.putExtras(b);
         startActivity(intent);
     }
+
     private void lanzarServicios(){
         Intent intent = new Intent(MenuPrincipal.this,EstadoServicios.class);
         intent.putExtras(b);

@@ -22,89 +22,83 @@ tools:layout_editor_absoluteX="0dp">
 
         <ImageView
             android:id="@+id/btncantina"
-            android:layout_width="129dp"
-            android:layout_height="129dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="16dp"
             app:srcCompat="@drawable/cantina_verd"
-            android:layout_marginRight="0dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/btnContacto"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/textWifi" />
+            app:layout_constraintTop_toBottomOf="@+id/textDocs" />
+
         <ImageView
             android:id="@+id/btnGoogleGmail"
-            android:layout_width="129dp"
-            android:layout_height="129dp"
-            app:srcCompat="@drawable/gmail_verd"
-            android:layout_marginRight="0dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/btnContacto"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="16dp"
             app:layout_constraintHorizontal_bias="0.5"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/textWifi" />
+            app:layout_constraintLeft_toRightOf="@+id/btnContacto"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@drawable/gmail_verd"
+            app:layout_constraintTop_toTopOf="@+id/btnGoogleCalendar"
+            android:layout_marginTop="0dp" />
+
         <ImageView
             android:id="@+id/btnGoogleCalendar"
-            android:layout_width="129dp"
-            android:layout_height="129dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             app:srcCompat="@drawable/calendari_verd"
-            android:layout_marginRight="0dp"
+            app:layout_constraintTop_toTopOf="@+id/btncantina"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="8dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/btnContacto"
             android:layout_marginLeft="8dp"
-            app:layout_constraintHorizontal_bias="0.5"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/textWifi" />
-
+            app:layout_constraintLeft_toLeftOf="parent" />
 
 
         <ImageView
             android:id="@+id/btnwifi"
-            android:layout_width="129dp"
-            android:layout_height="129dp"
-            app:srcCompat="@drawable/wifi_verd"
-            android:layout_marginRight="0dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/btnimpresoras"
-            android:layout_marginLeft="8dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitulo"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/wifi_verd"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <ImageView
             android:id="@+id/btnimpresoras"
-            android:layout_width="129dp"
-            android:layout_height="129dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             app:srcCompat="@drawable/impresora_verda"
-            android:layout_marginLeft="24dp"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
+            app:layout_constraintLeft_toLeftOf="parent" />
 
         <TextView
             android:id="@+id/textimpresoras"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="8dp"
             android:text="@string/menuSimpresores"
             android:textColor="#707070"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintLeft_toLeftOf="@+id/btnimpresoras"
             app:layout_constraintRight_toRightOf="@+id/btnimpresoras"
-            app:layout_constraintTop_toBottomOf="@+id/btnimpresoras"
-            app:layout_constraintHorizontal_bias="0.285" />
+            app:layout_constraintTop_toBottomOf="@+id/btnimpresoras" />
 
         <ImageView
             android:id="@+id/btnGoogleDocs"
-            android:layout_width="129dp"
-            android:layout_height="129dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             app:srcCompat="@drawable/docs_verd"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/textimpresoras"
-            android:layout_marginLeft="24dp"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            android:layout_marginRight="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp" />
 
         <TextView
             android:id="@+id/textWifi"
@@ -115,49 +109,67 @@ tools:layout_editor_absoluteX="0dp">
             android:layout_marginTop="8dp"
             android:text="@string/menuSwifi"
             android:textColor="#707070"
-            android:textSize="24sp"
-            app:layout_constraintLeft_toLeftOf="@+id/btnimpresoras"
-            app:layout_constraintRight_toRightOf="@+id/btnimpresoras"
-            app:layout_constraintTop_toBottomOf="@+id/btnimpresoras"
-            />
+            android:textSize="20sp"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="@+id/btnwifi"
+            app:layout_constraintRight_toRightOf="@+id/btnwifi"
+            app:layout_constraintTop_toBottomOf="@+id/btnwifi" />
 
         <TextView
-            android:id="@+id/textContacto"
+            android:id="@+id/textDocs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:text="@string/menuP_contacto"
-            android:textColor="#707070"
-            android:textSize="24sp"
-            app:layout_constraintHorizontal_bias="0.428"
-            app:layout_constraintLeft_toLeftOf="@+id/btnContacto"
-            app:layout_constraintRight_toRightOf="@+id/btnContacto"
-            android:layout_marginBottom="18dp"
-            app:layout_constraintBottom_toTopOf="@+id/btnMensajes" />
-
+            android:layout_marginTop="8dp"
+            android:text="@string/menuSdocs"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/btnGoogleDocs"
+            app:layout_constraintRight_toRightOf="@+id/btnGoogleDocs"
+            app:layout_constraintTop_toBottomOf="@+id/btnGoogleDocs" />
 
         <TextView
-            android:id="@+id/txtEmail"
+            android:id="@+id/textCafe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="18sp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="16dp"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/menuScafeteria"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/btncantina"
+            app:layout_constraintRight_toRightOf="@+id/btncantina"
+            app:layout_constraintTop_toBottomOf="@+id/btncantina" />
 
         <TextView
-            android:id="@+id/txtTitulo"
+            android:id="@+id/textCalendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="18sp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/txtEmail"
-            android:layout_marginLeft="16dp"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/menuScalendar"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/btnGoogleCalendar"
+            app:layout_constraintRight_toRightOf="@+id/btnGoogleCalendar"
+            app:layout_constraintTop_toBottomOf="@+id/btnGoogleCalendar" />
+
+        <TextView
+            android:id="@+id/textGmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/menuSmail"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/btnGoogleGmail"
+            app:layout_constraintRight_toRightOf="@+id/btnGoogleGmail"
+            app:layout_constraintTop_toBottomOf="@+id/btnGoogleGmail" />
+
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

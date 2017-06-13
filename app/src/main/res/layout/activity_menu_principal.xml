@@ -35,23 +35,23 @@
                 android:id="@+id/btnTutoriales"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
                 app:srcCompat="@drawable/grupo"
                 app:layout_constraintLeft_toRightOf="@+id/btnpaginaweb"
                 android:layout_marginLeft="8dp"
                 app:layout_constraintRight_toLeftOf="@+id/btnContacto"
-                android:layout_marginRight="8dp" />
+                android:layout_marginRight="8dp"
+                app:layout_constraintTop_toTopOf="@+id/btnpaginaweb"
+                android:layout_marginTop="0dp" />
 
             <ImageView
                 android:id="@+id/btnpaginaweb"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
-                app:srcCompat="@drawable/internet" />
+                app:srcCompat="@drawable/internet"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
             <TextView
                 android:id="@+id/textWeb"
@@ -197,28 +197,6 @@
                 app:layout_constraintRight_toRightOf="@+id/btnIncidencias"
                 app:layout_constraintTop_toBottomOf="@+id/btnIncidencias" />
 
-            <TextView
-                android:id="@+id/txtEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textSize="18sp"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="32dp"
-                android:layout_marginLeft="16dp"
-                app:layout_constraintLeft_toLeftOf="parent" />
-
-            <TextView
-                android:id="@+id/txtTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textSize="18sp"
-                android:layout_marginTop="12dp"
-                app:layout_constraintTop_toBottomOf="@+id/txtEmail"
-                android:layout_marginLeft="16dp"
-                app:layout_constraintLeft_toLeftOf="parent" />
-
             <ImageView
                 android:id="@+id/btnServicios"
                 android:layout_width="70dp"
@@ -228,16 +206,6 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/btnIncidencias"
                 app:srcCompat="@drawable/servicio" />
-
-            <TextView
-                android:id="@+id/txtlayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="8dp"
-                app:layout_constraintLeft_toRightOf="@+id/txtEmail"
-                android:layout_marginLeft="8dp" />
 
             <TextView
                 android:id="@+id/txtServeis"
@@ -276,6 +244,16 @@
                 app:layout_constraintLeft_toLeftOf="@+id/btnCafe"
                 android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/btnCafe" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/esdi"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="0dp" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

@@ -72,6 +72,10 @@
     <!-- Servicios -->
     <string name="menuSimpresores">Impresoras</string>
     <string name="menuSwifi">Wi-Fi</string>
+    <string name="menuSdocs">Google\nDocs</string>
+    <string name="menuScalendar">Google\nCalendar</string>
+    <string name="menuSmail">Gmail</string>
+    <string name="menuScafeteria">Cafetería</string>
 
     <!--TITULOS-->
     <string name="titMenuP">Menú Principal</string>
