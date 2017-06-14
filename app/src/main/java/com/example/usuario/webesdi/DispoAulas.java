@@ -54,6 +54,7 @@ public class DispoAulas extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_dispo_aulas);
 
         setTitle(getResources().getText(R.string.titDispoA));

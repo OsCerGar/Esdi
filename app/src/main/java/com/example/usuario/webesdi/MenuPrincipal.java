@@ -28,22 +28,8 @@ public class MenuPrincipal extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //pruebas de tablet
-
-
-
-
-        //fin pruebas tablet
         setContentView(R.layout.activity_menu_principal);
         setTitle(getResources().getText(R.string.titMenuP));
-        if(getResources().getBoolean(R.bool.isTab)) {
-
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
-            Log.i("tag","pis");
-        }else{
-            Log.i("tag","caca");
-        }
 
         Intent Mainact = getIntent();
 

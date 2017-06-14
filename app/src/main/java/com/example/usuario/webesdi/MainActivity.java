@@ -3,11 +3,13 @@ package com.example.usuario.webesdi;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,12 +23,13 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements GoogleApiClient.OnConnectionFailedListener {
 
     private SignInButton btnSignIn;
     private Button btnSignOut;
     private TextView txtEmail;
+    private ImageView btnSignIn2;
     String Email,Nombre,rol = "Invitado",URLserver ="http://67.222.58.123/";
 
     private GoogleApiClient apiClient;
@@ -39,8 +42,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         btnSignIn = (SignInButton)findViewById(R.id.sign_in_button);
         btnSignOut = (Button)findViewById(R.id.sign_out_button);
+        btnSignIn2 = (ImageView)findViewById(R.id.google_icon);
         txtEmail = (TextView)findViewById(R.id.txtEmail);
-
+        iniciarActivity();
 
              /*
         Email="asd@esdi.esdu.es";
@@ -65,6 +69,14 @@ public class MainActivity extends AppCompatActivity
         btnSignIn.setScopes(gso.getScopeArray());
 
         //Eventos de los botones
+
+        btnSignIn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(apiClient);
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +131,7 @@ public class MainActivity extends AppCompatActivity
             updateUI(true);
         } else {
             //Usuario no logueado --> Lo mostramos como "Desconectado"
+            Toast.makeText(this, "Error en el resultado", Toast.LENGTH_SHORT).show();
             updateUI(false);
         }
     }
