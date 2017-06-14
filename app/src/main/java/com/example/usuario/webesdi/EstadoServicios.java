@@ -2,7 +2,6 @@ package com.example.usuario.webesdi;
 
 import android.content.Context;
 import android.net.wifi.ScanResult;
-import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,9 +10,16 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
+import java.net.MalformedURLException;
 import java.net.Socket;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.List;
 
@@ -43,7 +49,7 @@ public class EstadoServicios extends AppCompatActivity {
         new disponibilitatwifi().execute();
         new disponibilitatdocs().execute();
         new disponibilitatgmail().execute();
-        new disponibilitatimpresora().execute();
+       // new disponibilitatimpresora().execute();
         new disponibilitatcantina().execute();
         new disponibilitatcalendar().execute();
 
@@ -51,6 +57,8 @@ public class EstadoServicios extends AppCompatActivity {
 
 
     }
+
+
 
     private class disponibilitatwifi extends AsyncTask<Void, Void, Boolean>{
         Boolean a;
@@ -70,8 +78,7 @@ public class EstadoServicios extends AppCompatActivity {
                 }
             }
             return a;
-            }
-
+        }
 
 
         @Override
@@ -134,23 +141,51 @@ public class EstadoServicios extends AppCompatActivity {
 
         }
     }
-            private class disponibilitatimpresora extends AsyncTask<Void, Void, Boolean>{
+          /*  private class disponibilitatimpresora extends AsyncTask<Void, Void, Boolean>{
             Boolean a;
                 String funciona1 = "", funciona2="",funciona3="";
             @Override
 
             protected Boolean doInBackground(Void... params) {
 
-                    if (isReachable("192.160.50.220", 80, 1000) == true && isReachable("192.160.50.221", 80, 1000) == true && isReachable("192.160.50.222", 80, 1000) == true ) {
+                URL url= null;
+                try {
+                    url = new URL("http://67.222.58.123/ping.php");
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+
+                InputStream in = null;
+                try {
+                    in = url.openStream();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                StringBuilder result = new StringBuilder();
+                String line;
+                try {
+                    while((line = reader.readLine()) != null) {
+                        result.append(line);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(result.toString());
+
+
+
+
+                if (isReachable("192.168.0.101", 80, 1000) == true && isReachable("192.168.0.102", 80, 1000) == true && isReachable("192.168.0.103", 80, 1000) == true ) {
                         a = true;
                     } else {
                         a = false;
                     }
 
-                if (isReachable("108.177.96.147", 80, 1000) == true) {
-                    funciona1 = "funciona";
+                if (isReachable("1.177.96.147", 80, 1000) == true) {
+                    funciona1 = result.toString();
                 } else {
-                    funciona1 = "no funciona";
+                    funciona1 = result.toString();
                 }
 
                 if (isReachable("192.160.50.221", 80, 1000) == true) {
@@ -168,7 +203,10 @@ public class EstadoServicios extends AppCompatActivity {
                 return false;
 
             }
-            @Override
+
+
+
+                @Override
             protected void onPostExecute(Boolean color) {
 
                 if ( color == true) {
@@ -189,7 +227,7 @@ public class EstadoServicios extends AppCompatActivity {
                 }
 
             }
-
+*/
         private class disponibilitatcantina extends AsyncTask<Void, Void, Boolean>{
             Boolean a;
             @Override
@@ -296,6 +334,7 @@ public class EstadoServicios extends AppCompatActivity {
     }
 
     private static boolean isReachable(String addr, int openPort, int timeOutMillis) {
+
         try {
             try (Socket soc = new Socket()) {
                 soc.connect(new InetSocketAddress(addr, openPort), timeOutMillis);
