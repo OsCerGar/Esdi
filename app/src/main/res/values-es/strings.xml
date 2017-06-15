@@ -65,6 +65,7 @@
     <string name="seleccionardia"> Seleccionar día</string>
     <string name="descrMapa">El mapa muestra la disponibilidad actual de las aulas</string>
     <string name="aceptar">Aceptar</string>
+    <string name="siguiente">Siguiente</string>
 
     <!-- Tutoriales -->
     <string name="visualizaPdf">Visualizar PDF</string>

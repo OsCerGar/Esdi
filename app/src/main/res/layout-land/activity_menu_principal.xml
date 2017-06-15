@@ -38,22 +38,22 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="18dp"
                 app:layout_constraintLeft_toRightOf="@+id/btnpaginaweb"
-                app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
                 app:srcCompat="@drawable/grupo"
                 app:layout_constraintRight_toLeftOf="@+id/btnContacto"
-                android:layout_marginRight="8dp" />
+                android:layout_marginRight="8dp"
+                app:layout_constraintTop_toTopOf="@+id/btnpaginaweb"
+                android:layout_marginTop="0dp" />
 
             <ImageView
                 android:id="@+id/btnpaginaweb"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
-                app:srcCompat="@drawable/internet" />
+                app:srcCompat="@drawable/internet"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="24dp" />
 
             <TextView
                 android:id="@+id/textWeb"
@@ -201,28 +201,6 @@
                 app:layout_constraintLeft_toLeftOf="@+id/btnIncidencias"
                 app:layout_constraintRight_toRightOf="@+id/btnIncidencias"
                 app:layout_constraintTop_toBottomOf="@+id/btnIncidencias" />
-
-            <TextView
-                android:id="@+id/txtEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textSize="18sp"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                app:layout_constraintLeft_toLeftOf="parent" />
-
-            <TextView
-                android:id="@+id/txtTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textSize="18sp"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="32dp"
-                app:layout_constraintRight_toRightOf="parent" />
 
             <ImageView
                 android:id="@+id/btnServicios"
