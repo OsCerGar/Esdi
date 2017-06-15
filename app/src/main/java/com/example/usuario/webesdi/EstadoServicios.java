@@ -74,7 +74,8 @@ public class EstadoServicios extends AppCompatActivity {
             if (results != null) {
                 for (int i = 0; i < results.size(); i++) {
                     String ssid = results.get(i).SSID;
-                    if (ssid.startsWith("ESDiWIFI") && wifi.isWifiEnabled() ) {
+                    if (ssid.startsWith("ESDiWIFI") && wifi.isWifiEnabled()== true ) {
+
                         a = true;}
                     else {
                         a = false;
