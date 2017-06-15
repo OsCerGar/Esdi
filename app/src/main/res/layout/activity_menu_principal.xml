@@ -189,10 +189,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="15dp"
                 android:text="@string/menuP_incidencias"
                 android:textSize="16sp"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.85"
                 app:layout_constraintLeft_toLeftOf="@+id/btnIncidencias"
                 app:layout_constraintRight_toRightOf="@+id/btnIncidencias"
                 app:layout_constraintTop_toBottomOf="@+id/btnIncidencias" />

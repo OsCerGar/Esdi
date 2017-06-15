@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.usuario.webesdi.empresas.Empresas;
 
@@ -17,6 +18,7 @@ public class MenuPrincipal extends BaseActivity {
     ImageView btnEmpresas;
     ImageView btnTutoriales;
     ImageView btnServicios;
+    TextView textAluas,textMensajes,txtServeis,textView4;
     String email;
     String nombre;
     String rol;
@@ -45,7 +47,11 @@ public class MenuPrincipal extends BaseActivity {
         btnEmpresas = (ImageView) findViewById(R.id.btnEmpresas);
         btnTutoriales = (ImageView) findViewById(R.id.btnTutoriales);
         btnServicios = (ImageView) findViewById(R.id.btnServicios);
-        //btnVacio = (Button) findViewById(R.id.btnVacio);
+        textAluas = (TextView) findViewById(R.id.textAluas);
+        textMensajes = (TextView) findViewById(R.id.textMensajes);
+        txtServeis = (TextView) findViewById(R.id.txtServeis);
+        textView4 = (TextView) findViewById(R.id.textView4);
+        //btnVacio = (Button) findViewById(R.id.btnVacio);textAluas,textMensajes,txtServeis,textView4;
         //btnCancelar = (ImageView) findViewById(R.id.algo);
 
         btnpaginaweb.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +116,11 @@ public class MenuPrincipal extends BaseActivity {
             btnServicios.setVisibility(View.INVISIBLE);
             btnMensajes.setVisibility(View.INVISIBLE);
             btnMensajes.setVisibility(View.INVISIBLE);
-            btnIncidencias.setVisibility(View.VISIBLE);
+
+            textAluas.setVisibility(View.INVISIBLE);
+            textMensajes.setVisibility(View.INVISIBLE);
+            txtServeis.setVisibility(View.INVISIBLE);
+            textView4.setVisibility(View.INVISIBLE);
         }
 
 
