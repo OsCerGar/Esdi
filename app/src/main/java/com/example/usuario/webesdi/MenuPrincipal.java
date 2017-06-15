@@ -37,8 +37,6 @@ public class MenuPrincipal extends BaseActivity {
         nombre = b.getString("nombre");
         rol = b.getString("rol");
 
-        email = Mainact.getStringExtra("email");
-
         btnpaginaweb = (ImageView) findViewById(R.id.btnpaginaweb);
         btnContacto = (ImageView) findViewById(R.id.btnContacto);
         btnMensajes = (ImageView) findViewById(R.id.btnMensajes);
@@ -106,6 +104,7 @@ public class MenuPrincipal extends BaseActivity {
         //solo un administrador puede entrar a incidencias
         if (rol.equalsIgnoreCase("Administrador")){
             btnIncidencias.setVisibility(View.VISIBLE);
+
         }else if(rol.equalsIgnoreCase("Invitado")){
             btndispoAulas.setVisibility(View.INVISIBLE);
             btnServicios.setVisibility(View.INVISIBLE);
@@ -113,7 +112,6 @@ public class MenuPrincipal extends BaseActivity {
             btnMensajes.setVisibility(View.INVISIBLE);
             btnIncidencias.setVisibility(View.VISIBLE);
         }
-        //btnVacio.setVisibility(View.GONE);
 
 
 

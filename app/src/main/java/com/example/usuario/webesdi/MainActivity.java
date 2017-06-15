@@ -159,7 +159,7 @@ public class MainActivity extends BaseActivity
         startActivity(intent);
     }
     void compruebaRol(String[] extension){
-        if (extension[1]=="esdi.edu.es"){
+        if (extension[1].equalsIgnoreCase("esdi.edu.es")){
             rol = "Alumno";
         }
         for(String actual : admins ){
