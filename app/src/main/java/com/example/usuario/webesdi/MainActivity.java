@@ -40,7 +40,6 @@ public class MainActivity extends BaseActivity
         btnSignIn = (SignInButton)findViewById(R.id.sign_in_button);
         btnSignOut = (Button)findViewById(R.id.sign_out_button);
         btnSignIn2 = (ImageView)findViewById(R.id.google_icon);
-        iniciarActivity();
 
              /*
         Email="asd@esdi.esdu.es";
@@ -146,7 +145,8 @@ public class MainActivity extends BaseActivity
 
     void iniciarActivity() {
         Bundle b = new Bundle();
-        compruebaRol();
+        String[] extension = Email.split("@");
+        compruebaRol(extension);
         b.putString("email", Email);
         b.putString("nombre", Nombre);
         b.putString("rol", rol);
@@ -158,8 +158,8 @@ public class MainActivity extends BaseActivity
 
         startActivity(intent);
     }
-    void compruebaRol(){
-        if (Email.split("@")[1]=="esdi.edu.es"){
+    void compruebaRol(String[] extension){
+        if (extension[1]=="esdi.edu.es"){
             rol = "Alumno";
         }
         for(String actual : admins ){
@@ -168,5 +168,6 @@ public class MainActivity extends BaseActivity
             }
         }
     }
+
 }
 

@@ -19,6 +19,7 @@ public class MenuPrincipal extends BaseActivity {
     ImageView btnServicios;
     String email;
     String nombre;
+    String rol;
     Bundle b;
 
 
@@ -34,6 +35,7 @@ public class MenuPrincipal extends BaseActivity {
 
         email = b.getString("email");
         nombre = b.getString("nombre");
+        rol = b.getString("rol");
 
         email = Mainact.getStringExtra("email");
 
@@ -102,13 +104,14 @@ public class MenuPrincipal extends BaseActivity {
         });*/
 
         //solo un administrador puede entrar a incidencias
-        if (b.getString("rol").equalsIgnoreCase("Administrador")){
+        if (rol.equalsIgnoreCase("Administrador")){
             btnIncidencias.setVisibility(View.VISIBLE);
-        }else if(b.getString("rol").equalsIgnoreCase("Invitado")){
+        }else if(rol.equalsIgnoreCase("Invitado")){
             btndispoAulas.setVisibility(View.INVISIBLE);
             btnServicios.setVisibility(View.INVISIBLE);
             btnMensajes.setVisibility(View.INVISIBLE);
             btnMensajes.setVisibility(View.INVISIBLE);
+            btnIncidencias.setVisibility(View.VISIBLE);
         }
         //btnVacio.setVisibility(View.GONE);
 
