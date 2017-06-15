@@ -1,12 +1,9 @@
 package com.example.usuario.webesdi;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.usuario.webesdi.empresas.Empresas;
 
@@ -107,8 +104,11 @@ public class MenuPrincipal extends BaseActivity {
         //solo un administrador puede entrar a incidencias
         if (b.getString("rol").equalsIgnoreCase("Administrador")){
             btnIncidencias.setVisibility(View.VISIBLE);
-        }else{
-//            btnIncidencias.setVisibility(View.GONE);
+        }else if(b.getString("rol").equalsIgnoreCase("Invitado")){
+            btndispoAulas.setVisibility(View.INVISIBLE);
+            btnServicios.setVisibility(View.INVISIBLE);
+            btnMensajes.setVisibility(View.INVISIBLE);
+            btnMensajes.setVisibility(View.INVISIBLE);
         }
         //btnVacio.setVisibility(View.GONE);
 
