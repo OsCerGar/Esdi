@@ -18,35 +18,39 @@
 
         <ImageView
             android:id="@+id/btndispoAulas"
-            android:layout_width="190dp"
-            android:layout_height="190dp"
-            android:layout_marginTop="-12dp"
-            app:layout_constraintTop_toTopOf="@+id/btnContacto"
-            app:srcCompat="@drawable/monitor"
-            app:layout_constraintRight_toLeftOf="@+id/btnMensajes"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintHorizontal_bias="0.52"
             app:layout_constraintLeft_toRightOf="@+id/btnContacto"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintRight_toLeftOf="@+id/btnMensajes"
+            app:layout_constraintTop_toTopOf="@+id/btnContacto"
+            app:srcCompat="@drawable/monitor" />
 
         <ImageView
             android:id="@+id/btnTutoriales"
-            android:layout_width="190dp"
-            android:layout_height="190dp"
-            app:srcCompat="@drawable/grupo"
-            app:layout_constraintLeft_toRightOf="@+id/btnpaginaweb"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:layout_marginLeft="8dp"
-            app:layout_constraintRight_toLeftOf="@+id/btnContacto"
             android:layout_marginRight="8dp"
-            tools:layout_editor_absoluteY="50dp" />
+            android:layout_marginTop="0dp"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintLeft_toRightOf="@+id/btnpaginaweb"
+            app:layout_constraintRight_toLeftOf="@+id/btnContacto"
+            app:layout_constraintTop_toTopOf="@+id/btnpaginaweb"
+            app:srcCompat="@drawable/grupo" />
 
         <ImageView
             android:id="@+id/btnpaginaweb"
-            android:layout_width="190dp"
-            android:layout_height="190dp"
-            android:layout_marginLeft="16dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="50dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:srcCompat="@drawable/internet"
-            tools:layout_editor_absoluteY="54dp" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/internet" />
 
         <TextView
             android:id="@+id/textWeb"
@@ -65,13 +69,13 @@
 
         <ImageView
             android:id="@+id/btnContacto"
-            android:layout_width="190dp"
-            android:layout_height="190dp"
-            android:layout_marginTop="-70dp"
-            app:layout_constraintTop_toTopOf="@+id/btnTutoriales"
-            app:srcCompat="@drawable/manos"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="0dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnTutoriales"
+            app:srcCompat="@drawable/manos" />
 
         <TextView
             android:id="@+id/textTutorial"
@@ -104,13 +108,13 @@
 
         <ImageView
             android:id="@+id/btnMensajes"
-            android:layout_width="190dp"
-            android:layout_height="190dp"
-            app:srcCompat="@drawable/sobre"
-            android:layout_marginRight="8dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="0dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/btndispoAulas"
-            android:layout_marginTop="0dp" />
+            app:srcCompat="@drawable/sobre" />
 
         <TextView
             android:id="@+id/textMensajes"
@@ -133,6 +137,7 @@
             android:layout_marginRight="0dp"
             android:layout_marginTop="8dp"
             android:text="@string/menuP_empresas"
+            android:textAlignment="center"
             android:textSize="36sp"
             app:layout_constraintHorizontal_bias="0.488"
             app:layout_constraintLeft_toLeftOf="@+id/btnEmpresas"
@@ -156,38 +161,38 @@
 
         <ImageView
             android:id="@+id/btnEmpresas"
-            android:layout_width="190dp"
-            android:layout_height="190dp"
-            app:srcCompat="@drawable/fabrica"
-            android:layout_marginLeft="16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="64dp"
-            app:layout_constraintTop_toBottomOf="@+id/textWeb" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textWeb"
+            app:srcCompat="@drawable/fabrica" />
 
         <ImageView
             android:id="@+id/btnIncidencias"
-            android:layout_width="190dp"
-            android:layout_height="190dp"
-            android:layout_marginTop="-68dp"
-            app:layout_constraintTop_toTopOf="@+id/btnEmpresas"
-            app:srcCompat="@drawable/cruz"
-            app:layout_constraintLeft_toRightOf="@+id/btnCafe"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toRightOf="@+id/btnCafe"
             app:layout_constraintRight_toRightOf="@+id/btndispoAulas"
-            app:layout_constraintHorizontal_bias="1.0" />
+            app:layout_constraintTop_toTopOf="@+id/btnEmpresas"
+            app:srcCompat="@drawable/cruz" />
 
         <ImageView
             android:id="@+id/btnServicios"
-            android:layout_width="190dp"
-            android:layout_height="190dp"
-            android:layout_marginTop="0dp"
-            app:layout_constraintTop_toTopOf="@+id/btnIncidencias"
-            app:srcCompat="@drawable/servicio"
-            app:layout_constraintLeft_toRightOf="@+id/btnEmpresas"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintLeft_toRightOf="@+id/btnEmpresas"
             app:layout_constraintRight_toLeftOf="@+id/btnCafe"
-            android:layout_marginRight="8dp" />
+            app:layout_constraintTop_toTopOf="@+id/btnIncidencias"
+            app:srcCompat="@drawable/servicio" />
 
         <TextView
             android:id="@+id/txtServeis"
@@ -221,8 +226,8 @@
 
         <ImageView
             android:id="@+id/btnCafe"
-            android:layout_width="190dp"
-            android:layout_height="190dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:layout_marginTop="1dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
