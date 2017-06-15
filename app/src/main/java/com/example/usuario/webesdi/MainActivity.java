@@ -3,14 +3,11 @@ package com.example.usuario.webesdi;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -26,9 +23,9 @@ import com.google.android.gms.common.api.Status;
 public class MainActivity extends BaseActivity
         implements GoogleApiClient.OnConnectionFailedListener {
 
+    private String[] admins   = {"ocerezo@esdi.edu.es", "egutierrez@esdi.edu.es"};
     private SignInButton btnSignIn;
     private Button btnSignOut;
-    private TextView txtEmail;
     private ImageView btnSignIn2;
     String Email,Nombre,rol = "Invitado",URLserver ="http://67.222.58.123/";
 
@@ -43,7 +40,6 @@ public class MainActivity extends BaseActivity
         btnSignIn = (SignInButton)findViewById(R.id.sign_in_button);
         btnSignOut = (Button)findViewById(R.id.sign_out_button);
         btnSignIn2 = (ImageView)findViewById(R.id.google_icon);
-        txtEmail = (TextView)findViewById(R.id.txtEmail);
         iniciarActivity();
 
              /*
@@ -150,6 +146,7 @@ public class MainActivity extends BaseActivity
 
     void iniciarActivity() {
         Bundle b = new Bundle();
+        compruebaRol();
         b.putString("email", Email);
         b.putString("nombre", Nombre);
         b.putString("rol", rol);
@@ -160,6 +157,16 @@ public class MainActivity extends BaseActivity
         intent.putExtras(b);
 
         startActivity(intent);
+    }
+    void compruebaRol(){
+        if (Email.split("@")[1]=="esdi.edu.es"){
+            rol = "Alumno";
+        }
+        for(String actual : admins ){
+            if (actual == Email){
+                rol = "Administrador";
+            }
+        }
     }
 }
 
