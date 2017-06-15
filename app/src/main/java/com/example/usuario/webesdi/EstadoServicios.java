@@ -69,12 +69,12 @@ public class EstadoServicios extends AppCompatActivity {
         @Override
 
         protected Boolean doInBackground(Void... params) {
-            WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
             final List<ScanResult> results = wifi.getScanResults();
             if (results != null) {
                 for (int i = 0; i < results.size(); i++) {
                     String ssid = results.get(i).SSID;
-                    if (ssid.startsWith("ESDiWIFI") && wifi.isWifiEnabled()== true ) {
+                    if (ssid.startsWith("ESDiWIFI") && wifi.isWifiEnabled() == true ) {
 
                         a = true;}
                     else {
