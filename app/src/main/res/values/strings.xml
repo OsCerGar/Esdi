@@ -36,7 +36,7 @@
     <string name="menuP_cafeteria">Coffe Shop</string>
     <!-- Menu opciones -->
     <string name="menuP_settings">Settings</string>
-    <string name="help">Help</string>
+    <string name="help">Disconnect</string>
 
     <!-- Acitvity impresoras -->
     <string name="tituloEstadoImpr">Sabadell\'s printers status:</string>

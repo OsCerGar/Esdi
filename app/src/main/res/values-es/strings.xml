@@ -7,7 +7,7 @@
     <string name="signed_out">Desconectado</string>
     <string name="acceso">Acceso:</string>
     <string name="desc_firebase_lockup">Nombre y logo de Firebase</string>
-    <string name="sign_out">Salir</string>
+    <string name="sign_out">Desconectar</string>
     <string name="disconnect">Desconectar</string>
     <string name="log_in">Entrar</string>
     <string name="google_status_fmt">Cuenta: %s</string>
@@ -38,7 +38,7 @@
 
     <!-- Menu opciones -->
     <string name="menuP_settings">Configuración</string>
-    <string name="help">Ayuda</string>
+    <string name="help">Desconectar</string>
 
     <!-- Activity impresoras -->
     <string name="tituloEstadoImpr">Estado de las impresoras de Sabadell</string>
