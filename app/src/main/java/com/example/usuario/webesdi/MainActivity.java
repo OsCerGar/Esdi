@@ -163,7 +163,7 @@ public class MainActivity extends BaseActivity
             rol = "Alumno";
         }
         for(String actual : admins ){
-            if (actual == Email){
+            if (actual.equalsIgnoreCase(Email)){
                 rol = "Administrador";
             }
         }
