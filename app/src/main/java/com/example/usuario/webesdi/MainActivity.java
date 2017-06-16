@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity
     private SignInButton btnSignIn;
     private Button btnSignOut;
     private ImageView btnSignIn2;
-    String Email="caca@esdi.edu.es",Nombre="caca",rol = "Invitado",URLserver ="http://67.222.58.123/";
+    String Email,Nombre,rol = "Invitado",URLserver ="http://67.222.58.123/";
 
     private GoogleApiClient apiClient;
     private static final int RC_SIGN_IN = 1001;
@@ -40,7 +40,7 @@ public class MainActivity extends BaseActivity
         btnSignIn = (SignInButton)findViewById(R.id.sign_in_button);
         btnSignOut = (Button)findViewById(R.id.sign_out_button);
         btnSignIn2 = (ImageView)findViewById(R.id.google_icon);
-        iniciarActivity();
+
              /*
         Email="asd@esdi.esdu.es";
         Nombre="pepe";
