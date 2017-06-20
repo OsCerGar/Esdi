@@ -31,13 +31,13 @@ public class MenuCafe extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_carta, container, false);
-        new urlPdf().execute(url);
-        pdfView = (PDFView) getActivity().findViewById(R.id.pdfView);
+        /*new urlPdf().execute(url);
+        pdfView = (PDFView) getActivity().findViewById(R.id.pdfView);*/
 
         return rootView;
     }
 
-
+/*
     class urlPdf extends AsyncTask<String,Void,InputStream> {
 
         @Override
@@ -60,5 +60,5 @@ public class MenuCafe extends Fragment{
         protected void onPostExecute(InputStream is){
             pdfView.fromStream(is).load();
         }
-    }
+    }*/
 }

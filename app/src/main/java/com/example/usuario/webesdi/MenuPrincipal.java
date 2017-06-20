@@ -52,7 +52,7 @@ public class MenuPrincipal extends BaseActivity {
         textAluas = (TextView) findViewById(R.id.textAluas);
         textMensajes = (TextView) findViewById(R.id.textMensajes);
         txtServeis = (TextView) findViewById(R.id.txtServeis);
-        textView4 = (TextView) findViewById(R.id.textView4);
+        textView4 = (TextView) findViewById(R.id.textIncidencies);
         //btnVacio = (Button) findViewById(R.id.btnVacio);textAluas,textMensajes,txtServeis,textView4;
         //btnCancelar = (ImageView) findViewById(R.id.algo);
 

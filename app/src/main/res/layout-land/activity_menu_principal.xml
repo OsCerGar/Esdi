@@ -189,7 +189,7 @@
                 app:layout_constraintLeft_toLeftOf="@+id/btndispoAulas" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textIncidencies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
