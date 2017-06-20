@@ -32,6 +32,12 @@ public class EstadoServicios extends AppCompatActivity {
     ImageView btngooglegmail;
     ImageView btngooglecalendar;
     ImageView btncantina;
+    ImageView btnestatimpresoras;
+    ImageView btnestatwifi;
+    ImageView btnestatgoogledocs;
+    ImageView btnestatgooglegmail;
+    ImageView btnestatgooglecalendar;
+    ImageView btnestatcantina;
     int diasemana,horas;
     Calendar cal = Calendar.getInstance();
     Toast toast;
@@ -49,6 +55,12 @@ public class EstadoServicios extends AppCompatActivity {
         btncantina = (ImageView) findViewById(R.id.btncantina);
         btngooglegmail = (ImageView) findViewById(R.id.btnGoogleGmail);
         btngooglecalendar = (ImageView) findViewById(R.id.btnGoogleCalendar);
+        btnestatimpresoras  = (ImageView) findViewById(R.id.btnestatPrinters);
+        btnestatwifi = (ImageView) findViewById(R.id.btnestatWifi);
+        btnestatgoogledocs = (ImageView) findViewById(R.id.btnestatGoogleDocs);
+        btnestatcantina = (ImageView) findViewById(R.id.btnestatCafe);
+        btnestatgooglegmail = (ImageView) findViewById(R.id.btnestatGmail);
+        btnestatgooglecalendar = (ImageView) findViewById(R.id.btnestatGoogleCalendar);
 
         new disponibilitatwifi().execute();
         new disponibilitatdocs().execute();
@@ -70,17 +82,17 @@ public class EstadoServicios extends AppCompatActivity {
 
         protected Boolean doInBackground(Void... params) {
             WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-            final List<ScanResult> results = wifi.getScanResults();
-            if (results != null) {
-                for (int i = 0; i < results.size(); i++) {
-                    String ssid = results.get(i).SSID;
-                    if (ssid.startsWith("ESDiWIFI") && wifi.isWifiEnabled() ) {
-                        a = true;}
-                    else if (!wifi.isWifiEnabled()) {
-                        a = false;
-                    }
-                }
-            }
+     //       final List<ScanResult> results = wifi.getScanResults();
+    //        if (results != null) {
+     //           for (int i = 0; i < results.size(); i++) {
+      //              String ssid = results.get(i).SSID;
+      //              if (ssid.startsWith("ESDiWIFI") && wifi.isWifiEnabled() ) {
+                        a = true; //}
+       //             else if (!wifi.isWifiEnabled()) {
+      //                  a = false;
+     //               }
+     //           }
+     //       }
             return a;
         }
 
@@ -89,6 +101,7 @@ public class EstadoServicios extends AppCompatActivity {
         protected void onPostExecute(Boolean color) {
             if ( color == true) {
                 btnwifi.setImageResource(R.drawable.wifi_verd);
+                btnestatwifi.setImageResource(R.drawable.actiu);
                 btnwifi.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v)  {
                         displayToast("La Wifi esta disponible on estas situat");
@@ -97,6 +110,7 @@ public class EstadoServicios extends AppCompatActivity {
 
             } else {
                 btnwifi.setImageResource(R.drawable.wifi_vermell);
+                btnestatwifi.setImageResource(R.drawable.innactiu);
                 btnwifi.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v)  {
                         displayToast("La Wifi no esta disponible on estas situat");
@@ -129,6 +143,7 @@ public class EstadoServicios extends AppCompatActivity {
         protected void onPostExecute(Boolean color) {
             if (color == true) {
                 btngoogledocs.setImageResource(R.drawable.docs_verd);
+                btnestatgoogledocs.setImageResource(R.drawable.actiu);
                 btngoogledocs.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v)  {
                         displayToast("Google docs funciona correctament");
@@ -136,6 +151,7 @@ public class EstadoServicios extends AppCompatActivity {
                 });
             } else {
                 btngoogledocs.setImageResource(R.drawable.docs_vermell);
+                btnestatgoogledocs.setImageResource(R.drawable.innactiu);
                 btngoogledocs.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v)  {
                         displayToast("Google docs no esta operatiu");
@@ -215,14 +231,15 @@ public class EstadoServicios extends AppCompatActivity {
 
           if ( color == true) {
               btnimpresoras.setImageResource(R.drawable.impresora_verda);
+              btnestatimpresoras.setImageResource(R.drawable.actiu);
               btnimpresoras.setOnClickListener(new View.OnClickListener() {
                   public void onClick(View v)  {
                        displayToast("Les impresores funcionen correctament");
                   }
               });
-          }
+          } else {
               btnimpresoras.setImageResource(R.drawable.impresora_vermell);
-
+              btnestatimpresoras.setImageResource(R.drawable.innactiu);
               btnimpresoras.setOnClickListener(new View.OnClickListener() {
                   public void onClick(View v)  {
                    displayToast("La impresora de la primera clase:"+ funciona1 +"\n"+"La impresora de la segona clase:"+ funciona2 +"\n"+"La impresora de la tercera clase:"+ funciona3);
@@ -252,6 +269,7 @@ public class EstadoServicios extends AppCompatActivity {
         protected void onPostExecute(Boolean color) {
             if ( color == true) {
                 btncantina.setImageResource(R.drawable.cantina_verd);
+                btnestatcantina.setImageResource(R.drawable.actiu);
                 btncantina.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v)  {
                         displayToast("La cafeteria esta oberta");
@@ -259,6 +277,7 @@ public class EstadoServicios extends AppCompatActivity {
                 });
             } else {
                 btncantina.setImageResource(R.drawable.cantina_vermell);
+                btnestatcantina.setImageResource(R.drawable.innactiu);
                 btncantina.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v)  {
                         displayToast("La cafeteria no esta oberta");
@@ -287,6 +306,7 @@ public class EstadoServicios extends AppCompatActivity {
         protected void onPostExecute(Boolean color) {
             if ( color == true) {
                 btngooglegmail.setImageResource(R.drawable.gmail_verd);
+                btnestatgooglegmail.setImageResource(R.drawable.actiu);
                 btngooglegmail.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v)  {
                         displayToast("El gmail funciona correctament");
@@ -294,6 +314,7 @@ public class EstadoServicios extends AppCompatActivity {
                 });
             } else {
                 btngooglegmail.setImageResource(R.drawable.gmail_vermell);
+                btnestatgooglegmail.setImageResource(R.drawable.innactiu);
                 btngooglegmail.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v)  {
                         displayToast("El gmail no esta operatiu");
@@ -320,6 +341,7 @@ public class EstadoServicios extends AppCompatActivity {
         protected void onPostExecute(Boolean color) {
             if ( color == true) {
                 btngooglecalendar.setImageResource(R.drawable.calendari_verd);
+                btnestatgooglecalendar.setImageResource(R.drawable.actiu);
                 btngooglecalendar.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v)  {
                         displayToast("El Google Calendar funciona correctament");
@@ -327,6 +349,7 @@ public class EstadoServicios extends AppCompatActivity {
                 });
             } else {
                 btngooglecalendar.setImageResource(R.drawable.calendari_vermell);
+                btnestatgooglecalendar.setImageResource(R.drawable.innactiu);
                 btngooglecalendar.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v)  {
                         displayToast("El Google Calendar no esta operatiu");

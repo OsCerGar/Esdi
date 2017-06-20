@@ -75,6 +75,7 @@
     <string name="menuScalendar">Google\nCalendar</string>
     <string name="menuSmail">Gmail</string>
     <string name="menuScafeteria">Coffe\nShop</string>
+    <string name="estat">Status:</string>
 
     <!--TITULOS-->
     <string name="titMenuP">Main Menu</string>

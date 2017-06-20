@@ -88,7 +88,7 @@ tools:layout_editor_absoluteX="0dp">
             android:textSize="32sp"
             app:layout_constraintLeft_toLeftOf="@+id/btnimpresoras"
             app:layout_constraintRight_toRightOf="@+id/btnimpresoras"
-            app:layout_constraintTop_toBottomOf="@+id/btnimpresoras" />
+            app:layout_constraintTop_toBottomOf="@+id/estatPrinters" />
 
         <ImageView
             android:id="@+id/btnGoogleDocs"
@@ -112,7 +112,7 @@ tools:layout_editor_absoluteX="0dp">
             android:textSize="32sp"
             app:layout_constraintLeft_toLeftOf="@+id/btnwifi"
             app:layout_constraintRight_toRightOf="@+id/btnwifi"
-            app:layout_constraintTop_toBottomOf="@+id/btnwifi" />
+            app:layout_constraintTop_toBottomOf="@+id/estatWifi" />
 
         <TextView
             android:id="@+id/textDocs"
@@ -126,7 +126,7 @@ tools:layout_editor_absoluteX="0dp">
             android:textSize="32sp"
             app:layout_constraintLeft_toLeftOf="@+id/btnGoogleDocs"
             app:layout_constraintRight_toRightOf="@+id/btnGoogleDocs"
-            app:layout_constraintTop_toBottomOf="@+id/btnGoogleDocs" />
+            app:layout_constraintTop_toBottomOf="@+id/estatGoogleDocs" />
 
         <TextView
             android:id="@+id/textCafe"
@@ -140,7 +140,7 @@ tools:layout_editor_absoluteX="0dp">
             android:textSize="32sp"
             app:layout_constraintLeft_toLeftOf="@+id/btncantina"
             app:layout_constraintRight_toRightOf="@+id/btncantina"
-            app:layout_constraintTop_toBottomOf="@+id/btncantina" />
+            app:layout_constraintTop_toBottomOf="@+id/estatCafe" />
 
         <TextView
             android:id="@+id/textCalendar"
@@ -154,7 +154,7 @@ tools:layout_editor_absoluteX="0dp">
             android:textSize="32sp"
             app:layout_constraintLeft_toLeftOf="@+id/btnGoogleCalendar"
             app:layout_constraintRight_toRightOf="@+id/btnGoogleCalendar"
-            app:layout_constraintTop_toBottomOf="@+id/btnGoogleCalendar" />
+            app:layout_constraintTop_toBottomOf="@+id/estatGoogleCalendar" />
 
         <TextView
             android:id="@+id/textGmail"
@@ -167,7 +167,112 @@ tools:layout_editor_absoluteX="0dp">
             android:textSize="32sp"
             app:layout_constraintLeft_toLeftOf="@+id/btnGoogleGmail"
             app:layout_constraintRight_toRightOf="@+id/btnGoogleGmail"
+            app:layout_constraintTop_toBottomOf="@+id/estatGmail" />
+
+        <TextView
+            android:id="@+id/estatPrinters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/estat"
+            android:textSize="25sp"
+            app:layout_constraintLeft_toLeftOf="@+id/btnimpresoras"
+            app:layout_constraintTop_toBottomOf="@+id/btnimpresoras" />
+
+        <ImageView
+            android:id="@+id/btnestatPrinters"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/innactiu"
+            android:layout_marginTop="0dp"
+            app:layout_constraintRight_toRightOf="@+id/btnimpresoras"
+            app:layout_constraintTop_toBottomOf="@+id/btnimpresoras" />
+
+
+        />
+
+
+        <TextView
+            android:id="@+id/estatWifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/estat"
+            android:textSize="25sp"
+            app:layout_constraintLeft_toLeftOf="@+id/btnwifi"
+            app:layout_constraintTop_toBottomOf="@+id/btnwifi" />
+
+        <ImageView
+            android:id="@+id/btnestatWifi"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/innactiu"
+            app:layout_constraintRight_toRightOf="@id/btnwifi"
+            app:layout_constraintTop_toBottomOf="@+id/btnwifi" />
+        <TextView
+            android:id="@+id/estatGoogleDocs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/estat"
+            android:textSize="25sp"
+            app:layout_constraintLeft_toLeftOf="@+id/btnGoogleDocs"
+            app:layout_constraintTop_toBottomOf="@+id/btnGoogleDocs" />
+        <ImageView
+            android:id="@+id/btnestatGoogleDocs"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/innactiu"
+            app:layout_constraintRight_toRightOf="@id/btnGoogleDocs"
+            app:layout_constraintTop_toBottomOf="@id/btnGoogleDocs" />
+        <TextView
+            android:id="@+id/estatCafe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/estat"
+            android:textSize="25sp"
+            app:layout_constraintLeft_toLeftOf="@id/btncantina"
+            app:layout_constraintTop_toBottomOf="@id/btncantina" />
+        <ImageView
+            android:id="@+id/btnestatCafe"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/innactiu"
+            app:layout_constraintRight_toRightOf="@id/btncantina"
+            app:layout_constraintTop_toBottomOf="@id/btncantina" />
+        <TextView
+            android:id="@+id/estatGoogleCalendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/estat"
+            android:textSize="25sp"
+            app:layout_constraintLeft_toLeftOf="@+id/btnGoogleCalendar"
+            app:layout_constraintTop_toBottomOf="@+id/btnGoogleCalendar" />
+        <ImageView
+            android:id="@+id/btnestatGoogleCalendar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/innactiu"
+            app:layout_constraintRight_toRightOf="@id/btnGoogleCalendar"
+            app:layout_constraintTop_toBottomOf="@id/btnGoogleCalendar"/>
+        <TextView
+            android:id="@+id/estatGmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/estat"
+            android:textSize="25sp"
+            app:layout_constraintLeft_toLeftOf="@+id/btnGoogleGmail"
             app:layout_constraintTop_toBottomOf="@+id/btnGoogleGmail" />
+        <ImageView
+            android:id="@+id/btnestatGmail"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/innactiu"
+            app:layout_constraintRight_toRightOf="@+id/btnGoogleGmail"
+            app:layout_constraintTop_toBottomOf="@+id/btnGoogleGmail"  />
 
 
     </android.support.constraint.ConstraintLayout>
