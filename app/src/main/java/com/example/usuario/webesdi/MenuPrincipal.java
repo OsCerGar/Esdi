@@ -18,6 +18,7 @@ public class MenuPrincipal extends BaseActivity {
     ImageView btnEmpresas;
     ImageView btnTutoriales;
     ImageView btnServicios;
+    ImageView btnCafeteria;
     TextView textAluas,textMensajes,txtServeis,textView4;
     String email;
     String nombre;
@@ -47,6 +48,7 @@ public class MenuPrincipal extends BaseActivity {
         btnEmpresas = (ImageView) findViewById(R.id.btnEmpresas);
         btnTutoriales = (ImageView) findViewById(R.id.btnTutoriales);
         btnServicios = (ImageView) findViewById(R.id.btnServicios);
+        btnCafeteria = (ImageView) findViewById(R.id.btnCafe);
         textAluas = (TextView) findViewById(R.id.textAluas);
         textMensajes = (TextView) findViewById(R.id.textMensajes);
         txtServeis = (TextView) findViewById(R.id.txtServeis);
@@ -98,6 +100,12 @@ public class MenuPrincipal extends BaseActivity {
         btnServicios.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 lanzarServicios();
+            }
+        });
+
+        btnCafeteria.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                lanzarCafeteria();
             }
         });
 
@@ -169,6 +177,12 @@ public class MenuPrincipal extends BaseActivity {
 
     private void lanzarServicios(){
         Intent intent = new Intent(MenuPrincipal.this,EstadoServicios.class);
+        intent.putExtras(b);
+        startActivity(intent);
+    }
+
+    private void lanzarCafeteria(){
+        Intent intent = new Intent(MenuPrincipal.this,Cafeteria.class);
         intent.putExtras(b);
         startActivity(intent);
     }

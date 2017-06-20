@@ -6,10 +6,14 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -25,8 +29,24 @@ import java.util.Locale;
 
 public class BaseActivity extends AppCompatActivity {
 
+    private int mThemeId = 0;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        final AppCompatDelegate delegate = getDelegate();
+        delegate.installViewFactory();
+        delegate.onCreate(savedInstanceState);
+        if (delegate.applyDayNight() && mThemeId != 0) {
+            // If DayNight has been applied, we need to re-apply the theme for
+            // the changes to take effect. On API 23+, we should bypass
+            // setTheme(), which will no-op if the theme ID is identical to the
+            // current theme ID.
+            if (Build.VERSION.SDK_INT >= 23) {
+                onApplyThemeResource(getTheme(), mThemeId, false);
+            } else {
+                setTheme(mThemeId);
+            }
+        }
         this.checkTheme();
         super.onCreate(savedInstanceState);
         this.ponIdioma();
@@ -140,5 +160,7 @@ public class BaseActivity extends AppCompatActivity {
         }
         return color;
     }
+
+    public void setSupportActionBar(@Nullable Toolbar toolbar){}
 
 }

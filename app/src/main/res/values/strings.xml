@@ -34,7 +34,8 @@
     <string name="menuP_empresasV2">Business Partners</string>
     <string name="menuP_estadoServicios">Services</string>
     <string name="menuP_cafeteria">Coffe Shop</string>
-    <!-- Menu opciones -->
+
+    <!-- Menus opciones -->
     <string name="menuP_settings">Settings</string>
     <string name="help">Disconnect</string>
 
@@ -87,5 +88,13 @@
     <string name="titEmpresas">Business Partners</string>
     <string name="titTutorial">Tutorials</string>
     <string name="titServicios">Services</string>
+    <string name="title_activity_cafeteria">Cafeteria</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!--Cafeteria-->
+    <string name="ofertas">Sales</string>
+    <string name="menu">Menu</string>
+    <string name="carta">Card</string>
 
 </resources>

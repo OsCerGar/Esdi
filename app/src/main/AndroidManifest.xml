@@ -28,7 +28,7 @@
         <activity android:name=".GLPI" />
         <activity android:name=".Settings" />
         <activity android:name=".QRscanner" />
-        <activity android:name=".EstadoServicios"/>
+        <activity android:name=".EstadoServicios" />
 
         <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -58,6 +58,10 @@
         <activity android:name=".tutoriales.TutorialExtend" />
         <activity android:name=".Ayuda" />
         <activity android:name=".tutoriaV2" />
+        <activity
+            android:name=".Cafeteria"
+            android:label="@string/title_activity_cafeteria"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
