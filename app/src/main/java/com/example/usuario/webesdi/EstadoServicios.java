@@ -1,6 +1,5 @@
 package com.example.usuario.webesdi;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
@@ -11,16 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
 import java.net.Socket;
-import java.net.URL;
 import java.util.Calendar;
 import java.util.List;
 
@@ -82,17 +74,17 @@ public class EstadoServicios extends AppCompatActivity {
 
         protected Boolean doInBackground(Void... params) {
             WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-     //       final List<ScanResult> results = wifi.getScanResults();
-    //        if (results != null) {
-     //           for (int i = 0; i < results.size(); i++) {
-      //              String ssid = results.get(i).SSID;
-      //              if (ssid.startsWith("ESDiWIFI") && wifi.isWifiEnabled() ) {
-                        a = true; //}
-       //             else if (!wifi.isWifiEnabled()) {
-      //                  a = false;
-     //               }
-     //           }
-     //       }
+            final List<ScanResult> results = wifi.getScanResults();
+            if (results != null) {
+                for (int i = 0; i < results.size(); i++) {
+                    String ssid = results.get(i).SSID;
+                    if (ssid.startsWith("ESDiWIFI") && wifi.isWifiEnabled() ) {
+                        a = true; }
+                    else if (!wifi.isWifiEnabled()) {
+                        a = false;
+                    }
+                }
+            }
             return a;
         }
 
