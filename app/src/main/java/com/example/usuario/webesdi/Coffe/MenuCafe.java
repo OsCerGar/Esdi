@@ -1,11 +1,6 @@
 package com.example.usuario.webesdi.Coffe;
 
-/**
- * Created by Becario2 on 16/06/2017.
- */
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,12 +9,6 @@ import android.view.ViewGroup;
 
 import com.example.usuario.webesdi.R;
 import com.github.barteksc.pdfviewer.PDFView;
-
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class MenuCafe extends Fragment{
 

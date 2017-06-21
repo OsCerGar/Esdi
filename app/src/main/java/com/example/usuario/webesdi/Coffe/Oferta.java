@@ -1,8 +1,5 @@
 package com.example.usuario.webesdi.Coffe;
 
-/**
- * Created by Becario2 on 16/06/2017.
- */
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
