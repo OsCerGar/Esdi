@@ -11,7 +11,10 @@ android:layout_centerHorizontal="true" >
         android:id="@+id/timePicker"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:layout_gravity="center_horizontal"
+        android:scaleX="1.2"
+        />
 
     <DatePicker
         android:id="@+id/datePicker"

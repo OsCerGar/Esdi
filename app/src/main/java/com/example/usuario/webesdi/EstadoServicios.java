@@ -10,9 +10,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
+import java.net.MalformedURLException;
 import java.net.Socket;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.List;
 
@@ -57,7 +62,7 @@ public class EstadoServicios extends AppCompatActivity {
         new disponibilitatwifi().execute();
         new disponibilitatdocs().execute();
         new disponibilitatgmail().execute();
-        // new disponibilitatimpresora().execute();
+        new disponibilitatimpresora().execute();
         new disponibilitatcantina().execute();
         new disponibilitatcalendar().execute();
 
@@ -153,7 +158,7 @@ public class EstadoServicios extends AppCompatActivity {
 
         }
     }
-    /*  private class disponibilitatimpresora extends AsyncTask<Void, Void, Boolean>{
+      private class disponibilitatimpresora extends AsyncTask<Void, Void, Boolean>{
       Boolean a;
           String funciona1 = "", funciona2="",funciona3="";
       @Override
@@ -185,28 +190,33 @@ public class EstadoServicios extends AppCompatActivity {
           }
           System.out.println(result.toString());
 
+          String[] ips = result.toString().split("/");
+          String ip1 = ips[0].trim();
+          String ip2 = ips[1].trim();
+          String ip3 = ips[2].trim();
 
 
 
-          if (isReachable("192.168.0.101", 80, 1000) == true && isReachable("192.168.0.102", 80, 1000) == true && isReachable("192.168.0.103", 80, 1000) == true ) {
+
+          if (ip1 == "True" && ip2== "True" && ip3=="True") {
                   a = true;
               } else {
                   a = false;
               }
 
-          if (isReachable("1.177.96.147", 80, 1000) == true) {
-              funciona1 = result.toString();
+          if (ip1 == "True") {
+              funciona1 = "funciona";
           } else {
-              funciona1 = result.toString();
+              funciona1 = "no funciona";
           }
 
-          if (isReachable("192.160.50.221", 80, 1000) == true) {
+          if (ip2 == "True") {
               funciona2 = "funciona";
           } else {
               funciona2 = "no funciona";
           }
 
-          if (isReachable("192.160.50.222", 80, 1000) == true) {
+          if (ip3 == "True") {
               funciona3 = "funciona";
           } else {
               funciona3 = "no funciona";
@@ -240,7 +250,8 @@ public class EstadoServicios extends AppCompatActivity {
           }
 
       }
-*/
+      }
+
     private class disponibilitatcantina extends AsyncTask<Void, Void, Boolean>{
         Boolean a;
         @Override

@@ -34,6 +34,9 @@ public class GLPI extends BaseActivity {
 
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setUseWideViewPort(true);
+        webSettings.setBuiltInZoomControls(true);
         myWebView.setWebViewClient(new WebViewClient());
         myWebView.loadUrl("http://ddt.esdi.es/cau");
     }

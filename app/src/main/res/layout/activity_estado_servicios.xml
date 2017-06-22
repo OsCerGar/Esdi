@@ -72,7 +72,7 @@ tools:layout_editor_absoluteX="0dp">
             android:layout_height="70dp"
             app:srcCompat="@drawable/impresora_vermell"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="16dp"
             app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -80,7 +80,7 @@ tools:layout_editor_absoluteX="0dp">
             android:id="@+id/textimpresoras"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="0dp"
             android:layout_marginTop="8dp"
             android:text="@string/menuSimpresores"
