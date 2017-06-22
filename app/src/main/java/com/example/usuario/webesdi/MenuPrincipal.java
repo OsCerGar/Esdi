@@ -118,17 +118,16 @@ public class MenuPrincipal extends BaseActivity {
         //solo un administrador puede entrar a incidencias
         if (rol.equalsIgnoreCase("Administrador")){
             btnIncidencias.setVisibility(View.VISIBLE);
+            textView4.setVisibility(View.INVISIBLE);
 
         }else if(rol.equalsIgnoreCase("Invitado")){
             btndispoAulas.setVisibility(View.INVISIBLE);
             btnServicios.setVisibility(View.INVISIBLE);
             btnMensajes.setVisibility(View.INVISIBLE);
-            btnMensajes.setVisibility(View.INVISIBLE);
 
             textAluas.setVisibility(View.INVISIBLE);
             textMensajes.setVisibility(View.INVISIBLE);
             txtServeis.setVisibility(View.INVISIBLE);
-            textView4.setVisibility(View.INVISIBLE);
         }
 
 

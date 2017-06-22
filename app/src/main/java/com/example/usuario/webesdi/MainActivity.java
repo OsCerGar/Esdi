@@ -41,12 +41,12 @@ public class MainActivity extends BaseActivity
         btnSignOut = (Button)findViewById(R.id.sign_out_button);
         btnSignIn2 = (ImageView)findViewById(R.id.google_icon);
 
-
+/*
         Email="asd@esdi.esdu.es";
         Nombre="pepe";
         iniciarActivity();
         //Google API Client
-
+*/
         GoogleSignInOptions gso =
                 new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                         .requestEmail()
