@@ -167,7 +167,7 @@ public class EstadoServicios extends AppCompatActivity {
 
           URL url= null;
           try {
-              url = new URL("http://67.222.58.123/ping.php");
+              url = new URL("http://67.222.58.123/ddt/sql/ping (3).php");
           } catch (MalformedURLException e) {
               e.printStackTrace();
           }
