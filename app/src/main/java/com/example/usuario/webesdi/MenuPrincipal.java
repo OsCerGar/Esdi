@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.example.usuario.webesdi.empresas.Empresas;
 
-
+//añado un comentario
 public class MenuPrincipal extends BaseActivity {
     ImageView btnpaginaweb;
     ImageView btnContacto;
